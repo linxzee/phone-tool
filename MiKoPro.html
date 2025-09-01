@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiKo_Pro 操作方法</title>
+    <style>
+        /* --- CSS变量定义 --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --container-bg: #f9f9f9;
+            --border-color: #eaeaea;
+            --link-color: #007bff;
+            --code-bg: #f0f0f0;
+            --code-text: #d63384;
+            --heading-color: #1a1a1a;
+            --subtle-text: #666666;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --icon-fill: #333333;
+            
+            /* 平滑过渡动画 */
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --border-color: #333333;
+            --link-color: #64b5f6;
+            --code-bg: #2a2a2a;
+            --code-text: #f9a8da;
+            --heading-color: #ffffff;
+            --subtle-text: #999999;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --icon-fill: #e0e0e0;
+        }
+
+        /* --- 基础样式 --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 2rem 1rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* --- 主容器布局 --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        /* --- 内容样式 --- */
+        h1, h2 {
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2em;
+            text-align: center;
+            border-bottom: none;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+        }
+        
+        .author-info {
+            text-align: center;
+            color: var(--subtle-text);
+            margin-bottom: 2rem;
+            font-size: 0.9em;
+        }
+        
+        .author-info a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        .author-info a:hover {
+            text-decoration: underline;
+        }
+
+        p, li {
+            text-align: left;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- 主题切换按钮 --- */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            padding: 0;
+        }
+        
+        .theme-switcher svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--icon-fill);
+        }
+
+        .theme-switcher .icon-sun { display: none; }
+        .theme-switcher .icon-moon { display: block; }
+
+        [data-theme="dark"] .theme-switcher .icon-sun { display: block; }
+        [data-theme="dark"] .theme-switcher .icon-moon { display: none; }
+        
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-switcher" id="theme-toggle-btn" title="切换主题">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.906 14.143 0a9.953 9.953 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6zM12 5V3h-1v2h1zm0 15v-2h-1v2h1zM18.657 6.086l1.414-1.414-0.707-0.707-1.414 1.414 0.707 0.707zM5.343 19.379l1.414-1.414-0.707-0.707-1.414 1.414 0.707 0.707zM21 11v1h-2v-1h2zM5 11v1H3v-1h2zM18.657 17.914l-1.414-1.414-0.707 0.707 1.414 1.414 0.707-0.707zM5.343 4.621l-1.414-1.414 0.707-0.707 1.414 1.414-0.707 0.707z"/></svg>
+    </button>
+    
+    <main class="container">
+        <h1>MiKo_Pro 操作方法</h1>
+        <p class="author-info">
+            作者：半糖的芝士 | 软件下载：<a href="https://soya.infini-cloud.net/share/130187d81e0ece24" target="_blank" rel="noopener noreferrer">点此下载</a>
+        </p>
+
+        <section>
+            <h2>备份操作</h2>
+            <ol>
+                <li>打开 <code>MiKo_Pro</code> 包，运行 <code>miko</code> 进行安装，然后进入软件的安装目录。</li>
+                <li>
+                    将 <code>Loader</code> 文件复制到 MiKo_Pro 的安装目录中。
+                    <img src="https://linxzee.github.io/phone-tool/images/step-1-install-directory.png" alt="将Loader复制到安装目录">
+                </li>
+                <li>
+                    运行刚刚复制的 <code>Loader</code> 文件。
+                    <img src="https://linxzee.github.io/phone-tool/images/step-2-run-loader.png" alt="运行Loader程序">
+                </li>
+                <li>
+                    按照下图顺序点击。在操作过程中，程序会提示您设置备份文件的保存路径和文件名，请根据需要进行设置。
+                    <img src="https://linxzee.github.io/phone-tool/images/step-3-backup-settings.png" alt="备份设置界面">
+                </li>
+                 <li>
+                    操作完成后，您会看到备份成功的提示。
+                    <img src="https://linxzee.github.io/phone-tool/images/step-4-backup-success.png" alt="备份成功提示">
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>恢复操作</h2>
+            <ol>
+                <li>
+                    要恢复数据时，同样运行 <code>Loader</code>，然后在界面上双击选择您之前备份好的文件即可开始恢复。
+                    <img src="https://linxzee.github.io/phone-tool/images/step-5-restore-file-selection.png" alt="双击选择备份文件进行恢复">
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <script>
+        // --- 主题切换逻辑 ---
+        (function() {
+            const themeToggleButton = document.getElementById('theme-toggle-btn');
+            const htmlElement = document.documentElement;
+
+            // 获取当前主题
+            function getCurrentTheme() {
+                // 1. 优先从localStorage读取
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    return savedTheme;
+                }
+                // 2. 其次检测系统设置
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                // 3. 默认为亮色
+                return 'light';
+            }
+
+            // 应用主题
+            function applyTheme(theme) {
+                htmlElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme); // 记忆选择
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            }
+
+            // 页面加载时初始化主题
+            applyTheme(getCurrentTheme());
+            
+            // 按钮点击事件
+            themeToggleButton.addEventListener('click', toggleTheme);
+            
+            // 监听系统主题变化
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // 只有当用户没有手动设置过主题时，才跟随系统变化
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
