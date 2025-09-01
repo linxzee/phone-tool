@@ -1,0 +1,48 @@
+// /js/main.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const htmlElement = document.documentElement;
+
+    // --- 主题切换逻辑 ---
+    
+    // 1. 应用主题的函数
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+    };
+
+    // 2. 切换主题的函数
+    const toggleTheme = () => {
+        const isDarkMode = htmlElement.classList.contains('dark');
+        const newTheme = isDarkMode ? 'light' : 'dark';
+        applyTheme(newTheme);
+        // 保存用户选择
+        localStorage.setItem('theme', newTheme);
+    };
+
+    // 3. 页面加载时初始化主题
+    const initializeTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            applyTheme(savedTheme); // 优先使用用户保存的设置
+        } else if (prefersDark) {
+            applyTheme('dark'); // 其次根据系统偏好
+        } else {
+            applyTheme('light'); // 默认为浅色
+        }
+    };
+
+    // 事件监听
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+    
+    // 初始化
+    initializeTheme();
+});
