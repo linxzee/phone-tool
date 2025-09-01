@@ -3,189 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lineage GSI系统选择指南</title>
+    <title>Lineage GSI 系统选择指南</title>
     <style>
+        /* CSS 变量定义 */
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg-color: #ffffff;
+            --text-color: #343a40;
+            --heading-color: #005f73;
+            --border-color: #dee2e6;
+            --link-color: #007bff;
+            --link-hover-color: #d9534f;
+            --strong-color: #c94040;
+
+            --note-bg-color: #e7f5ff;
+            --note-border-color: #007bff;
+            
+            --table-header-bg: #005f73;
+            --table-header-text: #ffffff;
+            --table-row-even-bg: #f8f9fa;
+            --table-row-hover-bg: #e9ecef;
+            
+            --code-bg-color: #e9ecef;
+            --code-text-color: #212529;
+
+            --switch-bg-color: #e9ecef;
+            --switch-icon-color: #495057;
+
+            --theme-transition: all 0.3s ease-in-out;
+        }
+
+        html.dark-mode {
+            --bg-color: #121212;
+            --card-bg-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --heading-color: #94d2bd;
+            --border-color: #343a40;
+            --link-color: #64b5f6;
+            --link-hover-color: #ff8a80;
+            --strong-color: #ff8a80;
+
+            --note-bg-color: #2a333c;
+            --note-border-color: #64b5f6;
+
+            --table-header-bg: #003440;
+            --table-header-text: #e0e0e0;
+            --table-row-even-bg: #2c2c2c;
+            --table-row-hover-bg: #383838;
+
+            --code-bg-color: #343a40;
+            --code-text-color: #f8f9fa;
+            
+            --switch-bg-color: #343a40;
+            --switch-icon-color: #e9ecef;
+        }
+
+        /* 基础样式 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.7;
             margin: 0;
             padding: 20px;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--theme-transition);
         }
+
+        /* 容器 */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            background-color: var(--card-bg-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: var(--theme-transition);
         }
+
+        /* 标题 */
         h1, h2 {
-            color: #167C80;
             text-align: center;
+            color: var(--heading-color);
+            transition: color 0.3s;
         }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
+
         h2 {
-            margin-top: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
+            margin-top: 3rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 1.8em;
+            transition: border-color 0.3s;
         }
-        p {
-            margin-bottom: 15px;
+        
+        /* 链接 */
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
         }
+        a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        /* 信息提示框 */
         .note {
-            background-color: #e8f5e9;
-            padding: 15px;
+            background-color: var(--note-bg-color);
+            padding: 1.25rem;
             border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #4caf50;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--note-border-color);
+            transition: var(--theme-transition);
         }
-        .highlight {
-            color: #d32f2f;
-            font-weight: bold;
+        .note p:last-child {
+            margin-bottom: 0;
         }
+
+        /* 表格样式 */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
         }
         th, td {
-            padding: 12px 15px;
+            padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--theme-transition);
         }
         th {
-            background-color: #167C80;
-            color: white;
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            font-weight: 600;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #e6f7ff;
-        }
-        a {
-            color: #1976d2;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        a:hover {
-            color: #d32f2f;
-            text-decoration: underline;
-        }
-        .command {
-            background-color: #f5f5f5;
-            padding: 10px;
+        tr:nth-child(even) { background-color: var(--table-row-even-bg); }
+        tr:hover { background-color: var(--table-row-hover-bg); }
+        tr:last-child td { border-bottom: none; }
+
+        /* 代码/命令/高亮文本样式 */
+        .command, code {
+            background-color: var(--code-bg-color);
+            color: var(--code-text-color);
+            padding: 0.2em 0.6em;
             border-radius: 4px;
-            font-family: monospace;
-            margin: 10px 0;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 0.95em;
+            transition: var(--theme-transition);
         }
+        .highlight { color: var(--strong-color); font-weight: bold; }
+        
+        /* 命名规则解析模块优化 */
+        .filename-explainer {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--bg-color);
+            transition: var(--theme-transition);
+        }
+        .filename-explainer h3 {
+            margin-top: 0;
+            color: var(--heading-color);
+            text-align: center;
+        }
+        .filename-explainer pre {
+            background-color: var(--card-bg-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.1em;
+            word-break: break-all;
+            white-space: pre-wrap;
+            border: 1px solid var(--border-color);
+        }
+        .filename-explainer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .filename-explainer li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .filename-explainer li:last-child {
+            border-bottom: none;
+        }
+        .part-b, .part-v, .part-N, .part-vndklite { font-weight: 700; }
+        .part-b { color: #2a9d8f; }
+        .part-v { color: #e76f51; }
+        .part-N { color: #f4a261; }
+        .part-vndklite { color: #264653; }
+
         .center {
             text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9em;
+            opacity: 0.8;
         }
-        .architecture-table {
-            margin-top: 30px;
+
+        /* 主题切换按钮 */
+        .theme-switch {
+            position: fixed; top: 20px; right: 20px;
+            width: 45px; height: 45px;
+            background-color: var(--switch-bg-color);
+            border: none; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
         }
-        .filename {
-            font-family: monospace;
-            font-size: 18px;
-            padding: 10px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-            margin: 15px 0;
-            text-align: center;
-        }
-        .filename-part {
-            color: #d32f2f;
-        }
+        .theme-switch:hover { transform: scale(1.1); }
+        .theme-switch svg { width: 24px; height: 24px; fill: var(--switch-icon-color); transition: fill 0.3s ease; }
+        .icon-sun { display: none; }
+        .icon-moon { display: block; }
+        html.dark-mode .icon-sun { display: block; }
+        html.dark-mode .icon-moon { display: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Lineage GSI系统的选择</h1>
-        <p>GSI就是通用系统镜像，不看手机品牌型号，都能刷，一般用来root。</p>
-        <p>一般选择Lineage：<a href="https://sourceforge.net/projects/andyyan-gsi/files/" target="_blank">https://sourceforge.net/projects/andyyan-gsi/files/</a></p>
-        
+
+    <button class="theme-switch" id="theme-toggle-btn" aria-label="切换主题">
+        <!-- SVG Icons for theme switch -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.64 5.64c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.41 1.41c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L5.64 5.64zm12.73 12.73c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.41 1.41c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.41-1.41zM19.78 4.22c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.41 1.41c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.41-1.41zM4.22 19.78c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.41 1.41c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.41-1.41z"/></svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.37 5.51c.46-1.08 1.6-1.78 2.87-1.45.24.06.46.16.67.29-1.6.46-2.93 1.51-3.79 2.89-.5.8-.75 1.72-.75 2.66 0 .33.02.66.07.98-1.12-.41-1.99-1.2-2.5-2.22-.51-1.02-.6-2.22-.24-3.36.42-1.35 1.49-2.39 2.86-2.73.05-.01.1-.02.14-.04zm-1.1 6.54c-.18-.32-.26-.68-.26-1.04 0-1.3.8-2.45 1.95-2.95-.08.41-.02.83.15 1.25.33.8.96 1.43 1.76 1.76.25.1.51.15.78.15.54 0 1.06-.2 1.49-.57-.4.53-.88.98-1.44 1.34-1.37.9-3.08 1.1-4.71.55z"/></svg>
+    </button>
+    
+    <main class="container">
+        <h1>Lineage GSI 系统选择指南</h1>
+        <p>GSI（Generic System Image）即通用系统镜像，它是一种标准化的安卓系统映像，可以安装在任何支持Project Treble的设备上，而无需考虑品牌和型号。这使得它成为获取Root权限或体验原生安卓的常用工具。</p>
+        <p>社区中最受欢迎的GSI之一是基于LineageOS的版本，您可以在这里找到：<a href="https://sourceforge.net/projects/andyyan-gsi/files/" target="_blank">Andy Yan's GSI Builds</a></p>
+      
         <div class="note">
-            <p>如何选择：选择GSI需要看安卓版本，系统架构，CPU架构</p>
-            <p>可用软件查看：<a href="https://linxize.lanzout.com/iMwHL34zoqgj" target="_blank">https://linxize.lanzout.com/iMwHL34zoqgj</a></p>
+            <p><strong>如何选择？</strong> 正确选择GSI需要匹配您设备的<strong>安卓版本</strong>、<strong>系统架构</strong>和<strong>CPU架构</strong>。您可以使用 <a href="https://linxize.lanzout.com/iMwHL34zoqgj" target="_blank">Device Info HW</a> 这类应用来查看这些信息。</p>
         </div>
 
-        <h2>Lineage和Android版本对应表</h2>
+        <h2>LineageOS 与 Android 版本对应表</h2>
         <table>
-            <tr>
-                <th>Lineage</th>
-                <th>13</th>
-                <th>14.1</th>
-                <th>15.1</th>
-                <th>16</th>
-                <th>17.1</th>
-                <th>18.1</th>
-                <th>19.1</th>
-                <th>20</th>
-                <th>21</th>
-                <th>22.1</th>
-            </tr>
-            <tr>
-                <td>Android</td>
-                <td>6.0.1</td>
-                <td>7.1.2</td>
-                <td>8.1.0</td>
-                <td>9.0.0</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12.1</td>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>LineageOS 版本</th>
+                    <th>13</th>
+                    <th>14.1</th>
+                    <th>15.1</th>
+                    <th>16</th>
+                    <th>17.1</th>
+                    <th>18.1</th>
+                    <th>19.1</th>
+                    <th>20</th>
+                    <th>21</th>
+                    <th>22.1</th> <!-- 已更正 -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Android 版本</strong></td>
+                    <td>6.0.1</td>
+                    <td>7.1.2</td>
+                    <td>8.1.0</td>
+                    <td>9.0.0</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12.1</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td> <!-- 已更正 -->
+                </tr>
+            </tbody>
         </table>
 
-        <h2>架构和对应的GSI版本</h2>
-        <table class="architecture-table">
-            <tr>
-                <th>CPU架构</th>
-                <th>系统架构</th>
-                <th>下载对应GSI版本</th>
-            </tr>
-            <tr>
-                <td>ARMv8A/ARM64（64）</td>
-                <td>aarch64（64）</td>
-                <td>arm64</td>
-            </tr>
-            <tr>
-                <td>ARMv8A/ARM64（64）</td>
-                <td>armv7l（32）</td>
-                <td>a64</td>
-            </tr>
-            <tr>
-                <td>ARMv7A/ARM32（32）</td>
-                <td>armv7l（32）</td>
-                <td>arm</td>
-            </tr>
+        <h2>设备架构与GSI版本对应表</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>CPU 架构</th>
+                    <th>系统（用户空间）架构</th>
+                    <th>应下载的GSI版本标识</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ARMv8A / aarch64 (64位)</td>
+                    <td>aarch64 (64位)</td>
+                    <td><code>arm64</code></td>
+                </tr>
+                <tr>
+                    <td>ARMv8A / aarch64 (64位)</td>
+                    <td>arm / armv7l (32位)</td>
+                    <td><code>a64</code> (代表arm64-binder32)</td>
+                </tr>
+                <tr>
+                    <td>ARMv7A / arm (32位)</td>
+                    <td>arm / armv7l (32位)</td>
+                    <td><code>arm</code></td>
+                </tr>
+            </tbody>
         </table>
 
         <div class="note">
-            <p>使用 <span class="command">uname -m</span> 命令可查看系统架构，也可用"Device Info HW"应用查看。</p>
+            <p>您可以在ADB Shell或终端模拟器中运行 <code class="command">uname -m</code> 命令来快速查看您的设备系统架构。</p>
         </div>
 
-        <h2>Lineage GSI命名规则</h2>
-        <p class="filename">
-            lineage-21.0-20250621-UNOFFICIAL-arm64_<span class="filename-part">bvN-vndklite</span>.img.gz
-        </p>
+        <h2>Lineage GSI 命名规则解析</h2>
+        <div class="filename-explainer">
+            <h3>文件名结构示例</h3>
+            <pre>lineage-21.0-20250621-UNOFFICIAL-arm64_<span class="part-b">b</span><span class="part-v">v</span><span class="part-N">N</span>-<span class="part-vndklite">vndklite</span>.img.gz</pre>
+            <ul>
+                <li><span class="part-b">b</span>：第一个字母代表 <strong>System-as-Root (SAR)</strong> 支持。
+                    <ul>
+                        <li><code class="part-b">b</code> = 支持SAR (现代设备通常是这个)</li>
+                        <li><code>a</code> = 不支持SAR (较旧的设备)</li>
+                    </ul>
+                </li>
+                <li><span class="part-v">v</span>：第二个字母代表 <strong>谷歌服务 (GApps)</strong>。
+                    <ul>
+                        <li><code class="part-v">v</code> = Vanilla (纯净版，不包含谷歌服务)</li>
+                        <li><code>g</code> = GApps (内置谷歌移动服务)</li>
+                    </ul>
+                </li>
+                <li><span class="part-N">N</span>：第三个字母代表 <strong>内置Root方案</strong>。
+                    <ul>
+                        <li><code class="part-N">N</code> = None (不包含Root)</li>
+                        <li><code>s</code> = SuperUser (内置了phh-superuser)</li>
+                    </ul>
+                </li>
+                <li><span class="part-vndklite">vndklite</span>：这是一个可选的变体标识。
+                    <ul>
+                        <li><code class="part-vndklite">vndklite</code>：VNDK Lite版本，为某些需要它的设备提供更好的兼容性。对于大多数常规设备，<strong>通常不需要下载带此后缀的版本</strong>。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         
-        <p>命名规则解析：</p>
-        <ul>
-            <li>第一个字母：是否支持SAR(system as root)，支持就是b，不支持就是a。</li>
-            <li>第二个字母：是否内置谷歌服务，内置是g，不内置是v。</li>
-            <li>第三个字母：是否支持su root，支持是s，不支持是N。</li>
-            <li>第四个单词：对于常规设备上的可读写/system，一般不用下带这个的。</li>
-        </ul>
-
         <div class="center">
-            <p>更多信息请访问: <a href="https://sourceforge.net/projects/andyyan-gsi/files/" target="_blank">Lineage GSI官方下载页面</a></p>
+            <p>选择最适合您设备的版本，开始探索吧！</p>
         </div>
-    </div>
+    </main>
+
+    <script>
+    (() => {
+        const themeToggleButton = document.getElementById('theme-toggle-btn');
+        const htmlElement = document.documentElement;
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark-mode');
+            } else {
+                htmlElement.classList.remove('dark-mode');
+            }
+            localStorage.setItem('theme', theme);
+        };
+        const toggleTheme = () => {
+            const currentTheme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        };
+        themeToggleButton.addEventListener('click', toggleTheme);
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (prefersDark) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light'); 
+        }
+    })();
+    </script>
 </body>
 </html>
