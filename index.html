@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linxzee的玩机教程</title>
+    <link rel="stylesheet" href="https://linxzee.github.io/phone-tool/css/indexstyles.css">
+</head>
+<body>
+
+    <!-- 头部 -->
+    <header class="main-header">
+       <div class="container">
+            <nav class="navbar">
+                <div class="nav-left">
+                     <a href="#" class="logo">
+                        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM88,100a12,12,0,1,1,12,12A12,12,0,0,1,88,100Zm80,56a12,12,0,1,1,12-12A12,12,0,0,1,168,156Z" fill="#A855F7"></path></svg>
+                        <span>Linxzee</span>
+                    </a>
+                    <div class="search-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0 1.397-1.398h.001c-.03-.04-.062-.078-.098-.115l-3.85-3.85a1 1 0 0 0-1.415 1.414l3.85 3.85a1.007 1.007 0 0 0 .115.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                        <span>搜索文档</span>
+                        <span class="key-hint">Ctrl K</span>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-links">
+                       <a href="#">首页</a>
+                        <a href="#">开始使用
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                        </a>
+                    </div>
+                    <div class="nav-divider"></div>
+                    <div class="nav-actions">
+                        <div class="theme-toggle" id="theme-toggle-btn" title="切换深色/浅色模式">
+                            <div class="toggle-icon">
+                                <span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg></span>
+                                <span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm-5-8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm10 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zM3.536 3.536a.5.5 0 0 1 .708 0l1.414 1.414a.5.5 0 0 1-.708.708L3.536 4.244a.5.5 0 0 1 0-.708zm8.485 8.485a.5.5 0 0 1 .708 0l1.414 1.414a.5.5 0 0 1-.708.708l-1.414-1.414a.5.5 0 0 1 0-.708zM12.464 3.536a.5.5 0 0 1 0 .708l-1.414 1.414a.5.5 0 0 1-.708-.708l1.414-1.414a.5.5 0 0 1 .708 0zM4.244 12.464a.5.5 0 0 1 0 .708l-1.414 1.414a.5.5 0 0 1-.708-.708l1.414-1.414a.5.5 0 0 1 .708 0z"/></svg></span>
+                            </div>
+                        </div>
+                        <a href="#" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+       <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Linxzee的玩机教程</h2>
+                    <h1 class="hero-headline">高通联发科芯片适用</h1>
+                    <p class="hero-subtitle">Root前提是解开BL锁</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">开始使用</button>
+                        <a href="https://github.com/linxzee/phone-tool/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">在 GitHub 上查看</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://suki-usa.com/assets/images/sticker.webp" alt="SukiSU Ultra Illustration">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    
+                    <!-- 卡片 1 -->
+                    <a href="https://linxzee.github.io/phone-tool/bootroot.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>深刷提取备份刷入（救砖）</h3>
+                        <p>适用大多数设备，高通设备大多需要拆机找触点</p>
+                    </a>
+
+                    <!-- 卡片 2 (已修复结构) -->
+                    <a href="https://linxzee.github.io/phone-tool/Lineage-GSI.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>Lineage GSI系统的选择</h3>
+                        <p>GSI就是通用系统镜像，不看手机品牌型号，都能刷，一般用来root。</p>
+                    </a>
+
+                    <!-- 卡片 3 (已优化为<a>标签, href="#"为占位符) -->
+                    <a href="https://linxzee.github.io/phone-tool/MTKClient.html"  target="_blank" rel="noopener noreferrer"  class="feature-card">
+                        <h3>MTKClient 使用教程</h3>
+                        <p>MTK固件提取与备份</p>
+                    </a>
+
+                    <!-- 卡片 4 (已优化为<a>标签) -->
+                    <a href="https://linxzee.github.io/phone-tool/Qualcomm-Premium-Tool-9008.html"  target="_blank" rel="noopener noreferrer"  class="feature-card">
+                        <h3>Qualcomm Premium Tool 9008 端口备份教程</h3>
+                        <p>高通9008固件提取与备份</p>
+                    </a>
+
+                    <!-- 卡片 5 (已优化为<a>标签) -->
+                    <a href="https://linxzee.github.io/phone-tool/MiKoPro.html"  target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>MiKo_Pro9008操作方法</h3>
+                        <p>高通9008固件提取与备份</p>
+                    </a>
+
+                    <!-- 卡片 6 (已优化为<a>标签) -->
+                    <a href="#" class="feature-card">
+                        <h3>支持 KPM</h3>
+                        <p>完整的基于 KernelPatch 的 KPM 功能。</p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript 脚本 -->
+    <script src="https://linxzee.github.io/phone-tool/js/indexjs.js" defer></script>
+</body>
+</html>
