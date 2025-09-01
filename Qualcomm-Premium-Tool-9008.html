@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualcomm Premium Tool 9008 端口备份教程</title>
+    <link rel="stylesheet" href="https://linxzee.github.io/phone-tool/css/docs.css">
+</head>
+<body>
+    <main class="container">
+
+        <button class="theme-switch" id="theme-toggle-btn" title="切换深色/浅色模式" aria-label="Toggle theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+        </button>
+        
+        <h1>Qualcomm Premium Tool 9008 端口备份教程</h1>
+        <p class="meta-info">作者：半糖的芝士</p>
+        
+        <div class="download-links">
+            <ul>
+                <li><strong>软件下载：</strong><a href="https://linxize.lanzout.com/iH91934zgobe" target="_blank" rel="noopener noreferrer">https://linxize.lanzout.com/iH91934zgobe</a></li>
+            </ul>
+        </div>
+        
+        <h2>第一步：激活工具</h2>
+        <p>打开 <code>QualcommPremiumTool</code> 软件包，首先运行注册机程序，点击 <span class="highlight">确定</span>。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/01-register-tool.png" alt="运行注册机并点击确定">
+
+        <p>接着点击 <span class="highlight">继续</span>。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/02-continue-registration.png" alt="点击继续">
+
+        <p>点击 <span class="highlight">GenerateKey</span>，并自行设置一个保存路径和文件名，将生成的密钥文件保存好。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/03-generate-key.png" alt="生成并保存密钥文件">
+        
+        <p>然后返回主目录，运行主程序 <code>QualcommPremiumTool</code>。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/04-launch-main-tool.png" alt="运行主程序">
+
+        <p>在激活界面，选择刚才您保存的密钥文件路径。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/05-select-key-file.png" alt="选择密钥文件进行激活">
+        
+        <p>激活成功后，您会看到工具的主界面。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/06-activation-complete.png" alt="激活完成后的主界面">
+
+        <h2>第二步：备份分区</h2>
+        <p>按照下图中的顺序进行操作。首先点击 <span class="highlight">Do Job</span> 按钮，此时工具会扫描并列出设备的所有分区。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/07-scan-partitions.png" alt="点击Do Job扫描分区">
+
+        <p>扫描完成后，勾选 <span class="highlight">备份所有</span> 选项以进行全分区完整备份。</p>
+        <figure>
+            <img src="https://linxzee.github.io/phone-tool/images/08-select-all-partitions.png" alt="勾选备份所有">
+            <figcaption>或者，如果您只想备份特定分区，可以取消勾选，然后手动选择需要的分区。</figcaption>
+        </figure>
+
+        <p>再次点击 <span class="highlight">Do Job</span> 按钮。工具会提示您选择一个文件夹来保存备份文件，选择好路径后，备份过程将自动开始，请耐心等待完成。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/09-backup-in-progress.png" alt="开始备份并选择保存路径">
+
+        <div class="tip-box">
+            <p><strong>重要提示：</strong></p>
+            <ul>
+                <li>在完整备份中，<code>boot</code> 分区是后续获取 Root 权限的关键文件。</li>
+                <li>强烈建议您额外单独备份基带相关的分区，以防丢失信号。请取消 <span class="highlight">备份所有</span> 的勾选，然后手动选中 <code>modemst1</code>, <code>modemst2</code>, <code>fsc</code>, <code>fsg</code> 这几个分区，再次执行备份。备份出的文件扩展名建议手动修改为 <code>.bin</code>。</li>
+            </ul>
+        </div>
+        <img src="https://linxzee.github.io/phone-tool/images/10-select-modem-partitions.png" alt="单独选择基带分区进行备份">
+
+    </main>
+
+    <script src="https://linxzee.github.io/phone-tool/js/docs.js"></script>
+</body>
+</html>

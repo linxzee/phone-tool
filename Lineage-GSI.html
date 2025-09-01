@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineage GSI 通用系统镜像使用教程</title>
+    <link rel="stylesheet" href="https://linxzee.github.io/phone-tool/css/docs.css">
+</head>
+<body>
+    <button class="theme-switch" id="theme-toggle-btn" aria-label="切换主题">
+        <!-- 优化的线性图标 -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+    </button>
+    
+    <main class="container">
+        <h1>Lineage GSI 通用系统镜像使用教程</h1>
+        <p>GSI（Generic System Image）即通用系统镜像，它是一种标准化的安卓系统映像，可以安装在任何支持Project Treble的设备上，而无需考虑品牌和型号。这使得它成为获取Root权限或体验原生安卓的常用工具。</p>
+        <p>社区中最受欢迎的GSI之一是基于LineageOS的版本，您可以在这里找到：<a href="https://sourceforge.net/projects/andyyan-gsi/files/" target="_blank">Andy Yan's GSI Builds</a></p>
+      
+        <div class="note">
+            <p><strong>如何选择？</strong> 正确选择GSI需要匹配您设备的<strong>安卓版本</strong>、<strong>系统架构</strong>和<strong>CPU架构</strong>。您可以使用 <a href="https://linxize.lanzout.com/iMwHL34zoqgj" target="_blank">Device Info HW</a> 这类应用来查看这些信息。</p>
+        </div>
+
+        <h2>LineageOS 与 Android 版本对应表</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>LineageOS 版本</th>
+                    <th>13</th>
+                    <th>14.1</th>
+                    <th>15.1</th>
+                    <th>16</th>
+                    <th>17.1</th>
+                    <th>18.1</th>
+                    <th>19.1</th>
+                    <th>20</th>
+                    <th>21</th>
+                    <th>22.1</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Android 版本</strong></td>
+                    <td>6.0.1</td>
+                    <td>7.1.2</td>
+                    <td>8.1.0</td>
+                    <td>9.0.0</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12.1</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>设备架构与GSI版本对应表</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>CPU 架构</th>
+                    <th>系统（用户空间）架构</th>
+                    <th>应下载的GSI版本标识</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ARMv8A / aarch64 (64位)</td>
+                    <td>aarch64 (64位)</td>
+                    <td><code>arm64</code></td>
+                </tr>
+                <tr>
+                    <td>ARMv8A / aarch64 (64位)</td>
+                    <td>arm / armv7l (32位)</td>
+                    <td><code>a64</code> (代表arm64-binder32)</td>
+                </tr>
+                <tr>
+                    <td>ARMv7A / arm (32位)</td>
+                    <td>arm / armv7l (32位)</td>
+                    <td><code>arm</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <p>您可以在ADB Shell或终端模拟器中运行 <code class="command">uname -m</code> 命令来快速查看您的设备系统架构。</p>
+        </div>
+
+        <h2>Lineage GSI 命名规则解析</h2>
+        <div class="filename-explainer">
+            <h3>文件名结构示例</h3>
+            <pre>lineage-21.0-20250621-UNOFFICIAL-arm64_<span class="part-b">b</span><span class="part-v">v</span><span class="part-N">N</span>-<span class="part-vndklite">vndklite</span>.img.gz</pre>
+            <ul>
+                <li><span class="part-b">b</span>：第一个字母代表 <strong>System-as-Root (SAR)</strong> 支持。
+                    <ul>
+                        <li><code class="part-b">b</code> = 支持SAR (现代设备通常是这个)</li>
+                        <li><code>a</code> = 不支持SAR (较旧的设备)</li>
+                    </ul>
+                </li>
+                <li><span class="part-v">v</span>：第二个字母代表 <strong>谷歌服务 (GApps)</strong>。
+                    <ul>
+                        <li><code class="part-v">v</code> = Vanilla (纯净版，不包含谷歌服务)</li>
+                        <li><code>g</code> = GApps (内置谷歌移动服务)</li>
+                    </ul>
+                </li>
+                <li><span class="part-N">N</span>：第三个字母代表 <strong>内置Root方案</strong>。
+                    <ul>
+                        <li><code class="part-N">N</code> = None (不包含Root)</li>
+                        <li><code>s</code> = SuperUser (内置了phh-superuser)</li>
+                    </ul>
+                </li>
+                <li><span class="part-vndklite">vndklite</span>：这是一个可选的变体标识。
+                    <ul>
+                        <li><code class="part-vndklite">vndklite</code>：VNDK Lite版本，为某些需要它的设备提供更好的兼容性。对于大多数常规设备，<strong>通常不需要下载带此后缀的版本</strong>。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="center">
+            <p>选择最适合您设备的版本，开始探索吧！</p>
+        </div>
+        </section>
+    </main>
+    
+    <script src="https://linxzee.github.io/phone-tool/js/docs.js"></script>
+</body>
+</html>
