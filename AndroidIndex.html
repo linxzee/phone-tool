@@ -57,7 +57,7 @@
         
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
-        /* --- 改动点 1: 调整容器，增加内边距使其视觉居中 --- */
+        /* 容器 */
         .container {
             max-width: 1280px;
             margin: 0 auto; /* 水平居中 */
@@ -134,7 +134,7 @@
         }
         html.dark .feature-card { box-shadow: none; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04); }
-        html.dark .feature-card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
+        html.dark .feature-card:hover { border-color: var(--primary-color); }
         .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
         .feature-card p { color: var(--text-light-color); }
 
@@ -148,7 +148,6 @@
             .hero-image { max-width: 300px; margin-top: 40px; } 
             .features-grid { grid-template-columns: 1fr; } 
         }
-
     </style>
 </head>
 <body>
@@ -156,7 +155,6 @@
     <!-- 头部 -->
     <header class="main-header">
        <div class="container">
-            <!-- Navbar 内容不变 -->
             <nav class="navbar">
                 <div class="nav-left">
                      <a href="#" class="logo">
@@ -192,7 +190,6 @@
     </header>
 
     <main>
-       <!-- Hero Section 内容不变 -->
        <section class="hero">
             <div class="container hero-container">
                 <div class="hero-content">
@@ -215,39 +212,48 @@
             <div class="container">
                 <div class="features-grid">
                     
-                    <!-- 改动点 2 & 3: 修改文案，并将 div 转换为 a 标签 -->
+                    <!-- 卡片 1 -->
                     <a href="https://linxzee.github.io/phone-tool/bootroot.html" target="_blank" rel="noopener noreferrer" class="feature-card">
                         <h3>深刷提取备份刷入（救砖）</h3>
                         <p>适用大多数设备，高通设备大多需要拆机找触点</p>
                     </a>
 
-                    <div class="feature-card">
-                        <a href="https://linxzee.github.io/phone-tool/Lineage-GSI.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <!-- 卡片 2 (已修复结构) -->
+                    <a href="https://linxzee.github.io/phone-tool/Lineage-GSI.html" target="_blank" rel="noopener noreferrer" class="feature-card">
                         <h3>Lineage GSI系统的选择</h3>
                         <p>GSI就是通用系统镜像，不看手机品牌型号，都能刷，一般用来root。</p>
-                    </div>
-                    <div class="feature-card">
+                    </a>
+
+                    <!-- 卡片 3 (已优化为<a>标签, href="#"为占位符) -->
+                    <a href="#" class="feature-card">
                         <h3>App Profile</h3>
                         <p>把 root 权限关进笼子里。</p>
-                    </div>
-                    <div class="feature-card">
+                    </a>
+
+                    <!-- 卡片 4 (已优化为<a>标签) -->
+                    <a href="#" class="feature-card">
                         <h3>重新支持非 GKI 与 GKI 1.0 内核</h3>
                         <p>增强对旧设备的兼容性。</p>
-                    </div>
-                    <div class="feature-card">
+                    </a>
+
+                    <!-- 卡片 5 (已优化为<a>标签) -->
+                    <a href="#" class="feature-card">
                         <h3>更多自定义选项</h3>
                         <p>提供广泛的自定义选项。</p>
-                    </div>
-                    <div class="feature-card">
+                    </a>
+
+                    <!-- 卡片 6 (已优化为<a>标签) -->
+                    <a href="#" class="feature-card">
                         <h3>支持 KPM</h3>
                         <p>完整的基于 KernelPatch 的 KPM 功能。</p>
-                    </div>
+                    </a>
+
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- JavaScript 脚本不变 -->
+    <!-- JavaScript 脚本 -->
     <script>
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
         const htmlElement = document.documentElement;
