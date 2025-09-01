@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红魔手机ADB方式关闭系统更新(免root)</title>
+    <link rel="stylesheet" href="https://linxzee.github.io/phone-tool/css/docs.css">
+</head>
+<body>
+    <main class="container">
+
+        <button class="theme-switch" id="theme-toggle-btn" title="切换深色/浅色模式" aria-label="Toggle theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+        </button>
+
+        <h1>红魔手机ADB方式关闭系统更新(免root)</h1>
+        <p class="meta-info">作者：半糖的芝士</p>
+
+        <section>
+            <h2>准备工作</h2>
+            <p>首先，请确保您的电脑已正确配置ADB环境，并且手机已开启USB调试模式并成功连接电脑。</p>
+        </section>
+
+        <section>
+            <h2>方法一：ADB命令禁用</h2>
+            <p>在电脑上打开命令行工具，输入以下命令来禁用系统更新及相关组件。</p>
+            
+            <h4>禁用系统更新</h4>
+            <pre><code>adb shell pm disable-user com.zte.zdm</code></pre>
+
+            <h4>禁用快应用和快应用引擎（可选）</h4>
+            <pre><code>adb shell pm disable-user cn.nubia.hybrid</code></pre>
+            <pre><code>adb shell pm disable-user cn.nubia.quickrt</code></pre>
+        </section>
+
+        <section>
+            <h2>方法二：禁止应用联网</h2>
+            <p>您也可以直接在手机的应用设置中，禁止系统更新应用访问网络，以达到屏蔽更新的目的。</p>
+            <img src="https://linxzee.github.io/phone-tool/images/red801.gif" alt="禁止系统更新联网">
+        </section>
+
+        <section>
+            <h2>如何恢复更新</h2>
+            <p>如果您后续想要恢复系统更新功能，可以采用以下任一方法。</p>
+
+            <h4>使用ADB命令启用</h4>
+            <p>执行以下命令即可重新启用系统更新服务：</p>
+            <pre><code>adb shell pm enable com.zte.zdm</code></pre>
+
+            <h4>手动安装更新包或在设置中打开</h4>
+            <p>您可以下载系统更新的安装包手动安装：</p>
+            <div class="download-links">
+                <ul>
+                    <li><strong>系统更新应用下载：</strong><a href="https://linxize.lanzout.com/iRGrY32o66he" target="_blank" rel="noopener noreferrer">https://linxize.lanzout.com/iRGrY32o66he</a></li>
+                </ul>
+            </div>
+            <p>或者，直接在手机的 <strong>设置 → 应用 → 显示系统应用</strong> 中，搜索“系统更新”并重新打开它。</p>
+            <img src="https://linxzee.github.io/phone-tool/images/red802.png" alt="在设置中重新打开系统更新">
+        </section>
+
+    </main>
+
+    <script src="https://linxzee.github.io/phone-tool/js/docs.js"></script>
+</body>
+</html>
