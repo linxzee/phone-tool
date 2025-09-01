@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深刷提取备份刷入（救砖）指南</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        p, ul {
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .cut-off {
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .note {
+            background-color: #fffde7;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border-left: 4px solid #ffd600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>深刷提取备份刷入（救砖）</h1>
+        <p>适用大多数设备，高通设备大多需要拆机找触点</p>
+
+        <h2>工具和系统</h2>
+        <p>MTK深度刷机备份：MTKClient使用教程</p>
+        <p>QPT9008：QPT教程</p>
+        <p>MIko9008：Miko教程</p>
+        <p>Lineage GSI网站：GSI使用教程</p>
+
+        <div class="cut-off">cut-off</div>
+
+        <h2>二：GSI提取boot获取root（Userdebug版本）</h2>
+        <p>需要先分辨好设备的分区，是什么类型，再提取对应类型的文件。</p>
+
+        <p>使用软件：</p>
+        <ul>
+            <li>ADB环境：https://linxize.lanzout.com/irvNf34zpx2d</li>
+            <li>通杀驱动：https://linxize.lanzout.com/iopQy34zpx9a</li>
+            <li>TrebleCheck：https://linxize.lanzout.com/iOOAP34zhpsd</li>
+            <li>底层探测器：https://linxize.lanzout.com/iRZ5q34zp1mb</li>
+        </ul>
+
+        <p>分区类别：</p>
+        <ul>
+            <li>PT功能：Project Treble安卓通用镜像标准，支持的可以刷GSI，安卓8引入，安卓9强制支持。</li>
+            <li>Aonly分区：不支持无缝系统更新，使用boot来root</li>
+            <li>AB/VAB分区：支持无缝系统更新，使用boot_a和b来root</li>
+            <li>AB/VAB分区，且出厂安卓13：支持无缝系统更新，使用init_boot_a和b来root</li>
+            <li>SAR（System-as-root）：如果设备支持SAR，即便不支持AB分区，也需要下载带ab格式的GSI刷机包</li>
+        </ul>
+
+        <p>解锁后进入bootloader模式</p>
+        <p>使用命令刷入gsi：fastboot boot system</p>
+        <p>使用命令清除分区数据：fastboot erase userdata</p>
+        <p>进入系统后开USB调试，使用ADB命令行，输入adb shell进入，输入su获取命令行root权限</p>
+
+        <div class="cut-off">cut-off</div>
+
+        <div class="highlight">
+            <h2>※重点※ 提取分区命令（标绿）※重点※</h2>
+            <p>如果手机不支持无缝更新，需要boot</p>
+            <p>如果手机支持无缝更新（AB，VAB)，则需要boot_a和_b</p>
+            <p>如果手机支持无缝更新且出厂安卓13以上，则需要init_boot_a和_b</p>
+
+            <p>eMMC闪存</p>
+            <ul>
+                <li>adb shell</li>
+                <li>su</li>
+                <li>获取分区位置：find /dev/block/platform/ -name 'by-name' -type d</li>
+                <li>返回路径：各机型不同，返回的值也不同</li>
+                <li>进入分区位置：cd 粘贴第4步的返回值</li>
+                <li>输入获取boot分区的路径：ls -l boot</li>
+                <li>mmcdlk开头就是boot分区</li>
+            </ul>
+
+            <p>UFS闪存</p>
+            <ul>
+                <li>adb shell</li>
+                <li>su</li>
+                <li>使用cd命令进入即可：cd /dev/block/by-name/</li>
+                <li>输入获取boot分区的路径：ls -l boot</li>
+                <li>sd开头就是boot分区</li>
+            </ul>
+
+            <p>确认分区位置后，使用dd命令来导出分区</p>
+            <p>ab分区需要提取a和b，安卓13以上则是init_boot_a和b</p>
+
+            <p>命令格式：dd if=分区实际位置 of=要保存的位置</p>
+            <p>例如：dd if=/dev/block/sdc56 of=/sdcard/boot_a.img</p>
+        </div>
+
+        <div class="cut-off">cut-off</div>
+
+        <p>提取之后的分区使用面具或者ksu修补，修补后使用命令刷入</p>
+        <p>其他root工具修补也行，刷入方式2选1</p>
+
+        <p>fastboot模式刷入：</p>
+        <ul>
+            <li>重启到fastboot模式：adb reboot bootloader</li>
+            <li>Aonly分区：fastboot flash boot 修补后文件</li>
+            <li>AB分区：fastboot flash boot_a和_b 修补后文件</li>
+            <li>AB分区且安卓13或以上：fastboot flash init_boot_a和_b 修补后文件</li>
+        </ul>
+
+        <p>dd命令刷入：</p>
+        <ul>
+            <li>开机状态进入命令行root也就是su模式</li>
+            <li>dd if=修补后的boot位置 of=boot分区的实际位置</li>
+            <li>从哪提取的分区就刷到那个分区，不区分分区类型(AB，Aonly，VAB)</li>
+        </ul>
+
+        <div class="cut-off">cut-off</div>
+
+        <h2>三：侧载GSI提取boot获取root(AB,VAB)</h2>
+        <p>通过DSU Sideloader可以将GSI安装到手机，重启后可以进入临时GSI(相当于PE)，可以在这个系统里面提取分区，再重启则回到原版系统</p>
+
+        <p>DSU Sideloader：https://linxize.lanzout.com/iz5pk34zk52f</p>
+
+        <p>将下载好的GSI文件放入手机，选路径后直接安装。</p>
+        <p>然后点击查看命令开始部署，部署完成后点击通知中的重启，切换到GSI系统</p>
+        <p>再使用上面的提取修补刷入操作，修补刷入完成后，点通知中的重启就可以进原版系统。</p>
+        <p>进入原版系统后安卓面具或者ksu即可。</p>
+
+        <div class="cut-off">cut-off</div>
+
+        <div class="note">
+            <h2>刷全系统包注意事项:</h2>
+            <p>A only分区机型</p>
+            <p>无super动态分区，直接在fastboot模式下刷system</p>
+
+            <p>AB分区（动态分区）机型</p>
+            <p>system、vendor等小分区被合并进super大分区</p>
+
+            <p>刷super大分区可在fastboot模式下进行</p>
+            <p>刷system、vendor等小分区需在fastbootd模式进行，而非fastboot模式</p>
+
+            <p>开机状态重启命令</p>
+            <ul>
+                <li>进入fastboot模式：adb reboot bootloader</li>
+                <li>进入fastbootd模式：adb reboot fastboot</li>
+            </ul>
+            
+            <p>fastboot状态重启命令</p>
+            <p>fastboot reboot fastboot 进入fastbootd模式</p>
+        </div>
+    </div>
+</body>
+</html>
