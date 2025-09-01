@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN"> <!-- 初始没有 .dark 类 -->
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SukiSU-Ultra - 下一代 Android Root 解决方案</title>
+    <title>Linxzee的玩机教程</title>
     <style>
         /* --- 全局样式与变量 --- */
         :root {
@@ -24,8 +24,8 @@
         html.dark {
             --text-color: #f9fafb;
             --text-light-color: #9ca3af;
-            --bg-color: #111827; /* 深灰蓝 */
-            --bg-alt-color: #1f2937; /* 稍亮的灰蓝 */
+            --bg-color: #111827;
+            --bg-alt-color: #1f2937;
             --card-bg-color: #1f2937;
             --border-color: #374151;
             --button-secondary-bg: #374151;
@@ -47,19 +47,32 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.3s ease, color 0.3s ease; /* 平滑过渡 */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit; /* 继承父元素颜色，避免链接默认变蓝 */
+        }
+        
+        button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+        /* --- 改动点 1: 调整容器，增加内边距使其视觉居中 --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto; /* 水平居中 */
+            padding: 0 32px; /* 增加了左右内边距 */
         }
 
-        /* ... 其他样式保持不变，这里只列出有改动的 ... */
-        
-        /* --- 头部导航栏 (有改动) --- */
+        /* --- 头部导航栏 --- */
         .main-header {
             position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background-color: var(--header-bg); /* 使用变量 */
+            background-color: var(--header-bg);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
@@ -78,55 +91,15 @@
         .nav-divider { width: 1px; height: 20px; background-color: var(--border-color); }
         .nav-actions { display: flex; align-items: center; gap: 16px; }
 
-        /* --- 主题切换按钮 (重点改动) --- */
-        .theme-toggle {
-            cursor: pointer;
-            width: 44px;
-            height: 24px;
-            background: #e5e7eb;
-            border-radius: 12px;
-            position: relative;
-            transition: background-color 0.3s ease;
-        }
-
-        html.dark .theme-toggle {
-             background-color: var(--primary-color);
-        }
-
-        .theme-toggle .toggle-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        html.dark .theme-toggle .toggle-icon {
-            transform: translateX(20px);
-        }
-        
-        .theme-toggle .sun-icon, .theme-toggle .moon-icon {
-            color: #4b5563;
-        }
-
-        /* 默认隐藏太阳，显示月亮 */
-        .theme-toggle .sun-icon {
-            display: none;
-        }
-        /* 深色模式下隐藏月亮，显示太阳 */
-        html.dark .theme-toggle .sun-icon {
-            display: block;
-        }
-        html.dark .theme-toggle .moon-icon {
-            display: none;
-        }
+        /* --- 主题切换按钮 --- */
+        .theme-toggle { cursor: pointer; width: 44px; height: 24px; background: #e5e7eb; border-radius: 12px; position: relative; transition: background-color 0.3s ease; }
+        html.dark .theme-toggle { background-color: var(--primary-color); }
+        .theme-toggle .toggle-icon { display: flex; align-items: center; justify-content: center; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        html.dark .theme-toggle .toggle-icon { transform: translateX(20px); }
+        .theme-toggle .sun-icon, .theme-toggle .moon-icon { color: #4b5563; }
+        .theme-toggle .sun-icon { display: none; }
+        html.dark .theme-toggle .sun-icon { display: block; }
+        html.dark .theme-toggle .moon-icon { display: none; }
         
         /* --- Hero 区域 --- */
         .hero { position: relative; padding: 96px 0; overflow: hidden; text-align: center; }
@@ -141,22 +114,17 @@
         .btn-primary { background-color: var(--primary-color); color: white; }
         .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
         .btn-secondary { background-color: var(--button-secondary-bg); color: var(--text-color); border: 1px solid var(--border-color); }
-        .btn-secondary:hover { background-color: #374151; }
+        .btn-secondary:hover { background-color: #e5e7eb; }
         html.dark .btn-secondary:hover { background-color: #4b5563; }
         .hero-image { flex: 1; max-width: 450px; }
         .hero-image img { width: 100%; height: auto; animation: float 4s ease-in-out infinite; }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
-        /* --- 特性区域 (有改动) --- */
-        .features {
-            padding: 80px 0;
-            background-color: var(--bg-alt-color);
-            transition: background-color 0.3s ease;
-        }
-
+        /* --- 特性区域 --- */
+        .features { padding: 80px 0; background-color: var(--bg-alt-color); transition: background-color 0.3s ease; }
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
         .feature-card {
+            display: block; /* 确保 <a> 标签表现得像块级元素 */
             background-color: var(--card-bg-color);
             padding: 24px;
             border-radius: 12px;
@@ -164,11 +132,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s ease, border-color 0.3s ease;
         }
-        
-        html.dark .feature-card {
-             box-shadow: none; /* 深色模式下阴影不明显，可以去掉 */
-        }
-
+        html.dark .feature-card { box-shadow: none; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04); }
         html.dark .feature-card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
         .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
@@ -176,30 +140,37 @@
 
         /* --- 响应式设计 --- */
         @media (max-width: 1024px) { .nav-links { display: none; } .features-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .hero-container { flex-direction: column; text-align: center; } .hero-content { text-align: center; max-width: 100%; } .hero-buttons { justify-content: center; } .hero-image { max-width: 300px; margin-top: 40px; } .features-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; } /* 移动端可以减小边距 */
+            .hero-container { flex-direction: column; text-align: center; } 
+            .hero-content { text-align: center; max-width: 100%; } 
+            .hero-buttons { justify-content: center; } 
+            .hero-image { max-width: 300px; margin-top: 40px; } 
+            .features-grid { grid-template-columns: 1fr; } 
+        }
+
     </style>
 </head>
 <body>
 
     <!-- 头部 -->
     <header class="main-header">
-        <div class="container">
+       <div class="container">
+            <!-- Navbar 内容不变 -->
             <nav class="navbar">
                 <div class="nav-left">
-                    <!-- ... 左侧内容不变 ... -->
                      <a href="#" class="logo">
                         <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM88,100a12,12,0,1,1,12,12A12,12,0,0,1,88,100Zm80,56a12,12,0,1,1,12-12A12,12,0,0,1,168,156Z" fill="#A855F7"></path></svg>
                         <span>SukiSU-Ultra</span>
                     </a>
                     <div class="search-bar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 S0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
                         <span>搜索文档</span>
                         <span class="key-hint">Ctrl K</span>
                     </div>
                 </div>
                 <div class="nav-right">
                     <div class="nav-links">
-                       <!-- ... 导航链接不变 ... -->
                        <a href="#">首页</a>
                         <a href="#">开始使用
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
@@ -207,22 +178,13 @@
                     </div>
                     <div class="nav-divider"></div>
                     <div class="nav-actions">
-                        
-                        <!-- 1. HTML 改动: 更新主题切换按钮的结构 -->
                         <div class="theme-toggle" id="theme-toggle-btn" title="切换深色/浅色模式">
                             <div class="toggle-icon">
-                                <span class="moon-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>                                
-                                </span>
-                                <span class="sun-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm-5-8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm10 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zM3.536 3.536a.5.5 0 0 1 .708 0l1.414 1.414a.5.5 0 0 1-.708.708L3.536 4.244a.5.5 0 0 1 0-.708zm8.485 8.485a.5.5 0 0 1 .708 0l1.414 1.414a.5.5 0 0 1-.708.708l-1.414-1.414a.5.5 0 0 1 0-.708zM12.464 3.536a.5.5 0 0 1 0 .708l-1.414 1.414a.5.5 0 0 1-.708-.708l1.414-1.414a.5.5 0 0 1 .708 0zM4.244 12.464a.5.5 0 0 1 0 .708l-1.414 1.414a.5.5 0 0 1-.708-.708l1.414-1.414a.5.5 0 0 1 .708 0z"/></svg>
-                                </span>
+                                <span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg></span>
+                                <span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm-5-8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm10 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zM3.536 3.536a.5.5 0 0 1 .708 0l1.414 1.414a.5.5 0 0 1-.708.708L3.536 4.244a.5.5 0 0 1 0-.708zm8.485 8.485a.5.5 0 0 1 .708 0l1.414 1.414a.5.5 0 0 1-.708.708l-1.414-1.414a.5.5 0 0 1 0-.708zM12.464 3.536a.5.5 0 0 1 0 .708l-1.414 1.414a.5.5 0 0 1-.708-.708l1.414-1.414a.5.5 0 0 1 .708 0zM4.244 12.464a.5.5 0 0 1 0 .708l-1.414 1.414a.5.5 0 0 1-.708-.708l1.414-1.414a.5.5 0 0 1 .708 0z"/></svg></span>
                             </div>
                         </div>
-
-                        <a href="#" aria-label="GitHub">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></svg>
-                        </a>
+                        <a href="#" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
                     </div>
                 </div>
             </nav>
@@ -230,21 +192,21 @@
     </header>
 
     <main>
-       <!-- ... Main 内容不变 ... -->
-       <!-- Hero Section -->
-        <section class="hero">
+       <!-- Hero Section 内容不变 -->
+       <section class="hero">
             <div class="container hero-container">
                 <div class="hero-content">
-                    <h2 class="hero-title">SukiSU-Ultra</h2>
-                    <h1 class="hero-headline">下一代 Android Root 解决方案</h1>
-                    <p class="hero-subtitle">Android 上的内核级的高级 root 方案</p>
+                    <h2 class="hero-title">Linxzee的玩机教程</h2>
+                    <h1 class="hero-headline">高通联发科芯片适用</h1>
+                    <p class="hero-subtitle">Root前提是解开BL锁</p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary">开始使用</button>
-                        <button class="btn btn-secondary">在 GitHub 上查看</button>
+                        <button class="btn btn-secondary"> <a href=“https://github.com/linxzee/phone-tool/”>在 GitHub 上查看 </a>
+                        
+                        </button>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <!-- 替换为你的图片 -->
                     <img src="https://suki-usa.com/assets/images/sticker.webp" alt="SukiSU Ultra Illustration">
                 </div>
             </div>
@@ -254,10 +216,13 @@
         <section class="features">
             <div class="container">
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>内核级的 su 和 root 权限管理</h3>
-                        <p>在内核进行安全的 root 权限管理。</p>
-                    </div>
+                    
+                    <!-- 改动点 2 & 3: 修改文案，并将 div 转换为 a 标签 -->
+                    <a href="https://linxzee.github.io/phone-tool/bootroot.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>深刷提取备份刷入（救砖）</h3>
+                        <p>提供完整的固件提取、备份和刷入功能，保障设备安全。</p>
+                    </a>
+
                     <div class="feature-card">
                         <h3>不基于 OverlayFS 的模块系统</h3>
                         <p>模块系统基于来自 5ec1cff 的 Magic Mount。</p>
@@ -283,29 +248,17 @@
         </section>
     </main>
 
-    <!-- 3. JavaScript 实现: 添加脚本 -->
+    <!-- JavaScript 脚本不变 -->
     <script>
-        // 获取需要的 DOM 元素
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
         const htmlElement = document.documentElement;
-
-        // --- 核心逻辑 ---
-
-        // 1. 页面加载时，检查用户之前的选择
-        // 优先从 localStorage 获取，如果用户没选过，则跟随系统设置
         const currentTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
         if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
             htmlElement.classList.add('dark');
         }
-
-        // 2. 监听按钮点击事件
         themeToggleBtn.addEventListener('click', () => {
-            // 切换 'dark' 类
             htmlElement.classList.toggle('dark');
-
-            // 将用户的选择保存到 localStorage
             if (htmlElement.classList.contains('dark')) {
                 localStorage.setItem('theme', 'dark');
             } else {
