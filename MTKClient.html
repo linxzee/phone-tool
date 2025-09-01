@@ -4,252 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MTKClient 使用教程</title>
-    <style>
-        /* 1. CSS变量定义 (主题核心) */
-        :root {
-            /* 浅色模式变量 */
-            --bg-color: #f0f2f5;
-            --container-bg-color: #ffffff;
-            --text-color: #333;
-            --heading-color: #1a1a1a;
-            --border-color: #e0e0e0;
-            --accent-color: #0056b3;
-            --link-color: #007bff;
-            --code-bg-color: #2d2d2d;
-            --code-text-color: #f8f8f2;
-            --highlight-bg-color: #fffbe6;
-            --highlight-text-color: #8a6d3b;
-            --tip-bg-color: #e7f3fe;
-            --tip-border-color: #007bff;
-            --meta-text-color: #888;
-            --download-item-bg-color: #f8f9fa;
-            --download-item-border-color: #e9ecef;
-
-            /* 过渡动画 */
-            --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        html.dark-mode {
-            /* 深色模式变量 */
-            --bg-color: #1a202c;
-            --container-bg-color: #2d3748;
-            --text-color: #e2e8f0;
-            --heading-color: #ffffff;
-            --border-color: #4a5568;
-            --accent-color: #63b3ed;
-            --link-color: #90cdf4;
-            --code-bg-color: #1e1e1e;
-            --code-text-color: #d4d4d4;
-            --highlight-bg-color: #4a5568;
-            --highlight-text-color: #e2e8f0;
-            --tip-bg-color: #2c5282;
-            --tip-border-color: #63b3ed;
-            --meta-text-color: #a0aec0;
-            --download-item-bg-color: #4a5568;
-            --download-item-border-color: #718096;
-        }
-
-        /* 基础样式和重置 */
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
-            font-size: 16px;
-            transition: var(--theme-transition);
-        }
-
-        /* 核心容器样式 */
-        .container {
-            position: relative; /* 为主题切换按钮定位 */
-            max-width: 800px;
-            margin: 2rem auto;
-            background-color: var(--container-bg-color);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            transition: var(--theme-transition);
-        }
-
-        /* 主题切换按钮 */
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: var(--download-item-bg-color);
-            border: 1px solid var(--download-item-border-color);
-            color: var(--text-color);
-            transition: all 0.3s ease;
-        }
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .theme-toggle svg {
-            width: 20px;
-            height: 20px;
-        }
-        .sun-icon { display: none; }
-        .moon-icon { display: block; }
-        html.dark-mode .sun-icon { display: block; }
-        html.dark-mode .moon-icon { display: none; }
-
-        /* 标题样式 */
-        h1 {
-            color: var(--heading-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            font-size: 2em;
-            transition: var(--theme-transition);
-        }
-
-        h2 {
-            color: var(--accent-color);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            padding-left: 10px;
-            border-left: 4px solid var(--accent-color);
-            transition: var(--theme-transition);
-        }
-        
-        /* 段落样式 */
-        p { margin-bottom: 15px; }
-
-        /* 元信息 */
-        .meta-info { color: var(--meta-text-color); font-style: italic; margin-bottom: 30px; }
-
-        /* 链接样式 */
-        a { color: var(--link-color); text-decoration: none; transition: color 0.2s ease; }
-        a:hover { text-decoration: underline; }
-        
-        /* 下载列表 */
-        .download-links ul { list-style: none; padding: 0; margin: 15px 0; }
-        .download-links li {
-            background-color: var(--download-item-bg-color);
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            border: 1px solid var(--download-item-border-color);
-            transition: var(--theme-transition);
-        }
-
-        /* 代码块 */
-        .code-block {
-            background-color: var(--code-bg-color);
-            color: var(--code-text-color);
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-            white-space: pre-wrap;
-            word-break: break-all;
-            font-size: 0.95em;
-            transition: var(--theme-transition);
-        }
-
-        /* 图片自适应 */
-        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 8px; border: 1px solid var(--border-color); }
-                
-        /* 行内高亮 */
-        .highlight { background-color: var(--highlight-bg-color); color: var(--highlight-text-color); padding: 2px 6px; border-radius: 4px; font-weight: bold; }
-
-        /* 提示框 */
-        .tip-box { background-color: var(--tip-bg-color); border-left: 5px solid var(--tip-border-color); padding: 15px 20px; margin: 20px 0; border-radius: 8px; transition: var(--theme-transition); }
-        .tip-box p { margin-bottom: 0; }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-
-        <div class="theme-toggle" id="theme-toggle-btn" title="切换深色/浅色模式">
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
-        </div>
-        
-        <h1>MTKClient 使用教程</h1>
-        <p class="meta-info">作者：半糖的芝士</p>
-        
-        <div class="download-links">
-            <ul>
-                <li><strong>软件下载：</strong><a href="https://linxize.lanzout.com/ixjAA34zovra" target="_blank" rel="noopener noreferrer">https://linxize.lanzout.com/ixjAA34zovra</a></li>
-                <li><strong>底层探测器：</strong><a href="https://linxize.lanzout.com/iRZ5q34zp1mb" target="_blank" rel="noopener noreferrer">https://linxize.lanzout.com/iRZ5q34zp1mb</a></li>
-                <li><strong>MTK端口挂载软件：</strong><a href="https://linxize.lanzout.com/iZOxC356182b" target="_blank" rel="noopener noreferrer">https://linxize.lanzout.com/iZOxC356182b</a></li>
-            </ul>
-        </div>
-        
-        <h2>第一步：解锁 BL 锁</h2>
-        <p>ADB 成功连接平板并授权后，在 CMD (命令提示符) 中输入以下内容进入 fastboot 模式：</p>
-        <div class="code-block">adb reboot bootloader</div>
-        
-        <p>进入后设备会黑屏，左下角会有一行小字 <span class="highlight">FASTBOOT MODE</span>，接着输入以下命令解锁 Bootloader。</p>
-        <p>（注意：老设备可能需要使用第二个命令）</p>
-        <div class="code-block">fastboot flashing unlock</div>
-        <div class="code-block">fastboot oem unlock</div>
-        
-        <p>解锁完成后，重启设备：</p>
-        <div class="code-block">fastboot reboot</div>
-
-        <h2>第二步：备份关键分区</h2>
-        <p>解压 MTKClient 软件后直接打开，安装好驱动。将手机完全关机，然后同时按住 <span class="highlight">音量+</span> 和 <span class="highlight">音量-</span> 键，再将数据线插入电脑。</p>
-
-        <div class="tip-box">
-            <p><strong>温馨提示：</strong>如果同时按住音量+-键无法连接，可以尝试只按住 <strong>音量+</strong> 或只按住 <strong>音量-</strong> 再连接。此外，如果连接后软件界面直接显示为第二张图片的状态，则说明已成功进入BROM模式，<strong>无需断开并重连数据线</strong>，可以直接进行下一步。</p>
-        </div>
-
-        <p>如果成功识别，软件左侧会出现设备信息，如下图所示：</p>
-        <img src="/phone-tool/images/mtk_client_recognized.png" alt="MTKClient 成功识别设备">
-
-        <p>然后断开数据线，再次按住音量+和-键，重新插入。此时软件界面应变为下图样式。（如果之前解锁失败，可尝试用此软件的“闪存工具”强解）</p>
-        <img src="/phone-tool/images/mtk_client_flash_tool.png" alt="MTKClient 闪存工具界面">
-
-        <p>将软件切换到“读取分区”标签页。以下示例是 V-A/B 分区结构的设备，因此只需要提取 <span class="highlight">boot_a</span> 即可。</p>
-        <p>（如果是 A-Only 分区结构，这里的分区名应该只有一个 <span class="highlight">boot</span>，不区分a/b）</p>
-        <img src="/phone-tool/images/mtk_client_read_partition.png" alt="MTKClient 读取分区界面">
-
-        <p>勾选需要备份的分区（如 boot_a），然后点击右侧的“读取分区”按钮。在您选择的保存文件夹里，会生成一个 <span class="highlight">boot_a.bin</span> 文件。您需要手动将其扩展名从 <span class="highlight">.bin</span> 修改为 <span class="highlight">.img</span>。</p>
-
-        <p><strong>重要提示：</strong> 建议在此步骤将除了 <span class="highlight">userdata</span> 之外的所有分区都备份一遍，以防后续操作出现意外导致设备变砖。</p>
-        
-        <p>备份完成后，拔掉数据线，正常开机进入系统。后续您可以使用 Magisk 或 KernelSU 等工具修补这个 <span class="highlight">boot.img</span> 文件，修补完成后再通过 MTKClient 的“写入分区”功能，将修补好的文件刷回对应的分区（从哪个分区读出，就写入哪个分区）。</p>
+    <div id="theme-toggle-container" style="position: fixed; top: 20px; right: 20px; z-index: 1001;">
+        <!-- JS will insert button here -->
     </div>
 
-    <!-- 2. JavaScript 脚本 (主题切换逻辑) -->
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle-btn');
-        const htmlElement = document.documentElement;
-
-        // 页面加载时应用主题
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            htmlElement.classList.add('dark-mode');
-        } else if (currentTheme === 'light') {
-            htmlElement.classList.remove('dark-mode');
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            htmlElement.classList.add('dark-mode');
-        }
-
-        // 按钮点击事件
-        themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark-mode');
-            
-            if (htmlElement.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    </script>
-</body>
-</html>
+    <main class="content-wrapper">
+        <a href="index.html" class="back-to-home">&larr; 返回首页</a>
+        <h1>MTKClient 使用教程</h1>
+        <p class="author-info">作者：半糖的芝士</p>
+        
+        <p>相关资源下载：</p>
+        <ul>
+            <li><strong>软件下载：</strong><a href="https://linxize.lanzout.com/ixjAA34zovra" target="_blank" rel="noopener">点击下载 MTKClient</a></li>
+            <li><strong>底层探测器：</strong><a href="https://linxize.lanzout.com/iRZ5q34zp1mb" target="_blank" rel="noopener">点击下载</a></li>
+            <li><strong>MTK端口挂载软件：</strong><a href="https://linxize.lanzout.com/iZOxC356182b" target="_blank" rel="noopener">点击下载</a></li>
+        </ul>
+        
+        <h2>第一步：解锁 BL 锁</h2>
+        <p>ADB 成功连接设备并授权后，在 CMD (命令提示符) 中输入以下命令进入 fastboot 模式：</p>
+        <code>adb reboot bootloader</code>
+        
+        <p>进入后设备
