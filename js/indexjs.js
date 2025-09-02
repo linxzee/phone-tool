@@ -1,31 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleButton = document.getElementById('theme-toggle-btn');
-    const htmlElement = document.documentElement;
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const htmlElement = document.documentElement;
 
-    // Function to apply the theme
-    const applyTheme = (theme) => {
-        if (theme === 'dark') {
-            htmlElement.setAttribute('data-theme', 'dark');
-        } else {
-            htmlElement.setAttribute('data-theme', 'light');
-        }
-    };
+// 优先从 localStorage 获取主题，其次检查系统偏好
+const currentTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    // Check for saved theme in localStorage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+// 初始化主题
+if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+    htmlElement.classList.add('dark');
+}
 
-    if (savedTheme) {
-        applyTheme(savedTheme);
+// 监听按钮点击事件
+themeToggleBtn.addEventListener('click', () => {
+    htmlElement.classList.toggle('dark');
+    // 将新主题状态存入 localStorage
+    if (htmlElement.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
     } else {
-        applyTheme(prefersDark ? 'dark' : 'light');
+        localStorage.setItem('theme', 'light');
     }
-
-    // Toggle theme on button click
-    themeToggleButton.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        applyTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
 });
