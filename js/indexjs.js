@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => { 
     const themeToggleButton = document.getElementById('theme-toggle-btn');
     const htmlElement = document.documentElement;
-
+ 
     // Function to apply the theme
     const applyTheme = (theme) => {
         if (theme === 'dark') {
