@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主题包测试页面</title>
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-left">
+                    <a href="#" class="logo">
+                        <span>Linxzee Theme Test</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-links">
+                        <a href="#">首页</a>
+                        <a href="#">测试</a>
+                    </div>
+                    <div class="nav-divider"></div>
+                    <div class="nav-actions">
+                        <button class="theme-toggle" title="切换主题" onclick="toggleTheme()">
+                            <span>🌙</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-headline">主题包测试成功！</h1>
+                    <p class="hero-subtitle">所有样式模块已正确加载并工作正常。</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">主要按钮</a>
+                        <a href="#" class="btn btn-secondary">次要按钮</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>功能卡片测试</h2>
+                <div class="features-grid">
+                    <a href="#" class="feature-card">
+                        <h3>卡片标题 1</h3>
+                        <p>这是一个功能卡片的描述内容。</p>
+                    </a>
+                    <a href="#" class="feature-card">
+                        <h3>卡片标题 2</h3>
+                        <p>这是另一个功能卡片的描述内容。</p>
+                    </a>
+                    <a href="#" class="feature-card">
+                        <h3>卡片标题 3</h3>
+                        <p>这是第三个功能卡片的描述内容。</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="downloads">
+            <div class="container">
+                <h2>下载卡片测试</h2>
+                <div class="downloads-grid">
+                    <div class="download-card">
+                        <div class="download-header">
+                            <div class="download-icon">📦</div>
+                            <h3 class="download-title">测试下载项目</h3>
+                        </div>
+                        <p class="download-description">这是一个下载项目的描述内容。</p>
+                        <div class="download-meta">
+                            <span class="meta-item">⭐ 4.8</span>
+                            <span class="meta-item">⬇️ 1.2K</span>
+                        </div>
+                        <div class="download-actions">
+                            <button class="download-btn btn-primary">下载</button>
+                            <button class="download-btn btn-secondary">详情</button>
+                        </div>
+                        <span class="category-tag tag-utility">实用工具</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Linxzee. 主题包测试页面</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        }
+    </script>
+</body>
+</html>

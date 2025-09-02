@@ -1,0 +1,133 @@
+/* --- styles/pages/navigation.css --- */
+
+/* 页面主体内边距，避免内容紧贴导航栏 */
+.page-content {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+/* 页面大标题样式 */
+.page-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* 导航卡片网格布局 */
+.navigation-grid {
+    display: grid;
+    /* 响应式网格：在小屏幕上单列，大屏幕上最多3列 */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* 导航卡片基础样式 - 与主题中的卡片样式保持一致 */
+.nav-card {
+    display: block;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 鼠标悬浮效果 - 与主题卡片效果一致 */
+.nav-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* 暗色模式下的悬浮效果 */
+html[data-theme='dark'] .nav-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.nav-card h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.nav-card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 添加微妙的渐变背景效果 */
+.nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-card:hover::before {
+    opacity: 1;
+}
+
+/* 为导航栏当前激活的链接添加高亮 */
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    .navigation-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .nav-card {
+        padding: 20px;
+    }
+    
+    .nav-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .nav-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 高对比度模式优化 */
+@media (prefers-contrast: high) {
+    .nav-card {
+        border-width: 2px;
+    }
+    
+    .nav-card:hover {
+        border-width: 3px;
+    }
+}

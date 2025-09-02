@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linxzee 下载中心</title>
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 原来的导航栏代码被这个占位符取代 -->
+    <header id="navbar-placeholder"></header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="download-headline">下载中心</h1>
+                    <p class="download-subtitle">精选玩机工具和资源下载</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="downloads">
+            <div class="container">
+                <div class="category-filter">
+                    <button class="filter-btn active" data-category="all">全部</button>
+                    <button class="filter-btn" data-category="mtk">联发科工具</button>
+                    <button class="filter-btn" data-category="qualcomm">高通工具</button>
+                    <button class="filter-btn" data-category="system">系统镜像</button>
+                    <button class="filter-btn" data-category="utility">实用工具</button>
+                </div>
+
+                <div class="downloads-grid" id="downloads-grid">
+                    <!-- 下载项目将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Linxzee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/indexjs.js" defer></script>
+    <script src="js/download.js"></script>
+    <!-- 引入我们新建的导航栏加载脚本 -->
+    <script src="js/main.js"></script>
+</body>
+</html>
