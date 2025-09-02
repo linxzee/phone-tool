@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualcomm Premium Tool 9008 端口备份教程</title>
+    <link rel="stylesheet" href="../css/indexstyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+       <div class="container">
+            <nav class="navbar">
+                <div class="nav-left">
+                     <a href="../index.html" class="logo">
+                        <img src="../images/logo.png" alt="Linxzee Logo" class="logo-image">
+                        <span>Linxzee</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-links">
+                       <a href="../index.html">首页</a>
+                       <a href="../download.html">下载中心</a>
+                       <a href="https://github.com/linxzee/phone-tool/" target="_blank" rel="noopener noreferrer">项目</a>
+                    </div>
+                    <div class="nav-divider"></div>
+                    <div class="nav-actions">
+                        <button id="theme-toggle-btn" class="theme-toggle" title="切换主题">
+                            <img class="sun-icon" src="../images/sun.svg" alt="亮色模式">
+                            <img class="moon-icon" src="../images/moon.svg" alt="暗色模式">
+                        </button>
+                        <a href="https://github.com/linxzee/phone-tool/" aria-label="GitHub" class="github-link" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/github-fill.svg" alt="GitHub" class="github-icon">
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>Qualcomm Premium Tool 9008 端口备份教程</h1>
+        <p class="meta-info">作者：半糖的芝士</p>
+        
+        <div class="download-links">
+            <ul>
+                <li><strong>软件下载：</strong><a href="https://linxize.lanzout.com/iH91934zgobe" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+        </div>
+        
+        <h2>第一步：激活工具</h2>
+        <p>打开 <code>QualcommPremiumTool</code> 软件包，首先运行注册机程序，点击 <span class="highlight">确定</span>。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/01-register-tool.png" alt="运行注册机并点击确定">
+
+        <p>接着点击 <span class="highlight">继续</span>。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/02-continue-registration.png" alt="点击继续">
+
+        <p>点击 <span class="highlight">GenerateKey</span>，并自行设置一个保存路径和文件名，将生成的密钥文件保存好。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/03-generate-key.png" alt="生成并保存密钥文件">
+        
+        <p>然后返回主目录，运行主程序 <code>QualcommPremiumTool</code>。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/04-launch-main-tool.png" alt="运行主程序">
+
+        <p>在激活界面，选择刚才您保存的密钥文件路径。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/05-select-key-file.png" alt="选择密钥文件进行激活">
+        
+        <p>激活成功后，您会看到工具的主界面。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/06-activation-complete.png" alt="激活完成后的主界面">
+
+        <h2>第二步：备份分区</h2>
+        <p>按照下图中的顺序进行操作。首先点击 <span class="highlight">Do Job</span> 按钮，此时工具会扫描并列出设备的所有分区。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/07-scan-partitions.png" alt="点击Do Job扫描分区">
+
+        <p>扫描完成后，勾选 <span class="highlight">备份所有</span> 选项以进行全分区完整备份。</p>
+        <figure>
+            <img src="https://linxzee.github.io/phone-tool/images/08-select-all-partitions.png" alt="勾选备份所有">
+            <figcaption>或者，如果您只想备份特定分区，可以取消勾选，然后手动选择需要的分区。</figcaption>
+        </figure>
+
+        <p>再次点击 <span class="highlight">Do Job</span> 按钮。工具会提示您选择一个文件夹来保存备份文件，选择好路径后，备份过程将自动开始，请耐心等待完成。</p>
+        <img src="https://linxzee.github.io/phone-tool/images/09-backup-in-progress.png" alt="开始备份并选择保存路径">
+
+        <div class="tip-box">
+            <p><strong>重要提示：</strong></p>
+            <ul>
+                <li>在完整备份中，<code>boot</code> 分区是后续获取 Root 权限的关键文件。</li>
+                <li>强烈建议您额外单独备份基带相关的分区，以防丢失信号。请取消 <span class="highlight">备份所有</span> 的勾选，然后手动选中 <code>modemst1</code>, <code>modemst2</code>, <code>fsc</code>, <code>fsg</code> 这几个分区，再次执行备份。备份出的文件扩展名建议手动修改为 <code>.bin</code>。</li>
+            </ul>
+        </div>
+        <img src="https://linxzee.github.io/phone-tool/images/10-select-modem-partitions.png" alt="单独选择基带分区进行备份">
+        </div>
+    </main>
+
+    <script src="../js/indexjs.js" defer></script>
+</body>
+</html>
