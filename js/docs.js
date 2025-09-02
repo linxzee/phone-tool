@@ -1,4 +1,4 @@
-// 立即执行函数 (IIFE) 用于设置初始主题，防止页面加载时闪烁
+// 立即执行函数 (IIFE) 用于设置初始主题，防止页面加载时闪烁-
 (() => {
     const htmlElement = document.documentElement;
     
@@ -74,4 +74,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
