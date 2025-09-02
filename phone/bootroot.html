@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深刷提取备份刷入（救砖）教程</title>
+    <link rel="stylesheet" href="https://linxzee.github.io/phone-tool/css/docs.css">
+</head>
+<body>
+    <!-- ===== 优化后的按钮和SVG图标 ===== -->
+    <button class="theme-switch" id="theme-toggle-btn" aria-label="切换主题">
+        <!-- 优化的太阳图标 (Sun Icon) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+        <!-- 优化的月亮图标 (Moon Icon) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+    </button>
+    <!-- ===== HTML内容部分保持不变 ===== -->
+    <main class="container">
+        <h1>深刷提取备份刷入（救砖）教程</h1>
+        <p>本文档适用于大多数安卓设备，特别是基于MTK和高通平台的设备。请注意，高通设备在9008模式下大多需要拆机寻找工程模式触点（Test Point）。</p>
+
+        <section>
+            <h2>一、工具和备份系统准备</h2>
+            <ul>
+                <li>MTK深度刷机备份：<a href="#" target="_blank" rel="noopener noreferrer">MTKClient使用教程</a></li>
+                <li>高通9008刷机工具 (QPT)：<a href="#" target="_blank" rel="noopener noreferrer">QPT备份教程</a></li>
+                <li>高通9008刷机工具 (Miko)：<a href="#" target="_blank" rel="noopener noreferrer">Miko备份教程</a></li>
+                <li>Lineage GSI 通用系统镜像：<a href="https://linxzee.github.io/phone-tool/Lineage-GSI.html" target="_blank" rel="noopener noreferrer">GSI使用教程</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>二、通过GSI提取boot获取Root权限 (Userdebug版本系统)</h2>
+            <p class="note"><strong>提示：</strong>在操作之前需要用 <strong>Treble Check</strong> 或<strong>底层探测器</strong>查看是否支持 Project Treble 功能。</p>
+            <p>在开始之前，必须先分辨清楚设备的分区类型，以便提取正确的文件进行修补。</p>
+
+            <h3>1. 准备软件</h3>
+            <ul>
+                <li>ADB 环境：<a href="https://linxize.lanzout.com/irvNf34zpx2d" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li>通用驱动：<a href="https://linxize.lanzout.com/iopQy34zpx9a" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li>Treble Check (检查PT支持)：<a href="https://linxize.lanzout.com/iOOAP34zhpsd" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li>底层探测器 (检查分区信息)：<a href="https://linxize.lanzout.com/iRZ5q34zp1mb" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+
+            <h3>2. 了解分区类型</h3>
+            <p class="warning"><strong>重要警告：</strong>A-only分区刷入GSI后会<strong>覆盖原系统</strong>，在刷入之前要注意<strong>备份原系统</strong>及重要数据！</p>
+            <ul>
+                <li><strong>PT功能：</strong> Project Treble 安卓通用镜像标准。支持的设备可以刷入GSI。安卓8.0引入，安卓9.0强制要求支持。</li>
+                <li><strong>A-only分区：</strong> 不支持无缝系统更新 (AB System Updates)，使用 <code>boot.img</code> 来获取Root。</li>
+                <li><strong>AB/VAB分区：</strong> 支持无缝系统更新，系统有两个槽位 (A和B)。需要使用 <code>boot_a.img</code> 和 <code>boot_b.img</code> 来获取Root。</li>
+                <li><strong>AB/VAB分区 (出厂安卓13+)：</strong> 支持无缝系统更新，且启动流程变更。需要使用 <code>init_boot_a.img</code> 和 <code>init_boot_b.img</code> 来获取Root。</li>
+                <li><strong>SAR (System-as-root)：</strong> 如果设备支持SAR，即便它不是AB分区，刷入GSI时也需要下载带有 "ab" 标识的GSI刷机包。</li>
+            </ul>
+
+            <!-- ... 后续内容保持不变 ... -->
+            <h3>3. 刷入GSI并获取临时Root</h3>
+            <p>确保设备已解锁Bootloader。然后重启到Bootloader模式，执行以下命令：</p>
+            <p>刷入GSI系统：(GSI.img为下载解压出来的gsi系统)</p>
+            <pre><code>fastboot boot system GSI.img</code></pre>
+            <p>清除用户数据：</p>
+            <pre><code>fastboot erase userdata</code></pre>
+            <p>进入GSI系统后，打开USB调试，使用ADB命令行获取临时的root权限：</p>
+            <pre><code>adb shell
+su</code></pre>
+
+            <div class="highlight">
+                <h3>※ 重点：提取分区命令 ※</h3>
+                <ul>
+                    <li>不支持无缝更新 (A-only)，需要提取 <code>boot</code>。</li>
+                    <li>支持无缝更新 (AB/VAB)，需要提取 <code>boot_a</code> 和 <code>boot_b</code>。</li>
+                    <li>支持无缝更新且出厂安卓13及以上，需要提取 <code>init_boot_a</code> 和 <code>init_boot_b</code>。</li>
+                </ul>
+            </div>
+
+            <h4><strong>eMMC 闪存设备</strong></h4>
+            <p>获取分区位置的`by-name`目录：</p>
+            <pre><code>find /dev/block/platform/ -name 'by-name' -type d</code></pre>
+            <p>该命令会返回一个路径，不同机型路径可能不同。进入该路径：</p>
+            <pre><code>cd [上一步返回的路径]</code></pre>
+            <p>查看boot分区对应的块设备（通常以 <strong>mmcblk</strong> 开头）：</p>
+            <pre><code>ls -l boot</code></pre>
+
+            <h4><strong>UFS 闪存设备</strong></h4>
+            <p>路径通常是固定的，直接进入即可：</p>
+            <pre><code>cd /dev/block/by-name/</code></pre>
+            <p>查看boot分区对应的块设备（通常以 <strong>sd</strong> 开头）：</p>
+            <pre><code>ls -l boot</code></pre>
+
+            <h4><strong>执行提取</strong></h4>
+            <p>确认分区实际位置后，使用 <code>dd</code> 命令导出分区文件到手机的内置存储。命令格式如下：</p>
+            <p><code>dd if=[分区实际位置] of=[要保存的位置/文件名]</code></p>
+            <p>例如，提取一个AB分区的 <code>boot_a</code>：</p>
+            <pre><code>dd if=/dev/block/sda56 of=/sdcard/boot_a.img</code></pre>
+
+            <h3>4. 修补并刷入分区</h3>
+            <p>将提取出的 <code>.img</code> 文件（如 <code>boot.img</code>, <code>init_boot.img</code> 等）拷贝到电脑，使用Magisk或KernelSU等工具进行修补，然后将修补后的文件刷回设备。以下提供两种刷入方式。</p>
+
+            <h4><strong>Fastboot模式刷入</strong></h4>
+            <p>重启到fastboot模式：</p>
+            <pre><code>adb reboot bootloader</code></pre>
+            <ul>
+                <li><strong>A-only分区：</strong><pre><code>fastboot flash boot [修补后的文件].img</code></pre></li>
+                <li><strong>AB分区：</strong><pre><code>fastboot flash boot_a [修补后的文件].img
+fastboot flash boot_b [修补后的文件].img</code></pre></li>
+                <li><strong>AB分区 (安卓13+)：</strong><pre><code>fastboot flash init_boot_a [修补后的文件].img
+fastboot flash init_boot_b [修补后的文件].img</code></pre></li>
+            </ul>
+
+            <h4><strong>DD命令刷入 (开机状态)</strong></h4>
+            <p>将修补后的文件传回手机，进入ADB Shell并获取root权限 (<code>su</code>)。然后从哪里提取的就刷回哪里：</p>
+            <pre><code>dd if=[修补后的文件路径] of=[boot分区的实际位置]</code></pre>
+            <p>这种方式不区分分区类型，只需确保源和目标正确即可。</p>
+        </section>
+
+        <section>
+            <h2>三、通过DSU Sideloader侧载GSI提取boot</h2>
+            <p>DSU Sideloader应用可以将GSI以动态系统更新的方式安装到手机。重启后会进入一个临时的GSI系统（类似PE），我们可以在这个系统里提取分区。再次重启则会回到原版系统。</p>
+            <p>DSU Sideloader 下载：<a href="https://linxize.lanzout.com/iz5pk34zk52f" target="_blank" rel="noopener noreferrer">点击下载</a></p>
+            <ol>
+                <li>将下载好的GSI文件解压后放入手机存储。</li>
+                <li>打开DSU Sideloader应用，选择GSI文件路径后直接安装。</li>
+                <li>点击“查看命令”开始部署，部署完成后，在系统通知栏中点击“重启”切换到GSI系统。</li>
+                <li>进入GSI后，按照上方“<strong>提取分区命令...</strong>”的步骤进行提取、修补和刷入操作。</li>
+                <li>操作完成后，在通知栏中再次点击“重启”，即可返回原版系统。</li>
+                <li>回到原版系统后，安装Magisk或KernelSU应用即可获得Root权限。</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>四、刷写全量系统包注意事项</h2>
+
+            <h3>A-only 分区机型</h3>
+            <p>这类设备没有 <code>super</code> 动态分区，可以直接在 <strong>fastboot</strong> 模式下刷入 <code>system.img</code>。</p>
+
+            <h3>AB 分区（动态分区）机型</h3>
+            <p><code>system</code>, <code>vendor</code> 等小分区被合并到了一个名为 <code>super.img</code> 的大分区中。</p>
+            <ul>
+                <li>刷写整个 <code>super.img</code> 大分区，请在 <strong>fastboot</strong> 模式下进行。</li>
+                <li>如果需要单独刷写 <code>system</code>, <code>vendor</code> 等小分区，必须进入 <strong>fastbootd</strong> 模式（也称为用户空间fastboot）进行。</li>
+            </ul>
+
+            <h4>进入fastboot/fastbootd模式的命令</h4>
+            <p><strong>开机状态：</strong></p>
+            <ul>
+                <li>进入fastboot模式: <pre><code>adb reboot bootloader</code></pre></li>
+                <li>进入fastbootd模式: <pre><code>adb reboot fastboot</code></pre></li>
+            </ul>
+            <p><strong>fastboot状态：</strong></p>
+            <ul>
+                <li>从fastboot进入fastbootd模式: <pre><code>fastboot reboot fastboot</code></pre></li>
+            </ul>
+        </section>
+    </main>
+    
+    <script src="https://linxzee.github.io/phone-tool/js/docs.js"></script>
+</body>
+</html>
