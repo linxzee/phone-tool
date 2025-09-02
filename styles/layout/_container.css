@@ -1,0 +1,273 @@
+/* 容器布局样式 */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+}
+
+/* 流体容器 */
+.container-fluid {
+    width: 100%;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+}
+
+/* 窄容器 */
+.container-narrow {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+}
+
+/* 宽容器 */
+.container-wide {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+}
+
+/* 全宽容器 */
+.container-full {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* 内边距变体 */
+.container-padded {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+}
+
+.container-padded-sm {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+.container-padded-lg {
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+}
+
+/* 响应式内边距 */
+@media (max-width: 1024px) {
+    .container,
+    .container-fluid,
+    .container-narrow,
+    .container-wide {
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+    }
+    
+    .container-padded {
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+    }
+    
+    .container-padded-sm {
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .container-padded-lg {
+        padding-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .container,
+    .container-fluid,
+    .container-narrow,
+    .container-wide {
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+    }
+    
+    .container-padded {
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .container-padded-sm {
+        padding-top: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
+    }
+    
+    .container-padded-lg {
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .container-fluid,
+    .container-narrow,
+    .container-wide {
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+    }
+    
+    .container-padded {
+        padding-top: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
+    }
+    
+    .container-padded-sm {
+        padding-top: var(--spacing-xs);
+        padding-bottom: var(--spacing-xs);
+    }
+    
+    .container-padded-lg {
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+}
+
+/* 容器对齐方式 */
+.container-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.container-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.container-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+/* 容器背景变体 */
+.container-bg {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+}
+
+.container-bg-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.container-bg-alt {
+    background-color: var(--bg-default);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+/* 容器阴影 */
+.container-shadow {
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg);
+}
+
+.container-shadow-lg {
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+}
+
+/* 容器分隔线 */
+.container-divider {
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* 网格容器 */
+.grid-container {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.grid-container-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-container-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-container-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* 响应式网格容器 */
+@media (max-width: 1024px) {
+    .grid-container-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container-3,
+    .grid-container-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container-2,
+    .grid-container-3,
+    .grid-container-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 弹性容器 */
+.flex-container {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.flex-container-column {
+    flex-direction: column;
+}
+
+.flex-container-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-container-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-container-around {
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* 响应式弹性容器 */
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .flex-container-between,
+    .flex-container-around {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

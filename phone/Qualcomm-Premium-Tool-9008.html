@@ -4,42 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qualcomm Premium Tool 9008 端口备份教程</title>
-    <link rel="stylesheet" href="../css/indexstyles.css">
+    <link rel="stylesheet" href="../styles/theme.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="main-header">
-       <div class="container">
-            <nav class="navbar">
-                <div class="nav-left">
-                     <a href="../index.html" class="logo">
-                        <img src="../images/logo.png" alt="Linxzee Logo" class="logo-image">
-                        <span>Linxzee</span>
-                    </a>
-                </div>
-                <div class="nav-right">
-                    <div class="nav-links">
-                       <a href="../index.html">首页</a>
-                       <a href="../download.html">下载中心</a>
-                       <a href="https://github.com/linxzee/phone-tool/" target="_blank" rel="noopener noreferrer">项目</a>
-                    </div>
-                    <div class="nav-divider"></div>
-                    <div class="nav-actions">
-                        <button id="theme-toggle-btn" class="theme-toggle" title="切换主题">
-                            <img class="sun-icon" src="../images/sun.svg" alt="亮色模式">
-                            <img class="moon-icon" src="../images/moon.svg" alt="暗色模式">
-                        </button>
-                        <a href="https://github.com/linxzee/phone-tool/" aria-label="GitHub" class="github-link" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/github-fill.svg" alt="GitHub" class="github-icon">
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+        <!-- 原来的导航栏代码被这个占位符取代 -->
+    <header id="navbar-placeholder"></header>
 
     <main class="container">
         <div class="content-section">
@@ -95,6 +68,8 @@
         </div>
     </main>
 
-    <script src="../js/indexjs.js" defer></script>
+        <script src="../js/indexjs.js" defer></script>
+    <!-- 引入我们新建的导航栏加载脚本 -->
+    <script src="./js/main.js"></script>
 </body>
 </html>
