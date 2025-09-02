@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
     const themeToggleButton = document.getElementById('theme-toggle-btn');
     const htmlElement = document.documentElement;
 
