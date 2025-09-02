@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linxzee 的玩机教程</title>
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 原来的导航栏代码被这个占位符取代 -->
+    <header id="navbar-placeholder"></header>
+
+    <main>
+       <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-headline">Linxzee 的玩机教程</h1>
+                    <p class="hero-subtitle">适用于高通和联发科芯片的通用指南。Root 的前提是解锁 Bootloader。</p>
+                    <div class="hero-buttons">
+                        <a href="#features" class="btn btn-primary">开始使用</a>
+                        <a href="https://github.com/linxzee/phone-tool/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/logo.png" alt="Linxzee Logo" class="hero-logo-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <a href="phone/bootroot.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>深刷提取备份刷入（救砖）</h3>
+                        <p>适用大多数设备，高通设备大多需要拆机找触点。</p>
+                    </a>
+                    <a href="phone/Lineage-GSI.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>Lineage GSI系统的选择</h3>
+                        <p>GSI是通用系统镜像，不看手机品牌型号，都能刷。</p>
+                    </a>
+                    <a href="phone/MTKClient.html"  target="_blank" rel="noopener noreferrer"  class="feature-card">
+                        <h3>MTKClient 使用教程</h3>
+                        <p>MTK芯片固件的提取、备份与刷入指南。</p>
+                    </a>
+                    <a href="phone/Qualcomm-Premium-Tool-9008.html"  target="_blank" rel="noopener noreferrer"  class="feature-card">
+                        <h3>Qualcomm 9008 端口备份</h3>
+                        <p>使用 Qualcomm Premium Tool 在9008模式下备份分区。</p>
+                    </a>
+                    <a href="phone/MiKoPro.html"  target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>MiKo Pro 9008 操作方法</h3>
+                        <p>另一款高通9008模式下的固件提取与备份工具。</p>
+                    </a>
+                    <a href="phone/redmagic-disable-update.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                        <h3>红魔手机关闭系统更新</h3>
+                        <p>通过ADB方式免Root关闭红魔手机的系统更新提示。</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Linxzee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/indexjs.js" defer></script>
+    <!-- 引入我们新建的导航栏加载脚本 -->
+    <script src="/js/main.js"></script>
+</body>
+</html>

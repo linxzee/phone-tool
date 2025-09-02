@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红魔手机ADB方式关闭系统更新(免root)</title>
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght极400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <!-- 原来的导航栏代码被这个占位符取代 -->
+    <header id="navbar-placeholder"></header>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>红魔手机ADB方式关闭系统更新(免root)</h1>
+            <p class="meta-info">作者：半糖的芝士</p>
+
+        <section>
+            <h2>准备工作</h2>
+            <p>首先，请确保您的电脑已正确配置ADB环境，并且手机已开启USB调试模式并成功连接电脑。</p>
+        </section>
+
+        <section>
+            <h2>方法一：ADB命令禁用</h2>
+            <p>在电脑上打开命令行工具，极入以下命令来禁用系统更新及相关组件。</p>
+            
+            <h4>禁用系统更新</h4>
+            <pre><code>adb shell pm disable-user com.zte.zdm</code></pre>
+
+            <h4>禁用快应用和快应用引擎（可选）</h4>
+            <pre><code>adb shell pm disable-user cn.nubia.hybrid</code></pre>
+            <pre><code>adb shell pm disable-user cn.nubia.quickrt</code></pre>
+        </section>
+
+        <section>
+            <h2>方法二：禁止应用联网</h2>
+            <p>您也可以直接在手机的应用设置中，禁止系统更新应用访问网络，以达到屏蔽更新的目的。</p>
+            <img src="https://linxzee.github.io/phone-tool/images/red801.gif" alt="禁止系统更新联网">
+        </section>
+
+        <section>
+            <h2>如何恢复更新</h2>
+            <p>如果您后续想要恢复系统更新功能，可以采用以下任一方法。</p>
+
+            <h4>使用ADB命令启用</h4>
+            <p>执行以下命令即可重新启用系统更新服务：</p>
+            <pre><code>adb shell pm enable com.z极.zdm</code></pre>
+
+            <h4>手动安装更新包或在设置中打开</h4>
+            <p>您可以下载系统更新的安装包手动安装：</p>
+            <div class="download-links">
+                <ul>
+                    <li><strong>系统更新应用下载：</strong><a href="https://linxize.lanzout.com/iRGrY32o66he" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                </ul>
+            </div>
+            <p>或者，直接在手机的 <strong>设置 → 应用 → 显示系统应用</strong> 中，搜索"系统更新"并重新打开它。</p>
+            <img src="https://linxzee.github.io/phone-tool/images/red802.png" alt="在设置中重新打开系统更新">
+        </section>
+
+    </main>
+
+        <script src="../js/indexjs.js" defer></script>
+    <!-- 引入我们新建的导航栏加载脚本 -->
+    <script src="/js/main.js"></script>
+</body>
+</html>
