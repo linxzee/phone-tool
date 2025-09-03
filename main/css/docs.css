@@ -40,10 +40,70 @@ figcaption {
 }
 
 /* 代码块和内联代码 */
-pre { background-color: #2d2d2d; color: #f8f8f2; padding: 1em; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.95em; border: 1px solid #444; }
-html.dark pre { background-color: #1e1e1e; color: #d4d4d4; }
-.code-block { background-color: var(--code-block-bg); color: var(--code-block-text); padding: 15px 20px; border-radius: 8px; margin: 20px 0; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; white-space: pre-wrap; word-break: break-all; font-size: 0.95em; transition: var(--theme-transition); }
-.command, code { background-color: var(--code-bg-color); color: var(--code-text-color); padding: 0.2em 0.6em; border-radius: 4px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.95em; transition: var(--theme-transition); }
+pre {
+    background-color: var(--code-block-bg);
+    color: var(--code-block-text);
+    padding: 1em;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.95em;
+    border: 1px solid var(--code-block-border);
+    position: relative;
+    margin: 20px 0;
+}
+.code-block {
+    background-color: var(--code-block-bg);
+    color: var(--code-block-text);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 0.95em;
+    transition: var(--theme-transition);
+    position: relative;
+}
+.command, code {
+    background-color: var(--code-bg-color);
+    color: var(--code-text-color);
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.95em;
+    transition: var(--theme-transition);
+}
+
+/* 代码块复制按钮 */
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: var(--copy-btn-bg);
+    color: var(--copy-btn-text);
+    border: 1px solid var(--copy-btn-border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, background-color 0.2s;
+    font-family: var(--font-sans);
+}
+
+.copy-btn:hover {
+    opacity: 1;
+    background-color: var(--copy-btn-hover-bg);
+}
+
+.copy-btn.copied {
+    background-color: var(--copy-btn-success-bg);
+    color: var(--copy-btn-success-text);
+    border-color: var(--copy-btn-success-border);
+}
 
 /* 链接 */
 

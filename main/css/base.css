@@ -27,11 +27,21 @@
     /* Code block variables (from docs.css) */
     --code-bg-color: #e9ecef; /* for inline code */
     --code-text-color: #212529; /* for inline code */
-    --code-block-bg: #2d2d2d; /* for pre */
-    --code-block-text: #f8f8f2; /* for pre */
+    --code-block-bg: #f8f9fa; /* for pre - light theme */
+    --code-block-text: #212529; /* for pre - light theme */
+    --code-block-border: #dee2e6; /* for pre border */
     --highlight-bg-color: #ffe066; /* for .highlight in docs */
     --highlight-text-color: #333; /* for .highlight in docs */
     --strong-color: #d9534f; /* for strong */
+    
+    /* Copy button variables */
+    --copy-btn-bg: #ffffff;
+    --copy-btn-text: #495057;
+    --copy-btn-border: #dee2e6;
+    --copy-btn-hover-bg: #f8f9fa;
+    --copy-btn-success-bg: #28a745;
+    --copy-btn-success-text: #ffffff;
+    --copy-btn-success-border: #1e7e34;
 
     /* Note/Warning/Tip variables (from docs.css) */
     --note-bg-color: #e7f3fe;
@@ -70,11 +80,21 @@ html[data-theme='dark'] {
     /* Code block variables (from docs.css) */
     --code-bg-color: #4a5568; /* for inline code */
     --code-text-color: #f8f9fa; /* for inline code */
-    --code-block-bg: #1e1e1e; /* for pre */
-    --code-block-text: #d4d4d4; /* for pre */
+    --code-block-bg: #2d3748; /* for pre - dark theme */
+    --code-block-text: #e2e8f0; /* for pre - dark theme */
+    --code-block-border: #4a5568; /* for pre border */
     --highlight-bg-color: #b8860b; /* for .highlight in docs */
     --highlight-text-color: #f0f0f0; /* for .highlight in docs */
     --strong-color: #ff8a80; /* for strong */
+    
+    /* Copy button variables */
+    --copy-btn-bg: #4a5568;
+    --copy-btn-text: #e2e8f0;
+    --copy-btn-border: #718096;
+    --copy-btn-hover-bg: #2d3748;
+    --copy-btn-success-bg: #38a169;
+    --copy-btn-success-text: #ffffff;
+    --copy-btn-success-border: #2f855a;
 
     /* Note/Warning/Tip variables (from docs.css) */
     --note-bg-color: #2c5282;
