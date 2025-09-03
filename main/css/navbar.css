@@ -81,16 +81,46 @@
 .theme-toggle .moon-icon {
     width: 28px;
     height: 28px;
+    transition: transform 0.6s ease-in-out;
+}
+
+.theme-toggle:hover .sun-icon,
+.theme-toggle:hover .moon-icon {
+    transform: rotate(360deg);
 }
 
 .github-link svg {
     width: 28px;
     height: 28px;
+    transition: transform 0.6s ease-in-out;
+}
+
+.github-link:hover svg {
+    transform: rotate(360deg);
 }
 
 .github-icon {
     width: 28px;
     height: 28px;
+    transition: transform 0.6s ease-in-out;
+}
+
+.github-link:hover .github-icon {
+    transform: rotate(360deg);
+}
+
+/* GitHub icon theme switching */
+.github-icon[src*="github-fill.svg"] {
+    display: block;
+}
+.github-icon[src*="whitegithub.svg"] {
+    display: none;
+}
+html[data-theme='dark'] .github-icon[src*="github-fill.svg"] {
+    display: none;
+}
+html[data-theme='dark'] .github-icon[src*="whitegithub.svg"] {
+    display: block;
 }
 
 /* Mobile navigation */
@@ -222,11 +252,22 @@
     .mobile-nav .theme-toggle .moon-icon {
         width: 24px;
         height: 24px;
+        transition: transform 0.6s ease-in-out;
+    }
+    
+    .mobile-nav .theme-toggle:hover .sun-icon,
+    .mobile-nav .theme-toggle:hover .moon-icon {
+        transform: rotate(360deg);
     }
     
     .mobile-nav .github-icon {
         width: 24px;
         height: 24px;
+        transition: transform 0.6s ease-in-out;
+    }
+    
+    .mobile-nav .github-link:hover .github-icon {
+        transform: rotate(360deg);
     }
 }
 
@@ -239,11 +280,22 @@
     .mobile-nav .theme-toggle .moon-icon {
         width: 22px;
         height: 22px;
+        transition: transform 0.6s ease-in-out;
+    }
+    
+    .mobile-nav .theme-toggle:hover .sun-icon,
+    .mobile-nav .theme-toggle:hover .moon-icon {
+        transform: rotate(360deg);
     }
     
     .mobile-nav .github-icon {
         width: 22px;
         height: 22px;
+        transition: transform 0.6s ease-in-out;
+    }
+    
+    .mobile-nav .github-link:hover .github-icon {
+        transform: rotate(360deg);
     }
     
     .mobile-menu-toggle {
@@ -256,7 +308,7 @@
     }
 }
 
-/* Theme toggle logic */
-.theme-toggle .moon-icon { display: none; }
-html[data-theme='dark'] .theme-toggle .sun-icon { display: none; }
-html[data-theme='dark'] .theme-toggle .moon-icon { display: block; }
+/* Theme toggle logic - swapped icons (moon in light mode, sun in dark mode) */
+.theme-toggle .sun-icon { display: none; }
+html[data-theme='dark'] .theme-toggle .moon-icon { display: none; }
+html[data-theme='dark'] .theme-toggle .sun-icon { display: block; }

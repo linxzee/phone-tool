@@ -82,17 +82,13 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .nav-links a { display: flex; align-items: center; gap: 4px; color: var(--text-color); transition: color 0.2s; }
 .nav-links a:hover { color: var(--primary-color); }
 .nav-divider { width: 1px; height: 20px; background-color: var(--border-color); }
-.nav-actions { display: flex; align-items: center; gap: 16px; }
 
 /* --- 主题切换按钮 --- */
-.theme-toggle { cursor: pointer; width: 44px; height: 24px; background: #e5e7eb; border-radius: 12px; position: relative; transition: background-color 0.3s ease; }
-html.dark .theme-toggle { background-color: var(--primary-color); }
-.theme-toggle .toggle-icon { display: flex; align-items: center; justify-content: center; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-html.dark .theme-toggle .toggle-icon { transform: translateX(20px); }
-.theme-toggle .sun-icon, .theme-toggle .moon-icon { color: #4b5563; }
-.theme-toggle .sun-icon { display: none; }
-html.dark .theme-toggle .sun-icon { display: block; }
-html.dark .theme-toggle .moon-icon { display: none; }
+.theme-toggle { cursor: pointer; background: none; border: none; }
+.theme-toggle .sun-icon, .theme-toggle .moon-icon { color: var(--text-color); }
+.theme-toggle .moon-icon { display: none; }
+html.dark .theme-toggle .moon-icon { display: block; }
+html.dark .theme-toggle .sun-icon { display: none; }
 
 /* --- Hero 区域 --- */
 .hero { position: relative; padding: 96px 0; overflow: hidden; text-align: center; }
@@ -139,4 +135,5 @@ html.dark .feature-card:hover { border-color: var(--primary-color); }
     .hero-content { text-align: center; max-width: 100%; } 
     .hero-buttons { justify-content: center; } 
     .hero-image { max-width: 300px; margin-top: 40px; } 
-    .features-grid { grid-template-columns:
+    .features-grid { grid-template-columns: 1fr; }
+}

@@ -127,3 +127,24 @@
     color: var(--text-secondary);
 }
 
+
+/* Image styles - 图片圆角效果 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: var(--theme-transition);
+}
+
+.content-section img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+}
