@@ -1,0 +1,477 @@
+/* 1. CSS Variables & Base Styles */
+:root {
+    --color-primary: #8B5CF6; /* A nice purple */
+    --color-primary-hover: #7C3AED;
+    --halo-color: rgba(59, 130, 246, 0.25); /* Light blue halo for light theme */
+    --color-link: #007bff; /* Added for docs.css links */
+
+    /* Light Theme */
+    --bg-default: #ffffff;
+    --bg-secondary: #F9FAFB;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --border-color: #E5E7EB;
+    --border-dashed-color: #ced4da; /* for filename-explainer */
+
+    /* Table Variables (from docs.css) */
+    --table-header-bg: #005f73;
+    --table-header-text: #ffffff;
+    --table-row-even-bg: #f8f9fa;
+    --table-row-hover-bg: #e9ecef;
+    --subtle-text-color: #6c757d; /* for .author-info, .meta-info, figcaption */
+
+    /* Download list variables (from docs.css) */
+    --download-item-bg: #f1f3f5;
+    --download-item-border: #e9ecef;
+
+    /* Code block variables (from docs.css) */
+    --code-bg-color: #e9ecef; /* for inline code */
+    --code-text-color: #212529; /* for inline code */
+    --code-block-bg: #2d2d2d; /* for pre */
+    --code-block-text: #f8f8f2; /* for pre */
+    --highlight-bg-color: #ffe066; /* for .highlight in docs */
+    --highlight-text-color: #333; /* for .highlight in docs */
+    --strong-color: #d9534f; /* for strong */
+
+    /* Note/Warning/Tip variables (from docs.css) */
+    --note-bg-color: #e7f3fe;
+    --note-border-color: #2196f3;
+    --note-text-color: #1d6aab;
+    --warning-bg-color: #fff3e0;
+    --warning-border-color: #ff9800;
+    --warning-text-color: #c77700;
+    --tip-bg-color: #e6f7f4;
+    --tip-border-color: #20c997;
+
+    /* Fonts */
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-theme='dark'] {
+    --bg-default: #111827;
+    --bg-secondary: #1F2937;
+    --text-primary: #F9FAFB;
+    --text-secondary: #9CA3AF;
+    --border-color: #374151;
+    --halo-color: rgba(96, 165, 250, 0.3); /* Brighter blue halo for dark theme */
+    --color-link: #90cdf4; /* Added for docs.css links */
+
+    /* Table Variables (from docs.css) */
+    --table-header-bg: #003440;
+    --table-header-text: #e0e0e0;
+    --table-row-even-bg: #222b38;
+    --table-row-hover-bg: #384557;
+    --subtle-text-color: #a0aec0; /* for .author-info, .meta-info, figcaption */
+
+    /* Download list variables (from docs.css) */
+    --download-item-bg: #4a5568;
+    --download-item-border: #718096;
+
+    /* Code block variables (from docs.css) */
+    --code-bg-color: #4a5568; /* for inline code */
+    --code-text-color: #f8f9fa; /* for inline code */
+    --code-block-bg: #1e1e1e; /* for pre */
+    --code-block-text: #d4d4d4; /* for pre */
+    --highlight-bg-color: #b8860b; /* for .highlight in docs */
+    --highlight-text-color: #f0f0f0; /* for .highlight in docs */
+    --strong-color: #ff8a80; /* for strong */
+
+    /* Note/Warning/Tip variables (from docs.css) */
+    --note-bg-color: #2c5282;
+    --note-border-color: #63b3ed;
+    --note-text-color: #e2e8f0;
+    --warning-bg-color: #543a24;
+    --warning-border-color: #ffb74d;
+    --warning-text-color: #ffcc80;
+    --tip-bg-color: #2c5b4c;
+    --tip-border-color: #48bb78;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-default);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+    padding-top: 4rem; /* Add padding to body to prevent content from being hidden by fixed navbar */
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* Common Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--bg-secondary) 80%, black);
+    border-color: color-mix(in srgb, var(--border-color) 80%, black);
+}
+
+/* Common link styles for content sections */
+.content-section a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.content-section a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+/* General content section elements */
+.content-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.content-section h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+}
+
+.content-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: var(--text-primary);
+}
+
+.content-section h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--text-primary);
+}
+
+.content-section p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.content-section ul, .content-section ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.content-section li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Code blocks */
+pre {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+code {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-primary);
+}
+
+/* Special blocks (Note, Warning, Tip) */
+.note {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid #3B82F6;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+}
+
+.note strong {
+    color: #3B82F6;
+}
+
+.warning {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid #EF4444;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+}
+
+.warning strong {
+    color: #EF4444;
+}
+
+div.highlight {
+    background-color: rgba(139, 92, 246, 0.1);
+    border: 2px solid var(--color-primary);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+div.highlight h3 {
+    color: var(--color-primary);
+    margin-top: 0;
+    border-bottom: none;
+}
+
+span.highlight {
+    background-color: rgba(139, 92, 246, 0.15);
+    color: var(--color-primary);
+    padding: 0.1em 0.4em;
+    border-radius: 0.3em;
+    font-weight: 500;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+thead th {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-secondary);
+}
+
+/* Filename explainer */
+.filename-explainer {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.filename-explainer h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.filename-explainer pre {
+    margin-bottom: 1.5rem;
+}
+
+.filename-explainer ul {
+    padding-left: 1.5rem;
+}
+
+.filename-explainer .part-b { color: #34D399; } /* Green */
+.filename-explainer .part-v { color: #F87171; } /* Red */
+.filename-explainer .part-N { color: #60A5FA; } /* Blue */
+.filename-explainer .part-vndklite { color: #FBBF24; } /* Amber */
+
+.center {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Image styles in content */
+.content-section img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+}
+
+/* Utility classes for download/meta info */
+.meta-info {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.download-links {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.download-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.download-links li {
+    margin-bottom: 0.75rem;
+}
+
+.download-links li:last-child {
+    margin-bottom: 0;
+}
+
+.code-block {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.tip-box {
+    background-color: rgba(250, 204, 21, 0.1);
+    border-left: 4px solid #FBBF24;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0.25rem;
+}
+
+.tip-box strong {
+    color: #FBBF24;
+}
+
+/* Loading animation, no results, focus etc from download.css / indexstyles.css */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.download-card { /* This will be moved to download.css, but contains animation properties */
+    animation: fadeIn 0.6s ease-out;
+}
+
+.download-card:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.download-card:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.no-results svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    color: var(--border-color);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.highlight { /* from download.css, for inline text highlighting */
+    background-color: rgba(139, 92, 246, 0.1);
+    padding: 2px 4px;
+    border-radius: 4px;
+}

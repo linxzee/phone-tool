@@ -1,0 +1,93 @@
+
+/* 作者信息 */
+.author-info, .meta-info {
+    text-align: center;
+    color: var(--subtle-text-color);
+    margin-bottom: 2rem;
+    font-size: 0.9em;
+    transition: var(--theme-transition);
+}
+
+/* 标题样式 */
+h1, h2, h3 { color: var(--heading-color); transition: var(--theme-transition); }
+h1 { text-align: center; font-size: 2.2em; margin-top: 0; margin-bottom: 1rem; }
+h2 { margin-top: 3rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--border-color); font-size: 1.8em; }
+h3 { font-size: 1.4em; margin-top: 2em; margin-bottom: 1em; }
+
+/* 段落和列表 */
+p, li { color: var(--text-color); transition: var(--theme-transition); }
+ul, ol { padding-left: 20px; }
+li { margin-bottom: 1rem; }
+
+/* 图片与图注 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: var(--theme-transition);
+}
+figure { margin: 25px 0; padding: 0; }
+figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--subtle-text-color);
+    margin-top: -10px;
+    font-style: italic;
+}
+
+/* 代码块和内联代码 */
+pre { background-color: #2d2d2d; color: #f8f8f2; padding: 1em; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.95em; border: 1px solid #444; }
+html.dark pre { background-color: #1e1e1e; color: #d4d4d4; }
+.code-block { background-color: var(--code-block-bg); color: var(--code-block-text); padding: 15px 20px; border-radius: 8px; margin: 20px 0; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; white-space: pre-wrap; word-break: break-all; font-size: 0.95em; transition: var(--theme-transition); }
+.command, code { background-color: var(--code-bg-color); color: var(--code-text-color); padding: 0.2em 0.6em; border-radius: 4px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.95em; transition: var(--theme-transition); }
+
+/* 链接 */
+
+/* 提示与高亮 */
+.note, .warning, .tip-box { padding: 1.25rem; margin: 1.5rem 0; border-radius: 8px; border-left: 5px solid; transition: var(--theme-transition); }
+.note p:last-child, .warning p:last-child, .tip-box p:last-child { margin-bottom: 0; }
+.note { background-color: var(--note-bg-color); border-color: var(--note-border-color); color: var(--note-text-color); }
+.warning { background-color: var(--warning-bg-color); border-color: var(--warning-border-color); color: var(--warning-text-color); }
+.tip-box { background-color: var(--tip-bg-color); border-color: var(--tip-border-color); }
+.note strong, .warning strong, .tip-box strong { color: inherit; font-weight: 600; }
+strong { color: var(--strong-color); font-weight: bold; }
+
+/* 下载列表 */
+.download-links ul { list-style: none; padding: 0; margin: 15px 0; }
+.download-links li { background-color: var(--download-item-bg); padding: 10px 15px; border-radius: 6px; margin-bottom: 10px; border: 1px solid var(--download-item-border); transition: var(--theme-transition); }
+
+/* 表格样式 */
+table { width: 100%; border-collapse: collapse; margin: 2rem 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); border-radius: 8px; overflow: hidden; }
+th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); transition: var(--theme-transition); }
+th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+tr:nth-child(even) { background-color: var(--table-row-even-bg); }
+tr:hover { background-color: var(--table-row-hover-bg); }
+tr:last-child td { border-bottom: none; }
+
+/* 文件名解析器 */
+.filename-explainer { border: 1px solid var(--border-color); border-radius: 10px; margin-top: 1.5rem; padding: 1.5rem 2rem; background: linear-gradient(145deg, var(--card-bg-color), var(--bg-color)); transition: var(--theme-transition); }
+.filename-explainer h3 { margin-top: 0; color: var(--heading-color); text-align: center; border-bottom: none; }
+.filename-explainer pre { background-color: var(--code-bg-color); padding: 1rem; border-radius: 5px; margin: 1rem 0; text-align: center; font-size: 1.1em; word-break: break-all; white-space: pre-wrap; border: 1px solid var(--border-color); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+.filename-explainer ul { list-style: none; padding: 0; }
+.filename-explainer li { padding: 0.75rem 0; border-bottom: 1px dashed var(--border-dashed-color); }
+.filename-explainer li:last-child { border-bottom: none; }
+.part-b, .part-v, .part-N, .part-vndklite { font-weight: 700; }
+.part-b { color: #2a9d8f; }
+.part-v { color: #e76f51; }
+.part-N { color: #f4a261; }
+.part-vndklite { color: #264653; }
+
+.center { text-align: center; margin-top: 2rem; font-size: 0.9em; opacity: 0.8; }
+
+/* Download Links container style from indexstyles.css */
+.download-links {
+    background-color: var(--bg-secondary); /* Using base.css variable */
+    border: 1px solid var(--border-color); /* Using base.css variable */
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}

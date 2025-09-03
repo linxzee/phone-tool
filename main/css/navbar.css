@@ -1,0 +1,99 @@
+/* 2. Header & Navigation */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: color-mix(in srgb, var(--bg-default) 80%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 50;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+
+.nav-left, .nav-right, .nav-links, .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.logo .logo-image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain; /* 确保图片比例正确 */
+    transition: transform 0.6s ease-in-out;
+}
+
+.logo:hover .logo-image {
+    transform: rotate(360deg);
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-divider {
+    width: 1px;
+    height: 1.5rem;
+    background-color: var(--border-color);
+}
+
+.nav-actions button, .nav-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.nav-actions button:hover, .nav-actions a:hover {
+    color: var(--text-primary);
+}
+
+.theme-toggle .sun-icon,
+.theme-toggle .moon-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.github-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.github-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Theme toggle logic */
+.theme-toggle .moon-icon { display: none; }
+html[data-theme='dark'] .theme-toggle .sun-icon { display: none; }
+html[data-theme='dark'] .theme-toggle .moon-icon { display: block; }
