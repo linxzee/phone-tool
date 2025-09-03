@@ -7,7 +7,9 @@
                     <span>Linxzee</span>
                 </a>
             </div>
-            <div class="nav-right">
+            
+            <!-- 桌面端导航 -->
+            <div class="nav-right desktop-nav">
                 <div class="nav-links">
                     <a href="/">首页</a>
                     <a href="/download.html">下载中心</a>
@@ -24,6 +26,33 @@
                     </a>
                 </div>
             </div>
+
+            <!-- 手机端导航 -->
+            <div class="mobile-nav">
+                <div class="nav-actions">
+                    <button id="theme-toggle-btn-mobile" class="theme-toggle" title="切换主题">
+                        <img class="sun-icon" src="../main/images/sun.svg" alt="亮色模式">
+                        <img class="moon-icon" src="../main/images/moon.svg" alt="暗色模式">
+                    </button>
+                    <a href="https://github.com/linxzee/phone-tool/" aria-label="GitHub" class="github-link" target="_blank" rel="noopener noreferrer">
+                        <img src="../main/images/github-fill.svg" alt="GitHub" class="github-icon">
+                    </a>
+                </div>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="切换菜单">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </nav>
+        
+        <!-- 手机端下拉菜单 -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="/" class="mobile-menu-item">首页</a>
+                <a href="/download.html" class="mobile-menu-item">下载中心</a>
+                <a href="https://github.com/linxzee/phone-tool/" class="mobile-menu-item" target="_blank" rel="noopener noreferrer">项目</a>
+            </div>
+        </div>
     </div>
 </header>
