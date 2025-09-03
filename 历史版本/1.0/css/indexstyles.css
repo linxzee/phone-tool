@@ -1,0 +1,297 @@
+/* 1. CSS Variables & Base Styles */
+:root {
+    --color-primary: #8B5CF6; /* A nice purple */
+    --color-primary-hover: #7C3AED;
+    --halo-color: rgba(59, 130, 246, 0.25); /* Light blue halo for light theme */
+    
+    /* Light Theme */
+    --bg-default: #ffffff;
+    --bg-secondary: #F9FAFB;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --border-color: #E5E7EB;
+
+    /* Fonts */
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-theme='dark'] {
+    --bg-default: #111827;
+    --bg-secondary: #1F2937;
+    --text-primary: #F9FAFB;
+    --text-secondary: #9CA3AF;
+    --border-color: #374151;
+    --halo-color: rgba(96, 165, 250, 0.3); /* Brighter blue halo for dark theme */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-default);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* 2. Header & Navigation */
+.main-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: color-mix(in srgb, var(--bg-default) 80%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 50;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+}
+
+.nav-left, .nav-right, .nav-links, .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.logo .logo-image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain; /* 确保图片比例正确 */
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-divider {
+    width: 1px;
+    height: 1.5rem;
+    background-color: var(--border-color);
+}
+
+.nav-actions button, .nav-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.nav-actions button:hover, .nav-actions a:hover {
+    color: var(--text-primary);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.github-link svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Theme toggle logic */
+.moon-icon { display: none; }
+html[data-theme='dark'] .sun-icon { display: none; }
+html[data-theme='dark'] .moon-icon { display: block; }
+
+
+/* 3. Hero Section */
+.hero {
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        text-align: left;
+    }
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.hero-headline {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+@media (min-width: 1024px) {
+    .hero-headline {
+        font-size: 3.5rem;
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .hero-buttons {
+        justify-content: flex-start;
+    }
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--bg-secondary) 80%, black);
+    border-color: color-mix(in srgb, var(--border-color) 80%, black);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-logo-image {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Assuming the logo is circular, this helps the halo */
+    background-color: color-mix(in srgb, var(--bg-default) 50%, transparent);
+    box-shadow: 0 0 80px 20px var(--halo-color);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* 4. Features Section */
+.features {
+    padding: 4rem 0;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    display: block;
+    background-color: var(--bg-default);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.feature-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* 5. Footer */
+.main-footer {
+    padding: 2rem 0;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}

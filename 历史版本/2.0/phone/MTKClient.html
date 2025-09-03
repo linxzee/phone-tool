@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTKClient 使用教程</title>
+    <link rel="stylesheet" href="../css/indexstyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+       <div class="container">
+            <nav class="navbar">
+                <div class="nav-left">
+                     <a href="../index.html" class="logo">
+                        <img src="../images/logo.png" alt="Linxzee Logo" class="logo-image">
+                        <span>Linxzee</span>
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-links">
+                       <a href="../index.html">首页</a>
+                       <a href="../download.html">下载中心</a>
+                       <a href="https://github.com/linxzee/phone-tool/" target="_blank" rel="noopener noreferrer">项目</a>
+                    </div>
+                    <div class="nav-divider"></div>
+                    <div class="nav-actions">
+                        <button id="theme-toggle-btn" class="theme-toggle" title="切换主题">
+                            <img class="sun-icon" src="../images/sun.svg" alt="亮色模式">
+                            <img class="moon-icon" src="../images/moon.svg" alt="暗色模式">
+                        </button>
+                        <a href="https://github.com/linxzee/phone-tool/" aria-label="GitHub" class="github-link" target="_blank" rel="noopener noreferrer">
+                            <img src="../images/github-fill.svg" alt="GitHub" class="github-icon">
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>MTKClient 使用教程</h1>
+        <p class="meta-info">作者：半糖的芝士</p>
+        
+        <div class="download-links">
+            <ul>
+                <li><strong>软件下载：</strong><a href="https://linxize.lanzout.com/ixjAA34zovra" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>底层探测器：</strong><a href="https://linxize.lanzout.com/iRZ5q34zp1mb" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>MTK端口挂载软件：</strong><a href="https://linxize.lanzout.com/iZOxC356182b" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+        </div>
+        
+        <h2>第一步：解锁 BL 锁</h2>
+        <p>ADB 成功连接平板并授权后，在 CMD (命令提示符) 中输入以下内容进入 fastboot 模式：</p>
+        <div class="code-block">adb reboot bootloader</div>
+        
+        <p>进入后设备会黑屏，左下角会有一行小字 <span class="highlight">FASTBOOT MODE</span>，接着输入以下命令解锁 Bootloader。</p>
+        <p>（注意：老设备可能需要使用第二个命令）</p>
+        <div class="code-block">fastboot flashing unlock</div>
+        <div class="code-block">fastboot oem unlock</div>
+        
+        <p>解锁完成后，重启设备：</p>
+        <div class="code-block">fastboot reboot</div>
+
+        <h2>第二步：备份关键分区</h2>
+        <p>解压 MTKClient 软件后直接打开，安装好驱动。将手机完全关机，然后同时按住 <span class="highlight">音量+</span> 和 <span class="highlight">音量-</span> 键，再将数据线插入电脑。</p>
+
+        <div class="tip-box">
+            <p><strong>温馨提示：</strong>如果同时按住音量+-键无法连接，可以尝试只按住 <strong>音量+</strong> 或只按住 <strong>音量-</strong> 再连接。此外，如果连接后软件界面直接显示为第二张图片的状态，则说明已成功进入BROM模式，<strong>无需断开并重连数据线</strong>，可以直接进行下一步。</p>
+        </div>
+
+        <p>如果成功识别，软件左侧会出现设备信息，如下图所示：</p>
+        <img src="https://linxzee.github.io/phone-tool/images/mtk_client_recognized.png" alt="MTKClient 成功识别设备">
+
+        <p>然后断开数据线，再次按住音量+和-键，重新插入。此时软件界面应变为下图样式。（如果之前解锁失败，可尝试用此软件的“闪存工具”强解）</p>
+        <img src="https://linxzee.github.io/phone-tool/images/mtk_client_flash_tool.png" alt="MTKClient 闪存工具界面">
+
+        <p>将软件切换到“读取分区”标签页。以下示例是 V-A/B 分区结构的设备，因此只需要提取 <span class="highlight">boot_a</span> 即可。</p>
+        <p>（如果是 A-Only 分区结构，这里的分区名应该只有一个 <span class="highlight">boot</span>，不区分a/b）</p>
+        <img src="https://linxzee.github.io/phone-tool/images/mtk_client_read_partition.png" alt="MTKClient 读取分区界面">
+
+        <p>勾选需要备份的分区（如 boot_a），然后点击右侧的“读取分区”按钮。在您选择的保存文件夹里，会生成一个 <span class="highlight">boot_a.bin</span> 文件。您需要手动将其扩展名从 <span class="highlight">.bin</span> 修改为 <span class="highlight">.img</span>。</p>
+
+        <p><strong>重要提示：</strong> 建议在此步骤将除了 <span class="highlight">userdata</span> 之外的所有分区都备份一遍，以防后续操作出现意外导致设备变砖。</p>
+        
+        <p>备份完成后，拔掉数据线，正常开机进入系统。后续您可以使用 Magisk 或 KernelSU 等工具修补这个 <span class="highlight">boot.img</span> 文件，修补完成后再通过 MTKClient 的“写入分区”功能，将修补好的文件刷回对应的分区（从哪个分区读出，就写入哪个分区）。</p>
+        </div>
+    </main>
+
+    <script src="../js/indexjs.js" defer></script>
+</body>
+</html>
