@@ -10,7 +10,7 @@ const downloadItems = [
         downloads: 12500,
         icon: "M",
         downloadUrl: "https://linxize.lanzout.com/ixjAA34zovra",
-        infoUrl: "phone/MTKClient.html",
+        infoUrl: "tutorial/phone/MTKClient.html",
         updated: "2024-12-15"
     },
     {
@@ -23,7 +23,7 @@ const downloadItems = [
         downloads: 8900,
         icon: "Q",
         downloadUrl: "https://linxize.lanzout.com/iH91934zgobe",
-        infoUrl: "phone/Qualcomm-Premium-Tool-9008.html",
+        infoUrl: "tutorial/phone/Qualcomm-Premium-Tool-9008.html",
         updated: "2024-11-20"
     },
     {
@@ -36,7 +36,7 @@ const downloadItems = [
         downloads: 6700,
         icon: "M",
         downloadUrl: "https://soya.infini-cloud.net/share/130187d81e0ece24",
-        infoUrl: "phone/MiKoPro.html",
+        infoUrl: "tutorial/phone/MiKoPro.html",
         updated: "2024-10-05"
     },
     {
@@ -49,7 +49,7 @@ const downloadItems = [
         downloads: 23400,
         icon: "L",
         downloadUrl: "https://sourceforge.net/projects/andyyan-gsi/files/",
-        infoUrl: "phone/Lineage-GSI.html",
+        infoUrl: "tutorial/phone/Lineage-GSI.html",
         updated: "2024-12-01"
     },
     {
@@ -75,7 +75,7 @@ const downloadItems = [
         downloads: 8900,
         icon: "C",
         downloadUrl: "https://soya.infini-cloud.net/share/1301941cebb6b111",
-        infoUrl: "wintool/Winsystemreship.html",
+        infoUrl: "tutorial/wintool/Winsystemreship.html",
         updated: "2025-01-20"
     },
     {
@@ -88,7 +88,7 @@ const downloadItems = [
         downloads: 15600,
         icon: "W",
         downloadUrl: "https://massgrave.dev/",
-        infoUrl: "wintool/Winsystemreship.html",
+        infoUrl: "tutorial/wintool/Winsystemreship.html",
         updated: "2025-01-18"
     }
 ];

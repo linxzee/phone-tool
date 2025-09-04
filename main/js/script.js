@@ -5,7 +5,7 @@
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        htmlElement.classList.add('dark');
+        htmlElement.setAttribute('data-theme', 'dark');
     }
 })();
 
@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-            const isDark = htmlElement.classList.contains('dark');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            const isDark = newTheme === 'dark';
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }

@@ -14,15 +14,45 @@ const initNavbar = () => {
         }
     };
 
-    // Check for saved theme in localStorage or system preference
+    // Function to determine and apply theme based on time
+    const autoSwitchTheme = () => {
+        const hour = new Date().getHours();
+        // Assume dark mode from 18:00 to 06:00
+        const isNight = hour >= 18 || hour < 6;
+        const currentTheme = htmlElement.getAttribute('data-theme');
+
+        if (isNight && currentTheme !== 'dark') {
+            applyTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else if (!isNight && currentTheme !== 'light') {
+            applyTheme('light');
+            localStorage.setItem('theme', 'light');
+        }
+    };
+
+    // Check for saved theme in localStorage
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme) {
         applyTheme(savedTheme);
     } else {
-        applyTheme(prefersDark ? 'dark' : 'light');
+        // If no saved theme, apply theme based on system preference or time
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            applyTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            autoSwitchTheme(); // Apply based on time if no system preference for dark
+        }
     }
+
+    // Set up interval to check theme every hour if no saved theme
+    // This ensures that theme switches automatically when time changes
+    setInterval(() => {
+        if (!localStorage.getItem('theme')) { // Only auto-switch if user hasn't manually set a theme
+            autoSwitchTheme();
+        }
+    }, 3600000); // Check every hour (3600000 milliseconds)
 
     // Theme toggle function
     const toggleTheme = () => {

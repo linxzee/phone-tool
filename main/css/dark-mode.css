@@ -1,0 +1,74 @@
+/* 夜间模式样式 */
+html[data-theme='dark'] {
+    --text-color: #f9fafb;
+    --text-light-color: #9ca3af;
+    --bg-color: #111827;
+    --bg-alt-color: #1f2937;
+    --card-bg-color: #1f2937;
+    --border-color: #374151;
+    --button-secondary-bg: #374151;
+    --header-bg: rgba(17, 24, 39, 0.8);
+}
+
+
+html[data-theme='dark'] .btn-secondary:hover { background-color: #4b5563; }
+
+html[data-theme='dark'] .feature-card { box-shadow: none; }
+html[data-theme='dark'] .feature-card:hover { border-color: var(--primary-color); }
+html[data-theme='dark'] .github-icon[src*="github-fill.svg"] {
+    display: none;
+}
+html[data-theme='dark'] .github-icon[src*="whitegithub.svg"] {
+    display: block;
+}
+html[data-theme='dark'] .theme-toggle .moon-icon { display: none; }
+html[data-theme='dark'] .theme-toggle .sun-icon { display: block; }
+html[data-theme='dark'] {
+    --bg-default: #111827;
+    --bg-secondary: #1F2937;
+    --text-primary: #F9FAFB;
+    --text-secondary: #9CA3AF;
+    --border-color: #374151;
+    --halo-color: rgba(96, 165, 250, 0.3); /* Brighter blue halo for dark theme */
+    --color-link: #90cdf4; /* Added for docs.css links */
+
+    /* Table Variables (from docs.css) */
+    --table-header-bg: #003440;
+    --table-header-text: #e0e0e0;
+    --table-row-even-bg: #222b38;
+    --table-row-hover-bg: #384557;
+    --subtle-text-color: #a0aec0; /* for .author-info, .meta-info, figcaption */
+
+    /* Download list variables (from docs.css) */
+    --download-item-bg: #4a5568;
+    --download-item-border: #718096;
+
+    /* Code block variables (from docs.css) */
+    --code-bg-color: #4a5568; /* for inline code */
+    --code-text-color: #f8f9fa; /* for inline code */
+    --code-block-bg: #2d3748; /* for pre - dark theme */
+    --code-block-text: #e2e8f0; /* for pre - dark theme */
+    --code-block-border: #4a5568; /* for pre border */
+    --highlight-bg-color: #b8860b; /* for .highlight in docs */
+    --highlight-text-color: #f0f0f0; /* for .highlight in docs */
+    --strong-color: #ff8a80; /* for strong */
+    
+    /* Copy button variables */
+    --copy-btn-bg: #4a5568;
+    --copy-btn-text: #e2e8f0;
+    --copy-btn-border: #718096;
+    --copy-btn-hover-bg: #2d3748;
+    --copy-btn-success-bg: #38a169;
+    --copy-btn-success-text: #ffffff;
+    --copy-btn-success-border: #2f855a;
+
+    /* Note/Warning/Tip variables (from docs.css) */
+    --note-bg-color: #2c5282;
+    --note-border-color: #63b3ed;
+    --note-text-color: #e2e8f0;
+    --warning-bg-color: #543a24;
+    --warning-border-color: #ffb74d;
+    --warning-text-color: #ffcc80;
+    --tip-bg-color: #2c5b4c;
+    --tip-border-color: #48bb78;
+}

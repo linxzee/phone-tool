@@ -116,12 +116,6 @@
 .github-icon[src*="whitegithub.svg"] {
     display: none;
 }
-html[data-theme='dark'] .github-icon[src*="github-fill.svg"] {
-    display: none;
-}
-html[data-theme='dark'] .github-icon[src*="whitegithub.svg"] {
-    display: block;
-}
 
 /* Mobile navigation */
 .mobile-nav {
@@ -310,5 +304,3 @@ html[data-theme='dark'] .github-icon[src*="whitegithub.svg"] {
 
 /* Theme toggle logic - swapped icons (moon in light mode, sun in dark mode) */
 .theme-toggle .sun-icon { display: none; }
-html[data-theme='dark'] .theme-toggle .moon-icon { display: none; }
-html[data-theme='dark'] .theme-toggle .sun-icon { display: block; }
