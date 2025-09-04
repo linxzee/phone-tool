@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【标题占位符】</title>
+    <link rel="icon" type="image/png" href="../main/images/logo.png">
+    <link rel="stylesheet" href="../main/css/base.css">
+    <link rel="stylesheet" href="../main/css/navbar.css">
+    <link rel="stylesheet" href="../main/css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>【主标题占位符】</h1>
+        <p class="meta-info">作者：【作者占位符】</p>
+        
+        <!-- 下载链接区域 -->
+        <div class="download-links">
+            <ul>
+                <li><strong>【软件名称占位符】：</strong><a href="【下载链接占位符】" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>【工具名称占位符】：</strong><a href="【工具链接占位符】" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>【驱动名称占位符】：</strong><a href="【驱动链接占位符】" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+        </div>
+        
+        <!-- 步骤区域 -->
+        <h2>第一步：【步骤标题占位符】</h2>
+        <p>【步骤描述占位符】</p>
+        <div class="code-block">【命令行占位符】</div>
+        
+        <p>【后续说明占位符】</p>
+        <div class="code-block">【命令占位符】</div>
+        <div class="code-block">【备用命令占位符】</div>
+        
+        <p>【完成说明占位符】</p>
+        <div class="code-block">【重启命令占位符】</div>
+
+        <h2>第二步：【步骤标题占位符】</h2>
+        <p>【步骤描述占位符】</p>
+
+        <div class="tip-box">
+            <p><strong>温馨提示：</strong>【提示内容占位符】</p>
+        </div>
+
+        <p>【成功识别说明占位符】</p>
+        <img src="../main/images/【图片文件名占位符】.png" alt="【图片描述占位符】">
+
+        <p>【后续操作说明占位符】</p>
+        <img src="../main/images/【图片文件名占位符】.png" alt="【图片描述占位符】">
+
+        <p>【详细操作说明占位符】</p>
+        <img src="../main/images/【图片文件名占位符】.png" alt="【图片描述占位符】">
+
+        <p>【操作细节占位符】</p>
+        
+        <p><strong>重要提示：</strong> 【重要提示内容占位符】</p>
+        
+        <p>【完成说明占位符】</p>
+        </div>
+    </main>
+
+    <script src="../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../main/js/indexjs.js" defer></script>
+    <script src="../main/js/copy-code.js" defer></script>
+</body>
+</html>

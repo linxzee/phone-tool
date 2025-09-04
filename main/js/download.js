@@ -53,19 +53,6 @@ const downloadItems = [
         updated: "2024-12-01"
     },
     {
-        id: 5,
-        title: "Bootloader 解锁工具",
-        description: "通用Bootloader解锁工具包，包含必要的驱动和脚本。",
-        category: "utility",
-        version: "v1.2.0",
-        size: "45.3 MB",
-        downloads: 15600,
-        icon: "B",
-        downloadUrl: "#",
-        infoUrl: "phone/bootroot.html",
-        updated: "2024-09-10"
-    },
-    {
         id: 6,
         title: "ADB 和 Fastboot 工具包",
         description: "Android SDK平台工具，包含ADB和Fastboot命令必备环境包。",
@@ -80,29 +67,29 @@ const downloadItems = [
     },
     {
         id: 7,
-        title: "TWRP Recovery",
-        description: "第三方恢复镜像，支持多种设备的刷机和备份功能。",
-        category: "system",
-        version: "v3.7.0",
-        size: "85.6 MB",
-        downloads: 18900,
-        icon: "T",
-        downloadUrl: "#",
-        infoUrl: "#",
-        updated: "2024-11-25"
+        title: "CMDPE PE工具",
+        description: "Windows系统重装必备的PE环境工具，支持U盘制作和本地安装。",
+        category: "utility",
+        version: "v3.2.1",
+        size: "256 MB",
+        downloads: 8900,
+        icon: "C",
+        downloadUrl: "https://soya.infini-cloud.net/share/1301941cebb6b111",
+        infoUrl: "wintool/Winsystemreship.html",
+        updated: "2025-01-20"
     },
     {
         id: 8,
-        title: "Magisk Manager",
-        description: "Android系统Root和管理工具，支持模块化功能扩展。",
-        category: "utility",
-        version: "v27.0",
-        size: "8.9 MB",
-        downloads: 45600,
-        icon: "M",
-        downloadUrl: "#",
-        infoUrl: "#",
-        updated: "2024-12-05"
+        title: "Windows系统镜像",
+        description: "官方Windows系统镜像下载，包含Windows 10和Windows 11各个版本。",
+        category: "system",
+        version: "多种版本",
+        size: "5-8 GB",
+        downloads: 15600,
+        icon: "W",
+        downloadUrl: "https://massgrave.dev/",
+        infoUrl: "wintool/Winsystemreship.html",
+        updated: "2025-01-18"
     }
 ];
 

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows电脑重装系统教程</title>
+    <link rel="icon" type="image/png" href="../main/images/logo.png">
+    <link rel="stylesheet" href="../main/css/base.css">
+    <link rel="stylesheet" href="../main/css/navbar.css">
+    <link rel="stylesheet" href="../main/css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>Windows电脑重装系统</h1>
+            <h2>Windows系统通用重装系统教程</h2>
+            <p class="meta-info">作者：半糖的芝士</p>
+        
+        <!-- 需要准备的东西 -->
+        <h2>需要准备的东西</h2>
+        <ul>
+            <li>一台可以开机的电脑和需要重装的电脑</li>
+            <li>U盘(8G左右)</li>
+        </ul>
+        
+        <!-- 下载链接区域 -->
+        <div class="download-links">
+            <ul>
+                <li><strong>PE软件：</strong><a href="https://soya.infini-cloud.net/share/1301941cebb6b111" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>Windows系统：</strong><a href="https://massgrave.dev/" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>Windows系统备用：</strong><a href="https://msdl.gravesoft.dev/" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>Windows系统备用：</strong><a href="https://www.microsoft.com/en-us/software-download/" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+        </div>
+        
+        <!-- 准备工作 -->
+        <h2>准备工作</h2>
+        <ol>
+            <li>下载Windows系统，将下载好的系统放在其他盘的根目录。</li>
+            <li>下载PE软件，PE随便什么都可以，这边用CMDPE做为演示。</li>
+        </ol>
+
+        <!-- 教程开始 -->
+        <h2>教程开始</h2>
+        
+        <h3>1. 打开PE</h3>
+        <p>这时候分为两种情况：能开机进系统的电脑和不能开机进系统的电脑</p>
+        <p>能开机进系统的电脑看2.1，不能进系统的电脑看2.2</p>
+        <p>以管理员身份打开CMDPE_安装器，会出现如下界面</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7cec.png" alt="CMDPE安装器界面">
+
+        <h3>2. 配置PE</h3>
+        
+        <h4>2.1 能进系统的电脑重装</h4>
+        <p>能进系统的电脑选择1：安装cmdpe，此选项会将pe系统安装到本机的电脑上。</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7ced.png" alt="安装cmdpe选项">
+
+        <h4>2.2 不能进系统的电脑重装</h4>
+        <div class="tip-box">
+            <p><strong>注意：</strong>此方法会格式化U盘，请注意备份U盘文件。</p>
+        </div>
+        <p>不能进系统的电脑重装则需要将U盘插上一个能正常开机的电脑，打开PE，然后选输入3，就会打开碟软通的写入界面，这里会自动识别U盘，如果没有识别就手动选一下，然后点写入</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7cec.png" alt="PE选择界面">
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7cf0.png" alt="碟软通写入界面">
+
+        <h4>2.2.1 修改U盘格式</h4>
+        <p>碟软通写入pe后会将U盘格式化为FAT32格式，这个格式只能放不超过4G的文件，而Windows的系统一般都会大于4G，这时候就需要转换格式。</p>
+        
+        <p>操作流程如下：</p>
+        <ol>
+            <li><strong>确认U盘盘符</strong> 插入U盘后，打开"此电脑"，找到U盘对应的盘符（例如：E盘）。</li>
+            <li><strong>打开命令提示符</strong> 按下 Win + R 键，输入 cmd，然后按回车键。</li>
+            <li><strong>输入转换命令</strong> 在命令提示符中输入以下命令并回车：（E为U盘的盘符）</li>
+        </ol>
+        
+        <div class="code-block">convert E: /fs:ntfs</div>
+        
+        <ol start="4">
+            <li><strong>等待完成</strong> 系统会开始转换文件系统，完成后会提示"转换完成"。</li>
+            <li><strong>验证结果</strong> 再次右键点击U盘图标，选择"属性"，查看"文件系统"是否已变为NTFS。</li>
+        </ol>
+        
+        <p>反向转换为fat32：</p>
+        <div class="code-block">format E: /FS:FAT32</div>
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7cf1.png" alt="U盘格式转换">
+        
+        <p>转换完U盘格式后，将系统放入U盘中，后续的教程看3.2</p>
+
+        <h3>3.1 能进系统的电脑：</h3>
+        <p>按"Win+R"打开运行窗口，输入"msconfig"并回车，进入"系统配置"界面。</p>
+        <p>电脑开机启动项设置仅需切换到"引导"选项卡，列表中会显示所有系统条目。</p>
+        <p>点击cmdpe急救，将它设置为默认值，然后应用，确定，再重启电脑。</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7cf3.png" alt="系统配置界面">
+
+        <h3>3.2 不能进系统的电脑</h3>
+        <p>对于不能进系统的点要用U盘启动，这时候就需要看电脑主板品牌或者笔记本电脑品牌，每个品牌的U盘启动按钮都不一样</p>
+        <p>U盘启动快捷键查询列表：<a href="usb-boot-keys.html" target="_blank" rel="noopener noreferrer">点击查看</a></p>
+
+        <h3>4. 进入PE</h3>
+        <p>能开机的电脑重启之后会显示Windows启动管理界面，这里选择CMDPE急救</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f62a58cb8da5c87a7cee.png" alt="Windows启动管理界面">
+        <p>不能进系统的电脑从U盘启动后会直接进入PE，不用选。</p>
+
+        <h3>5. 安装系统</h3>
+        
+        <h4>5.1</h4>
+        <p>进入pe后，用最快捷的方式重装系统的话，就直接点击桌面上的安装系统，在弹出的窗口中选择1：搜索本地系统安装</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f69b58cb8da5c87a803e.png" alt="安装系统界面">
+        
+        <h4>5.2</h4>
+        <p>这时候系统会自动搜索本机电脑中的系统，搜索到后会直接显示出来。</p>
+        <p>这里可以看到我下载的是win11 24h2 pro版，直接输入1</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f69b58cb8da5c87a803f.png" alt="系统搜索结果">
+
+        <h4>5.3</h4>
+        <p>这时候因为是重装系统，所以原来的系统引导还在，所有C盘的位置就有一个括号，直接输入C就行</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f69b58cb8da5c87a803c.png" alt="选择安装盘符">
+        
+        <div class="tip-box">
+            <p><strong>注意：</strong>如果出现没有括号或者没有C盘的情况下，就需要在开始菜单中找到DiskGenius工具，进入工具后将带有Windows图标的盘格式化，然后重新指派C盘给它，再重新打开安装系统工具安装系统。</p>
+        </div>
+        <img src="https://pic1.imgdb.cn/item/68b8f69b58cb8da5c87a803b.png" alt="DiskGenius工具">
+
+        <h3>6. 配置无人值守</h3>
+        <p>安装结束后会自动跳转到激活优化界面，这里输入1</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f69b58cb8da5c87a8040.png" alt="激活优化界面">
+        
+        <p>继续输入1</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f69b58cb8da5c87a803d.png" alt="继续配置">
+        
+        <p>出现提示：添加应答文件完成，按任意键返回。就可以重启电脑了</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f6e258cb8da5c87a825b.png" alt="配置完成">
+
+        <h3>6.1 另一个安装系统的办法：使用WinNTSetup工具</h3>
+        <p>有两个注意事项：</p>
+        <ul>
+            <li>没有无人值守，开机后需要手动一步一步安装，就像新手机第一次开机一样。</li>
+            <li>装完Windows11系统开机之前不能联网，需要用代码打开：我没有网络 这个选项来跳过登录微软账户（看6.1.1）。</li>
+        </ul>
+        
+        <p>打开后手动选择安装映像位置，然后检测引导驱动器位置是否亮绿灯（如果是红灯会无法引导系统开机）</p>
+        <p>选择安装驱动器位置，一般是C盘，选项的区域选择需要安装的系统版本，全部选完后点击安装，等待安装结束重启即可</p>
+        <img src="https://pic1.imgdb.cn/item/68b8f6e358cb8da5c87a825e.png" alt="WinNTSetup工具">
+
+        <h4>6.1.1 在Win11系统首次展开设置到联网界面时</h4>
+        <p>同时按Shift + F10或Fn + Shift + F10，</p>
+        <p>在命令窗口，点击光标录入"oobe\bypassnro"，之后按回车，</p>
+        <div class="code-block">oobe\bypassnro</div>
+        <img src="https://pic1.imgdb.cn/item/68b900e758cb8da5c87ac6c2.png" alt="命令执行">
+        
+        <p>等待系统重启后，再次到了联网界面，选择我没有网络再下一步创建本地账户就好了。</p>
+        <img src="https://pic1.imgdb.cn/item/68b900e758cb8da5c87ac6c3.png" alt="跳过联网">
+
+        </div>
+    </main>
+
+    <script src="../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../main/js/indexjs.js" defer></script>
+    <script src="../main/js/copy-code.js" defer></script>
+</body>
+</html>
