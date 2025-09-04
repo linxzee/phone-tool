@@ -90,6 +90,19 @@ const downloadItems = [
         downloadUrl: "https://massgrave.dev/",
         infoUrl: "tutorial/wintool/Winsystemreship.html",
         updated: "2025-01-18"
+    },
+    {
+        id: 9,
+        title: "驱动总裁纯净网卡版",
+        description: "免扫码、无广告的即点即用驱动工具，专为解决系统安装后的网络驱动问题，支持PE/桌面环境，智能匹配主流网卡。",
+        category: "driver",
+        version: "最新版",
+        size: "150 MB",
+        downloads: 5000,
+        icon: "D",
+        downloadUrl: "https://www.ilanzou.com/s/bQxzjqFY",
+        infoUrl: "tutorial/wintool/Winsystemreship.html",
+        updated: "2025-09-04"
     }
 ];
 
@@ -182,6 +195,7 @@ function getCategoryName(category) {
         'qualcomm': '高通工具',
         'system': '系统镜像',
         'utility': '实用工具',
+        'driver': '驱动工具',
         'all': '全部'
     };
     return categories[category] || category;
