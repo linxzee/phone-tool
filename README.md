@@ -25,10 +25,11 @@
 ├── index.html              # 主页
 ├── download.html           # 下载中心
 ├── CNAME                  # 自定义域名配置
-├── 3.0.txt                # 版本信息
+├── 3.0.1.txt              # 版本信息
 ├── 历史版本/              # 历史版本文件
 │   ├── 1.0.zip
-│   └── 2.0.zip
+│   ├── 2.0.zip
+│   └── 3.0.7z
 ├── 模板/                  # 教程模板文件
 │   ├── 教程模板.html
 │   └── README.md
@@ -58,16 +59,17 @@
 │       ├── indexjs.js        # 主页功能脚本
 │       ├── navbar.js         # 导航栏功能脚本
 │       └── script.js         # 旧脚本文件（已弃用）
-├── phone/                # 手机教程文档页面
-│   ├── bootroot.html      # 深刷提取备份教程
-│   ├── Lineage-GSI.html   # Lineage GSI 选择教程
-│   ├── MTKClient.html     # MTKClient 使用教程
-│   ├── Qualcomm-Premium-Tool-9008.html  # 高通9008备份教程
-│   ├── MiKoPro.html       # MiKo Pro 操作方法
-│   └── redmagic-disable-update.html  # 红魔手机关闭更新教程
-└── wintool/              # Windows工具教程
-    ├── usb-boot-keys.html     # U盘启动快捷键查询
-    └── Winsystemreship.html   # Windows系统重装教程
+├── tutorial/             # 教程文档目录（新增）
+│   ├── phone/           # 手机教程文档页面
+│   │   ├── bootroot.html      # 深刷提取备份教程
+│   │   ├── Lineage-GSI.html   # Lineage GSI 选择教程
+│   │   ├── MTKClient.html     # MTKClient 使用教程
+│   │   ├── Qualcomm-Premium-Tool-9008.html  # 高通9008备份教程
+│   │   ├── MiKoPro.html       # MiKo Pro 操作方法
+│   │   └── redmagic-disable-update.html  # 红魔手机关闭更新教程
+│   └── wintool/         # Windows工具教程
+│       ├── usb-boot-keys.html     # U盘启动快捷键查询
+│       └── Winsystemreship.html   # Windows系统重装教程
 ```
 
 ## ✨ 功能特性
@@ -125,13 +127,12 @@ MIT License
 ## 🔄 更新日志
 
 ### v3.0.1
--✨ 新增Windows系统重装教程
-
--🔑 新增U盘启动快捷键查询页面
-
--⚙️ 优化导航栏组件结构
-
--📱 改进响应式设计
+- 🏗️ **架构优化**：重构文件结构，新增tutorial目录统一管理教程文档
+- 📁 **目录重组**：将所有教程文件迁移到tutorial/phone/和tutorial/wintool/子目录
+- 🔗 **路径更新**：主页链接路径适配新的目录结构
+- 📋 **版本管理**：添加3.0.1.txt版本信息文件和历史版本存档
+- 🌐 **域名配置**：新增CNAME文件配置自定义域名phone.dengsir.com
+- 📚 **文档完善**：更新README.md项目结构说明和更新日志
 
 ### 🚀 v3.0 (重大更新)
 -🏗️ 架构重构：实现完全模块化，提升可维护性

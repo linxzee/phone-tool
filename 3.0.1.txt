@@ -1,1 +1,13 @@
+Lzee 玩机教程网站 v3.0.1
+更新时间: 2025-01-20
 
+版本更新内容:
+- 重构文件结构，新增tutorial目录统一管理教程文档
+- 将所有教程文件迁移到tutorial/子目录下
+- 主页链接路径适配新的目录结构
+- 添加版本信息文件和历史版本存档
+- 新增CNAME域名配置
+- 完善项目文档说明
+
+GitHub仓库: https://github.com/Lzee/phone-tool
+访问地址: https://phone.dengsir.com
