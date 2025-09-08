@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LX Music</title>
+    <link rel="icon" type="image/png" href="../../main/images/logo.png">
+    <link rel="stylesheet" href="../../main/css/base.css">
+    <link rel="stylesheet" href="../../main/css/navbar.css">
+    <link rel="stylesheet" href="../../main/css/docs.css">
+    <link rel="stylesheet" href="../../main/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>LX Music - 免费&开源音乐查找工具</h1>
+        <p class="meta-info">作者：</p>
+        
+        <!-- 下载链接区域 -->
+        <div class="download-links">
+            <ul>
+                <li><strong>安卓版：</strong><a href="https://linxize.lanzout.com/i4p7m35q7vgj" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>Windows版：</strong><a href="https://linxize.lanzout.com/izpeS35q7p0h" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>音源：</strong><a href="https://linxize.lanzout.com/iY68235q5bkb" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+        </div>
+        
+        <p>LX Music 是一个免费且开源的音乐查找工具，支持多平台。</p>
+        <p>以下是 LX Music 的界面截图：</p>
+        <img src="https://pic1.imgdb.cn/item/68bf084458cb8da5c889ebbd.png" alt="LX Music 界面截图 1">
+        <img src="https://pic1.imgdb.cn/item/68bf084458cb8da5c889ebbe.png" alt="LX Music 界面截图 2">
+        
+        </div>
+    </main>
+
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                    document.getElementById('navbar-placeholder').innerHTML = html;
+                    if (typeof initNavbar === 'function') {
+                        initNavbar();
+                    }
+                })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../../main/js/indexjs.js" defer></script>
+    <script src="../../main/js/copy-code.js" defer></script>
+</body>
+</html>

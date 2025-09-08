@@ -149,6 +149,11 @@
     border-color: var(--color-primary);
 }
 
+/* 当下拉菜单打开时，提升整个卡片的z-index */
+.download-card:has(.dropdown-menu.show) {
+    z-index: 11; /* 确保包含打开菜单的卡片显示在其他卡片之上 */
+}
+
 .download-header {
     display: flex;
     align-items: center;
@@ -205,6 +210,7 @@
 .download-actions {
     display: flex;
     gap: 8px;
+    align-items: stretch; /* 确保所有子项高度一致 */
 }
 
 .download-btn {
@@ -216,6 +222,7 @@
     text-align: center;
     transition: all 0.2s ease;
     cursor: pointer;
+    line-height: 1; /* 统一行高以帮助垂直居中 */
 }
 
 .btn-primary {
@@ -357,4 +364,77 @@ img {
     border-radius: 0.5rem;
     margin: 1rem 0;
     border: 1px solid var(--border-color);
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    flex: 1; /* Make dropdown take available space */
+}
+
+/* 当下拉菜单打开时，确保其整个容器在其他元素之上 */
+.dropdown:has(.dropdown-toggle[aria-expanded="true"]) {
+    z-index: 10; /* 为打开的下拉菜单设置更高的z-index，使其显示在其他卡片之上 */
+}
+
+.dropdown-toggle {
+    width: 100%; /* Make button fill its container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+    line-height: 1; /* 统一行高以帮助垂直居中 */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--bg-default);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9999; /* 提高 z-index 确保下拉菜单在最上层 */
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 8px 0;
+    top: 100%; /* Position below the button */
+    left: 0;
+    margin-top: 8px; /* Space between button and dropdown */
+    border: 1px solid var(--border-color);
+    list-style: none; /* Remove bullet points */
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-secondary);
+}
+
+.dropdown-arrow {
+    /* 移除 margin-left: auto; 以便手动控制间距 */
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white; /* Arrow color */
+    transition: transform 0.2s ease;
+    vertical-align: middle; /* 垂直居中对齐 */
+    margin-left: 4px; /* 微调与文本的间距 */
+}
+
+.dropdown-toggle[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
 }

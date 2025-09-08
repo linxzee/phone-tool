@@ -9,7 +9,7 @@ const downloadItems = [
         size: "15.2 MB",
         downloads: 12500,
         icon: "M",
-        downloadUrl: "https://linxize.lanzout.com/ixjAA34zovra",
+        downloadLinks: [{ name: "通用下载", url: "https://linxize.lanzout.com/ixjAA34zovra" }],
         infoUrl: "tutorial/phone/MTKClient.html",
         updated: "2024-12-15"
     },
@@ -22,7 +22,7 @@ const downloadItems = [
         size: "28.7 MB",
         downloads: 8900,
         icon: "Q",
-        downloadUrl: "https://linxize.lanzout.com/iH91934zgobe",
+        downloadLinks: [{ name: "通用下载", url: "https://linxize.lanzout.com/iH91934zgobe" }],
         infoUrl: "tutorial/phone/Qualcomm-Premium-Tool-9008.html",
         updated: "2024-11-20"
     },
@@ -35,7 +35,7 @@ const downloadItems = [
         size: "22.4 MB",
         downloads: 6700,
         icon: "M",
-        downloadUrl: "https://soya.infini-cloud.net/share/130187d81e0ece24",
+        downloadLinks: [{ name: "通用下载", url: "https://soya.infini-cloud.net/share/130187d81e0ece24" }],
         infoUrl: "tutorial/phone/MiKoPro.html",
         updated: "2024-10-05"
     },
@@ -48,7 +48,7 @@ const downloadItems = [
         size: "2.1 GB",
         downloads: 23400,
         icon: "L",
-        downloadUrl: "https://sourceforge.net/projects/andyyan-gsi/files/",
+        downloadLinks: [{ name: "通用下载", url: "https://sourceforge.net/projects/andyyan-gsi/files/" }],
         infoUrl: "tutorial/phone/Lineage-GSI.html",
         updated: "2024-12-01"
     },
@@ -61,7 +61,7 @@ const downloadItems = [
         size: "15.5 MB",
         downloads: 31200,
         icon: "A",
-        downloadUrl: "https://googledownloads.cn/android/repository/platform-tools-latest-windows.zip",
+        downloadLinks: [{ name: "通用下载", url: "https://googledownloads.cn/android/repository/platform-tools-latest-windows.zip" }],
         infoUrl: "#",
         updated: "2025-01-15"
     },
@@ -74,7 +74,7 @@ const downloadItems = [
         size: "256 MB",
         downloads: 8900,
         icon: "C",
-        downloadUrl: "https://soya.infini-cloud.net/share/1301941cebb6b111",
+        downloadLinks: [{ name: "通用下载", url: "https://soya.infini-cloud.net/share/1301941cebb6b111" }],
         infoUrl: "tutorial/wintool/Winsystemreship.html",
         updated: "2025-01-20"
     },
@@ -87,22 +87,43 @@ const downloadItems = [
         size: "5-8 GB",
         downloads: 15600,
         icon: "W",
-        downloadUrl: "https://massgrave.dev/",
+        downloadLinks: [
+           { name: "官方Windows系统镜像（massgrave.dev）", url: "https://massgrave.dev/" },
+           { name: "官方Windows系统备用（msdl.gravesoft.dev）", url: "https://msdl.gravesoft.dev/" },
+           { name: "官方Windows系统备用（microsoft.com）", url: "https://www.microsoft.com/en-us/software-download/" }
+        ],
         infoUrl: "tutorial/wintool/Winsystemreship.html",
         updated: "2025-01-18"
     },
     {
         id: 9,
         title: "驱动总裁纯净网卡版",
-        description: "免扫码、无广告的即点即用驱动工具，专为解决系统安装后的网络驱动问题，支持PE/桌面环境，智能匹配主流网卡。",
+        description: "免扫码、无广告的即点即用驱动工具，支持PE/桌面环境，智能匹配主流网卡。",
         category: "driver",
         version: "最新版",
         size: "150 MB",
         downloads: 5000,
         icon: "D",
-        downloadUrl: "https://www.ilanzou.com/s/bQxzjqFY",
+        downloadLinks: [{ name: "通用下载", url: "https://www.ilanzou.com/s/bQxzjqFY" }],
         infoUrl: "tutorial/wintool/Winsystemreship.html",
         updated: "2025-09-04"
+    },
+    {
+        id: 10,
+        title: "LX Music",
+        description: "一个免费&开源的音乐查找工具，支持安卓和Windows平台，提供音源下载。",
+        category: "utility",
+        version: "最新版",
+        size: "多版本",
+        downloads: 0,
+        icon: "L",
+        downloadLinks: [
+            { name: "安卓版", url: "https://linxize.lanzout.com/i4p7m35q7vgj" },
+            { name: "Windows版", url: "https://linxize.lanzout.com/izpeS35q7p0h" },
+            { name: "音源", url: "https://linxize.lanzout.com/iY68235q5bkb" }
+        ],
+        infoUrl: "tutorial/Utilities/LXMusic.html",
+        updated: "2025-09-08"
     }
 ];
 
@@ -168,13 +189,30 @@ function createDownloadCard(item) {
             </div>
             <span class="category-tag ${categoryClass}">${categoryName}</span>
             <div class="download-actions">
-                <a href="${item.downloadUrl}" class="download-btn btn-primary" onclick="trackDownload(${item.id})">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
-                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                    </svg>
-                    下载
-                </a>
+                ${item.downloadLinks.length === 1 ? `
+                    <a href="${item.downloadLinks[0].url}" class="download-btn btn-primary" onclick="trackDownload(${item.id})">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        下载
+                    </a>
+                ` : `
+                    <div class="dropdown">
+                        <button class="download-btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton_${item.id}" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                            </svg>
+                            下载 <span class="dropdown-arrow"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton_${item.id}">
+                            ${item.downloadLinks.map(link => `
+                                <li><a class="dropdown-item" href="${link.url}" onclick="trackDownload(${item.id})">${link.name}</a></li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `}
                 ${item.infoUrl ? `
                 <a href="${item.infoUrl}" class="download-btn btn-secondary" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
@@ -230,6 +268,34 @@ function setupEventListeners() {
             filterBySearch(searchTerm);
         });
     }
+
+    // 下拉菜单交互和点击外部区域关闭下拉菜单 (使用事件委托)
+    document.addEventListener('click', function(event) {
+        const target = event.target;
+
+        // 处理下拉菜单开关
+        if (target.classList.contains('dropdown-toggle')) {
+            const dropdownMenu = target.nextElementSibling;
+            // 关闭所有其他打开的下拉菜单
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('show');
+                    menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+                }
+            });
+            // 切换当前下拉菜单的显示状态
+            dropdownMenu.classList.toggle('show');
+            target.setAttribute('aria-expanded', dropdownMenu.classList.contains('show'));
+            event.stopPropagation(); // 防止事件冒泡到document的外部关闭逻辑
+        }
+        // 处理点击外部区域关闭下拉菜单
+        else if (!target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+                menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
 }
 
 // 过滤下载项目
