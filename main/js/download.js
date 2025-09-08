@@ -120,7 +120,8 @@ const downloadItems = [
         downloadLinks: [
             { name: "安卓版", url: "https://linxize.lanzout.com/i4p7m35q7vgj" },
             { name: "Windows版", url: "https://linxize.lanzout.com/izpeS35q7p0h" },
-            { name: "音源", url: "https://linxize.lanzout.com/iY68235q5bkb" }
+            { name: "音源", url: "https://linxize.lanzout.com/iY68235q5bkb" },
+            { name: "备份", url: "https://soya.infini-cloud.net/share/1301039700f80595" }
         ],
         infoUrl: "tutorial/Utilities/LXMusic.html",
         updated: "2025-09-08"
