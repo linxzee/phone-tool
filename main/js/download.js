@@ -125,6 +125,22 @@ const downloadItems = [
         ],
         infoUrl: "tutorial/Utilities/LXMusic.html",
         updated: "2025-09-08"
+    },
+    {
+        id: 11,
+        title: "FlClash 代理客户端",
+        description: "基于ClashMeta的多平台代理客户端，简单易用，开源无广告。支持Windows和安卓平台。",
+        category: "utility",
+        version: "最新版",
+        size: "多版本",
+        downloads: 0,
+        icon: "F",
+        downloadLinks: [
+            { name: "Windows版", url: "https://linxize.lanzout.com/is1Vd35y4s5a" },
+            { name: "安卓版", url: "https://linxize.lanzout.com/iceJH35y4xxi" }
+        ],
+        infoUrl: "#",
+        updated: "2025-09-11"
     }
 ];
 
