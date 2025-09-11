@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADB Sideload 使用教程</title>
+    <link rel="icon" type="image/png" href="../../main/images/logo.png">
+    <link rel="stylesheet" href="../../../../main/css/base.css">
+    <link rel="stylesheet" href="../../main/css/navbar.css">
+    <link rel="stylesheet" href="../../main/css/docs.css">
+    <link rel="stylesheet" href="../../main/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+    
+    <main class="container">
+        <div class="content-section">
+            <h1>ADB Sideload 使用教程</h1>
+        <p class="meta-info">作者：芝士</p>
+        
+        <!-- 介绍区域 -->
+        <h2>什么是 ADB Sideload？</h2>
+        <p>简单来说，adb sideload 是一个通过电脑向处于恢复模式（Recovery Mode）的安卓设备直接推送并安装.zip格式更新包的命令。</p>
+        <p>把它想象成一根专用的"数据线"，它绕过了安卓的正常操作系统，直接将固件包或更新文件"喂"给手机的底层系统进行安装。</p>
+
+        <h2>核心功能与工作原理</h2>
+        <p><strong>功能：</strong>将电脑上的 .zip 文件（如系统更新包、Custom ROM、Magisk 等）传输到安卓设备并触发安装流程。</p>
+        <p><strong>工作环境：</strong>此命令必须在安卓设备进入 Recovery Mode（恢复模式）后才能使用。在正常开机状态下运行是无效的。</p>
+        <p><strong>工作原理：</strong></p>
+        <ul>
+            <li>你在手机的 Recovery 模式中选择 Apply update from ADB 或类似选项</li>
+            <li>手机进入"等待"状态，准备接收来自电脑的数据流</li>
+            <li>你在电脑上执行 adb sideload <文件名>.zip 命令</li>
+            <li>ADB 工具将这个 .zip 文件以数据流的形式通过 USB 推送到手机</li>
+            <li>手机的 Recovery 系统接收到数据流后，直接开始验证并安装这个文件，整个过程文件不会被完整保存在手机的存储空间里</li>
+        </ul>
+
+        <h2>为什么要使用 adb sideload？（主要应用场景）</h2>
+        <p>adb sideload 是一个非常强大的工具，主要用于以下几种情况：</p>
+        <ul>
+            <li><strong>手动安装官方 OTA 更新</strong> - 当你的手机没有收到官方OTA推送，但你已经从网上下载了官方的更新包时</li>
+            <li><strong>刷入第三方 ROM (Custom ROM)</strong> - 这是最常见的用途，在刷入像 LineageOS、Pixel Experience 等第三方系统时</li>
+            <li><strong>修复"砖机"</strong> - 当手机无法正常开机，但还能进入 Recovery 模式时</li>
+            <li><strong>设备存储空间不足或无法访问</strong> - 因为 sideload 是以数据流的形式传输文件，不需要将文件完整存放在手机存储中</li>
+            <li><strong>安装 Magisk 或 GApps (谷歌服务包)</strong> - 在刷完第三方 ROM 后安装 Root 权限和谷歌服务</li>
+        </ul>
+
+        <!-- 下载链接区域 -->
+        <div class="download-links">
+            <h2>所需工具下载</h2>
+            <ul>
+                <li><strong>ADB 工具包：</strong><a href="https://developer.android.com/tools/releases/platform-tools" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>手机 USB 驱动：</strong><a href="https://developer.android.com/studio/run/win-usb" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+            </ul>
+        </div>
+        
+        <!-- 步骤区域 -->
+        <h2>第一步：准备工作</h2>
+        <p>在开始之前，请确保完成以下准备工作：</p>
+        <ul>
+            <li>在电脑上安装好 ADB 工具 (Android Debug Bridge)</li>
+            <li>安装好你的手机对应的 USB 驱动程序</li>
+            <li>准备好你要刷入的 .zip 文件，并放在方便访问的文件夹里</li>
+            <li>确保手机电量充足（建议 50% 以上）</li>
+            <li>备份重要数据（刷机可能会清除数据）</li>
+        </ul>
+
+        <h2>第二步：连接设备并进入 Recovery 模式</h2>
+        <p>开启 USB 调试：在手机的"开发者选项"中启用"USB 调试"功能（如果手机能正常开机的话）</p>
+        <p>连接手机：用 USB 数据线将手机连接到电脑</p>
+        <p>重启到 Recovery 模式：</p>
+        <div class="code-block">adb reboot recovery</div>
+        <p>如果手机无法开机，可以手动操作：关机状态下，同时按住"电源键"+"音量减"或特定组合键进入</p>
+
+        <h2>第三步：选择 Sideload 模式</h2>
+        <p>在 Recovery 中选择 Sideload 模式：</p>
+        <ul>
+            <li>使用音量键移动光标，电源键确认</li>
+            <li>找到并选择 Apply update from ADB 或 TWRP Recovery 中的 Advanced -> ADB Sideload 选项</li>
+            <li>此时手机屏幕会显示正在等待命令</li>
+        </ul>
+
+        <h2>第四步：执行 sideload 命令</h2>
+        <p>在电脑上执行命令：</p>
+        <div class="code-block">adb sideload 文件名.zip</div>
+        <p>例如：</p>
+        <div class="code-block">adb sideload lineage-19.1-xxxxxxxx-nightly-device-signed.zip</div>
+        
+        <p>等待安装完成：</p>
+        <ul>
+            <li>电脑终端会显示文件传输的百分比进度</li>
+            <li>手机屏幕上会显示安装日志，告诉你正在验证、解压、安装</li>
+            <li>整个过程请勿断开 USB 连接</li>
+        </ul>
+
+        <h2>第五步：重启手机</h2>
+        <p>安装成功后，在 Recovery 模式中选择 Reboot system now 重启手机</p>
+        <div class="code-block">adb reboot</div>
+
+        <div class="tip-box">
+            <p><strong>⚠️ 注意事项</strong></p>
+            <ul>
+                <li><strong>文件正确性：</strong>一定要确保你下载的 .zip 文件是为你手机型号量身定制的，刷错文件会导致手机变砖</li>
+                <li><strong>数据备份：</strong>刷机（尤其是刷入新系统）会清空你的所有数据，请务必提前备份</li>
+                <li><strong>驱动问题：</strong>如果电脑显示 device not found，通常是 USB 驱动没有正确安装</li>
+                <li><strong>稳定性：</strong>使用质量好的数据线，并确保 USB 连接稳定</li>
+            </ul>
+        </div>
+
+        <p><strong>总结：</strong>adb sideload 是一个介于全自动 OTA 更新和手动拷贝文件安装之间的专业级工具，是安卓玩家和开发者进行手动更新、刷机和设备修复的瑞士军刀。</p>
+        </div>
+    </main>
+
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../../main/js/indexjs.js" defer></script>
+    <script src="../../main/js/copy-code.js" defer></script>
+</body>
+</html>

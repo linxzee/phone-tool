@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>去除WIFI和信号的X或！感叹号教程</title>
+    <link rel="icon" type="image/png" href="../../main/images/logo.png">
+    <link rel="stylesheet" href="../../main/css/base.css">
+    <link rel="stylesheet" href="../../main/css/navbar.css">
+    <link rel="stylesheet" href="../../main/css/docs.css">
+    <link rel="stylesheet" href="../../main/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>去除WIFI和信号的X或感叹号教程</h1>
+        <p class="meta-info">作者：芝士</p>
+        
+        <h2>问题的根源：网络连通性检查 (Captive Portal Check)</h2>
+        <p>安卓系统为了判断你是否真正连接到了互联网，会自动访问一个预设的服务器。</p>
+        <ul>
+            <li>如果能成功访问：一切正常，无感叹号。</li>
+            <li>如果访问失败：系统就认为你虽然连接了 Wi-Fi 或移动网络，但无法上网，于是显示感叹号 !。</li>
+        </ul>
+        <p>LineageOS 作为一个原生风格的系统，默认的检查服务器是 Google 的 <code>connectivitycheck.googleapis.com</code>。如果你在中国大陆，由于网络环境原因，这个地址是无法访问的。因此，检查永远失败，感叹号就一直存在。</p>
+
+        <h2>解决方案：修改连通性检查服务器（推荐）</h2>
+        <p>这是最根本、最完美的解决方法。你需要通过 ADB 命令将这个检查服务器的地址修改为国内可以正常访问的地址。</p>
+
+        <h3>准备工作：</h3>
+        <ul>
+            <li>在电脑上安装好 ADB 工具。</li>
+            <li>在手机的 “设置” -> “关于手机” -> 连续点击“版本号”7次，打开“开发者选项”。</li>
+            <li>在 “设置” -> “系统” -> “开发者选项” 中，打开 “USB 调试” 开关。</li>
+            <li>用数据线将手机连接到电脑，手机上会弹出授权提示，选择“允许”。</li>
+        </ul>
+
+        <h3>执行命令：</h3>
+        <p>打开电脑的命令行工具（Windows 的 CMD 或 PowerShell，macOS/Linux 的终端），依次输入以下命令。你可以从下面的服务器地址中任选一组来使用。</p>
+
+        <h4>方案一：使用 V2EX 的服务器（非常流行）</h4>
+        <div class="code-block">
+adb shell settings put global captive_portal_http_url http://www.v2ex.com/generate_204
+adb shell settings put global captive_portal_https_url https://www.v2ex.com/generate_204
+        </div>
+
+        <h4>方案二：使用小米的服务器</h4>
+        <div class="code-block">
+adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate_204
+adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate_204
+        </div>
+
+        <h4>方案三：使用 Cloudflare 的服务器</h4>
+        <div class="code-block">
+adb shell settings put global captive_portal_http_url http://cp.cloudflare.com/
+adb shell settings put global captive_portal_https_url https://cp.cloudflare.com/
+        </div>
+
+        <h3>操作完成后：</h3>
+        <p>重启手机，或者开关一下飞行模式，感叹号应该就会消失。</p>
+
+        <h2>备用解决方案</h2>
+        <p>如果上述方法无效，或你不想使用 ADB，可以尝试以下方法：</p>
+
+        <h3>方案四：彻底关闭连通性检查（不推荐）</h3>
+        <p>这个方法会让感叹号消失，但也会带来一个副作用：当你连接到需要网页登录的公共 Wi-Fi (例如机场、酒店的 Wi-Fi) 时，系统可能不会自动弹出登录页面。</p>
+        <h4>执行命令：</h4>
+        <div class="code-block">
+adb shell settings put global captive_portal_mode 0
+        </div>
+        <p>要恢复检查，执行 <code>adb shell settings delete global captive_portal_mode</code> 或 <code>adb shell settings put global captive_portal_mode 1</code> 即可。</p>
+
+        <h3>方案五：使用科学上网工具</h3>
+        <p>如果你有可用的 VPN 或代理工具，并设置为全局代理，手机能够访问到 Google 的服务器，感叹号也会自然消失。但这治标不治本，一旦关闭工具，问题会重现。</p>
+
+        <h2>一图看懂 & 总结</h2>
+        <p>
+            <table border="1">
+                <tr>
+                    <th>症状</th>
+                    <th>根本原因</th>
+                    <th>最佳解决方案 (命令)</th>
+                </tr>
+                <tr>
+                    <td>Wi-Fi/信号有 ! 感叹号</td>
+                    <td>系统无法访问 Google 的网络检查服务器 <code>connectivitycheck.googleapis.com</code>。</td>
+                    <td>通过 ADB 修改检查服务器地址。<br><code>adb shell settings put global captive_portal_https_url https://www.v2ex.com/generate_204</code></td>
+                </tr>
+            </table>
+        </p>
+        <p><strong>总结一下：</strong></p>
+        <p>这个问题几乎是所有在中国大陆使用类原生安卓系统（如 LineageOS, Pixel Experience）的用户都会遇到的。最佳且一劳永逸的解决方法就是使用第一种方案，通过 ADB 命令将检查服务器换成国内可以访问的地址。 执行一次，永久生效。</p>
+
+        </div>
+    </main>
+
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../../main/js/indexjs.js" defer></script>
+    <script src="../../main/js/copy-code.js" defer></script>
+</body>
+</html>
