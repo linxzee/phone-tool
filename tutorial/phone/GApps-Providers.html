@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主流GApps提供商选择指南</title>
+    <link rel="icon" type="image/png" href="../../main/images/logo.png">
+    <link rel="stylesheet" href="../../main/css/base.css">
+    <link rel="stylesheet" href="../../main/css/navbar.css">
+    <link rel="stylesheet" href="../../main/css/docs.css">
+    <link rel="stylesheet" href="../../main/css/dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>主流GApps提供商选择指南</h1>
+        <p class="meta-info">作者：芝士</p>
+        
+        <p>GApps（Google Apps，谷歌框架）提供商致力于为各种自定义ROM（如LineageOS）提供不同版本和大小的谷歌应用包。选择合适的GApps包对于系统稳定性和功能完整性至关重要。</p>
+
+        <!-- 下载链接区域 -->
+        <div class="download-links">
+            <h2>主要GApps提供商下载链接</h2>
+            <ul>
+                <li><strong>MindTheGapps：</strong><a href="https://mindthegapps.com/" target="_blank" rel="noopener noreferrer">官方网站</a></li>
+                <li><strong>NikGApps：</strong><a href="https://nikgapps.com/" target="_blank" rel="noopener noreferrer">官方网站</a></li>
+                <li><strong>FlameGApps：</strong><a href="https://flamegapps.com/" target="_blank" rel="noopener noreferrer">官方网站</a></li>
+                <li><strong>OpenGApps：</strong><a href="https://opengapps.org/" target="_blank" rel="noopener noreferrer">官方网站</a></li>
+            </ul>
+        </div>
+
+        <h2>MindTheGapps</h2>
+        <div class="provider-info">
+            <p><strong>特点：</strong></p>
+            <ul>
+                <li><strong>LineageOS 官方推荐：</strong> 对于LineageOS，这通常是官方推荐和测试的GApps包</li>
+                <li><strong>精简设计：</strong> 提供核心的Google服务，包括Google Play商店和必要的同步服务</li>
+                <li><strong>体积小巧：</strong> 避免臃肿，保持系统纯净</li>
+                <li><strong>稳定性：</strong> 通常与LineageOS的更新步调保持一致，适配性相对较好</li>
+            </ul>
+            <p><strong>适用人群：</strong> 主要LineageOS用户，追求精简和稳定</p>
+        </div>
+
+        <h2>NikGApps</h2>
+        <div class="provider-info">
+            <p><strong>特点：</strong></p>
+            <ul>
+                <li><strong>高度模块化：</strong> 提供从最精简的Core到功能最全的Full或Omni等多个版本</li>
+                <li><strong>配置文件定制：</strong> 允许用户通过修改配置文件来定制自己想要的谷歌应用</li>
+                <li><strong>积极更新：</strong> 通常能较快地适配最新的安卓版本</li>
+                <li><strong>额外功能：</strong> 有时会包含一些额外的GApps功能，比如Google Camera Go等</li>
+            </ul>
+            <p><strong>适用人群：</strong> 希望高度定制GApps内容的用户，或者需要最新安卓版本支持的用户</p>
+        </div>
+
+        <h2>FlameGApps</h2>
+        <div class="provider-info">
+            <p><strong>特点：</strong></p>
+            <ul>
+                <li><strong>界面友好：</strong> 网站设计现代，下载流程清晰</li>
+                <li><strong>版本多样：</strong> 提供如Basic, Full, Mega等版本，满足不同需求</li>
+                <li><strong>稳定更新：</strong> 维护者通常会跟进最新的安卓版本</li>
+                <li><strong>支持广泛：</strong> 兼容性较好，支持多种ROM</li>
+            </ul>
+            <p><strong>适用人群：</strong> 通用用户，希望有清晰选择和良好兼容性的GApps</li>
+        </div>
+
+        <h2>OpenGApps</h2>
+        <div class="provider-info">
+            <p><strong>特点：</strong></p>
+            <ul>
+                <li><strong>历史悠久：</strong> 最老牌的GApps项目之一</li>
+                <li><strong>版本齐全：</strong> 提供从Pico到Stock的完整版本系列</li>
+                <li><strong>社区支持：</strong> 拥有庞大的用户社区</li>
+                <li><strong>更新节奏：</strong> 对于最新安卓版本的适配通常会慢一些</li>
+            </ul>
+            <p><strong>适用人群：</strong> 传统用户，对OpenGApps有使用习惯的用户</p>
+        </div>
+
+        <h2>GApps版本选择指南</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>版本类型</th>
+                    <th>包含内容</th>
+                    <th>推荐人群</th>
+                    <th>大致体积</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Pico/Core/Basic</strong></td>
+                    <td>仅包含Google Play服务和Play商店</td>
+                    <td>追求精简，只需要基础功能的用户</td>
+                    <td>100-200MB</td>
+                </tr>
+                <tr>
+                    <td><strong>Nano</strong></td>
+                    <td>基础服务 + Google搜索、语音输入</td>
+                    <td>需要语音助手功能的用户</td>
+                    <td>200-300MB</td>
+                </tr>
+                <tr>
+                    <td><strong>Micro</strong></td>
+                    <td>Nano + Google联系人同步</td>
+                    <td>需要联系人同步的用户</td>
+                    <td>300-400MB</td>
+                </tr>
+                <tr>
+                    <td><strong>Mini</strong></td>
+                    <td>Micro + Google日历、键盘等</td>
+                    <td>需要更多谷歌应用但不想要完整的用户</td>
+                    <td>400-500MB</td>
+                </tr>
+                <tr>
+                    <td><strong>Full/Stock</strong></td>
+                    <td>几乎所有的谷歌应用</td>
+                    <td>希望获得完整谷歌体验的用户</td>
+                    <td>600MB+</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>如何选择GApps包</h2>
+        <div class="selection-guide">
+            <h3>1. 检查安卓版本匹配</h3>
+            <p>必须与你的LineageOS的安卓版本完全匹配。例如：</p>
+            <ul>
+                <li>LineageOS 21 → Android 14</li>
+                <li>LineageOS 22 → Android 15</li>
+            </ul>
+
+            <h3>2. 确认平台架构</h3>
+            <p>必须与你的手机处理器架构匹配：</p>
+            <ul>
+                <li><strong>ARM64：</strong> 几乎所有现代手机</li>
+                <li><strong>ARM：</strong> 较老的32位设备</li>
+                <li><strong>x86/x86_64：</strong> 平板或模拟器</li>
+            </ul>
+
+            <h3>3. 选择版本大小</h3>
+            <ul>
+                <li><strong>精简版：</strong> 如果你只想要Play商店和基础的谷歌服务</li>
+                <li><strong>完整版：</strong> 如果你想要几乎所有的谷歌应用</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <p><strong>重要提示：</strong></p>
+            <ul>
+                <li><strong>刷入时机：</strong> 务必在刷入ROM后，但在第一次启动系统之前刷入GApps！这是GApps唯一正确的安装时机。</li>
+                <li><strong>Recovery兼容性：</strong> 确保你的第三方Recovery（如TWRP）支持当前设备的安卓版本。</li>
+                <li><strong>数据备份：</strong> 刷机有风险，请务必备份你的数据。</li>
+                <li><strong>官方推荐：</strong> 对于LineageOS，优先考虑下载LineageOS官方推荐的MindTheGapps包。</li>
+            </ul>
+        </div>
+
+        <h2>安装步骤</h2>
+        <ol>
+            <li>下载适合你设备安卓版本和架构的GApps包</li>
+            <li>将GApps包复制到手机存储或SD卡</li>
+            <li>进入Recovery模式</li>
+            <li>刷入LineageOS ROM</li>
+            <li><strong>不要重启系统</strong>，直接刷入GApps包</li>
+            <li>清除Cache/Dalvik缓存（可选但推荐）</li>
+            <li>重启系统</li>
+        </ol>
+
+        <div class="tip-box">
+            <p><strong>温馨提示：</strong> 如果MindTheGapps还没有适配最新的安卓版本，可以去寻找NikGApps或FlameGApps中明确支持该版本的包。OpenGApps对于最新安卓版本的适配通常会慢一些。</p>
+        </div>
+
+        </div>
+    </main>
+
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../../main/js/indexjs.js" defer></script>
+    <script src="../../main/js/copy-code.js" defer></script>
+</body>
+</html>
