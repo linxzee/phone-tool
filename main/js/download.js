@@ -136,8 +136,7 @@ const downloadItems = [
         downloads: 0,
         icon: "F",
         downloadLinks: [
-            { name: "Windows版", url: "https://linxize.lanzout.com/is1Vd35y4s5a" },
-            { name: "安卓版", url: "https://linxize.lanzout.com/iceJH35y4xxi" }
+            { name: "通用下载", url: "https://soya.infini-cloud.net/share/13027764fbafdf35" }
         ],
         infoUrl: "#",
         updated: "2025-09-11"
