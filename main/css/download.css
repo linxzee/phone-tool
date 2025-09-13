@@ -8,14 +8,17 @@
 
 
 /* --- Hero 区域 --- */
-.hero {
+/* 基础Hero样式已移至 main/css/hero.css */
+
+/* 下载页面特定的Hero样式 */
+.download-hero {
     position: relative;
     padding: 80px 0;
     overflow: hidden;
     text-align: center;
 }
 
-.hero::before {
+.download-hero::before {
     content: '';
     position: absolute;
     top: -10%;
@@ -28,12 +31,12 @@
     transform: translateZ(0);
 }
 
-.hero-content {
+.download-hero .hero-content {
     max-width: 600px;
     margin: 0 auto;
 }
 
-.hero-headline {
+.download-hero .hero-headline {
     font-size: clamp(2.2rem, 6vw, 3.5rem);
     font-weight: 700;
     line-height: 1.2;
@@ -45,7 +48,7 @@
     color: transparent;
 }
 
-.hero-subtitle {
+.download-hero .hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-secondary);
     margin-bottom: 40px;

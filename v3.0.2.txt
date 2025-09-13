@@ -1,9 +1,0 @@
-Lzee 玩机教程网站 v3.0.2
-更新时间: 2025-09-04
-
-版本更新内容:
-- 夜间模式支持时间自动切换功能
-- 教程模板更新，支持夜间模式自动切换并修复导航栏加载路径
-
-GitHub仓库: https://github.com/Lzee/phone-tool
-访问地址: https://phone.dengsir.com

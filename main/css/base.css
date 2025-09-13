@@ -55,7 +55,6 @@
 
     /* Fonts */
     --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --theme-transition: all 0.3s ease; /* Define a global transition for theme changes */
 }
 

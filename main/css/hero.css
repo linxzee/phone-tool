@@ -1,0 +1,121 @@
+/**
+ * 统一的Hero组件样式
+ * 避免在多个CSS文件中重复定义hero相关样式
+ */
+
+/* Hero 区域基础样式 */
+.hero {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+.hero-headline {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-logo-image {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--bg-default) 50%, transparent);
+    box-shadow: 0 0 80px 20px var(--halo-color);
+    transition: box-shadow 0.3s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.hero-logo-image:hover {
+    transform: rotate(360deg);
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+    .hero {
+        text-align: left;
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .hero-buttons {
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-headline {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero-container {
+        gap: 2rem;
+    }
+    
+    .hero-headline {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-logo-image {
+        max-width: 250px;
+    }
+}
+
+/* 下载页面特定的hero样式 */
+.download-hero .hero-headline {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+}
+
+.download-hero .hero-subtitle {
+    font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .download-hero .hero-headline {
+        font-size: 2rem;
+    }
+    
+    .download-hero .hero-subtitle {
+        font-size: 1.1rem;
+    }
+}

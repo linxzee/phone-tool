@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADB Sideload 使用教程</title>
     <link rel="icon" type="image/png" href="../../main/images/logo.png">
-    <link rel="stylesheet" href="../../../../main/css/base.css">
+    <link rel="stylesheet" href="../../main/css/base.css">
     <link rel="stylesheet" href="../../main/css/navbar.css">
     <link rel="stylesheet" href="../../main/css/docs.css">
     <link rel="stylesheet" href="../../main/css/dark-mode.css">
@@ -116,26 +116,9 @@
         </div>
     </main>
 
+    <script src="../../main/js/theme-manager.js" defer></script>
+    <script src="../../main/js/navbar-loader.js" defer></script>
     <script src="../../main/js/navbar.js" defer></script>
-    <script>
-        fetch('../../main/components/navbar.html')
-            .then(response => {
-                if (!response.ok) {
-                    console.error('Fetch error:', response.statusText);
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-                if (typeof initNavbar === 'function') {
-                    initNavbar();
-                }
-            })
-            .catch(error => {
-                console.error('Error loading navbar:', error);
-            });
-    </script>
     <script src="../../main/js/indexjs.js" defer></script>
     <script src="../../main/js/copy-code.js" defer></script>
 </body>
