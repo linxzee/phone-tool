@@ -30,13 +30,20 @@ const initNavbar = () => {
         }
     };
 
+    // Check for auto theme enabled state
+    const autoThemeEnabled = localStorage.getItem('autoThemeEnabled') !== 'false';
+
     // Check for saved theme in localStorage
     const savedTheme = localStorage.getItem('theme');
 
-    if (savedTheme) {
+    if (autoThemeEnabled) {
+        // Auto theme mode enabled - apply theme based on time
+        autoSwitchTheme();
+    } else if (savedTheme) {
+        // Manual theme mode - use saved theme
         applyTheme(savedTheme);
     } else {
-        // If no saved theme, apply theme based on system preference or time
+        // No saved theme and auto mode not explicitly disabled - apply theme based on system preference
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (prefersDark) {
             applyTheme('dark');
@@ -46,10 +53,11 @@ const initNavbar = () => {
         }
     }
 
-    // Set up interval to check theme every hour if no saved theme
+    // Set up interval to check theme every hour if auto theme is enabled
     // This ensures that theme switches automatically when time changes
     setInterval(() => {
-        if (!localStorage.getItem('theme')) { // Only auto-switch if user hasn't manually set a theme
+        const isAutoThemeEnabled = localStorage.getItem('autoThemeEnabled') !== 'false';
+        if (isAutoThemeEnabled) { // Only auto-switch if auto theme mode is enabled
             autoSwitchTheme();
         }
     }, 3600000); // Check every hour (3600000 milliseconds)
@@ -60,6 +68,8 @@ const initNavbar = () => {
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         applyTheme(newTheme);
         localStorage.setItem('theme', newTheme);
+        // Disable auto theme mode when user manually toggles theme
+        localStorage.setItem('autoThemeEnabled', 'false');
     };
 
     // Toggle theme on desktop button click
