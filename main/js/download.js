@@ -128,7 +128,7 @@ const downloadItems = [
     },
     {
         id: 11,
-        title: "FlClash 代理客户端",
+        title: "Clash 代理客户端",
         description: "基于ClashMeta的多平台代理客户端，简单易用，开源无广告。支持Windows和安卓平台。",
         category: "utility",
         version: "最新版",
