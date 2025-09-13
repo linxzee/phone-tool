@@ -1,141 +1,151 @@
+/**
+ * 导航栏初始化函数
+ * 包含主题切换和移动端菜单功能
+ */
 const initNavbar = () => {
-    const themeToggleButton = document.getElementById('theme-toggle-btn');
-    const themeToggleButtonMobile = document.getElementById('theme-toggle-btn-mobile');
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const htmlElement = document.documentElement;
-
-    // Function to apply the theme
-    const applyTheme = (theme) => {
-        if (theme === 'dark') {
-            htmlElement.setAttribute('data-theme', 'dark');
-        } else {
-            htmlElement.setAttribute('data-theme', 'light');
-        }
+    // 获取DOM元素
+    const elements = {
+        themeToggleBtn: document.getElementById('theme-toggle-btn'),
+        themeToggleBtnMobile: document.getElementById('theme-toggle-btn-mobile'),
+        mobileMenuToggle: document.getElementById('mobile-menu-toggle'),
+        mobileMenu: document.getElementById('mobile-menu'),
+        htmlElement: document.documentElement
     };
 
-    // Function to determine and apply theme based on time
-    const autoSwitchTheme = () => {
-        const hour = new Date().getHours();
-        // Assume dark mode from 18:00 to 06:00
-        const isNight = hour >= 18 || hour < 6;
-        const currentTheme = htmlElement.getAttribute('data-theme');
+    // 主题管理功能
+    const themeManager = {
+        /**
+         * 应用主题
+         * @param {string} theme - 'dark' 或 'light'
+         */
+        applyTheme: (theme) => {
+            elements.htmlElement.setAttribute('data-theme', theme);
+        },
 
-        if (isNight && currentTheme !== 'dark') {
-            applyTheme('dark');
-            localStorage.setItem('theme', 'dark');
-        } else if (!isNight && currentTheme !== 'light') {
-            applyTheme('light');
-            localStorage.setItem('theme', 'light');
-        }
-    };
-
-    // Check for auto theme enabled state
-    const autoThemeEnabled = localStorage.getItem('autoThemeEnabled') !== 'false';
-
-    // Check for saved theme in localStorage
-    const savedTheme = localStorage.getItem('theme');
-
-    if (autoThemeEnabled) {
-        // Auto theme mode enabled - apply theme based on time
-        autoSwitchTheme();
-    } else if (savedTheme) {
-        // Manual theme mode - use saved theme
-        applyTheme(savedTheme);
-    } else {
-        // No saved theme and auto mode not explicitly disabled - apply theme based on system preference
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (prefersDark) {
-            applyTheme('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            autoSwitchTheme(); // Apply based on time if no system preference for dark
-        }
-    }
-
-    // Set up interval to check theme every hour if auto theme is enabled
-    // This ensures that theme switches automatically when time changes
-    setInterval(() => {
-        const isAutoThemeEnabled = localStorage.getItem('autoThemeEnabled') !== 'false';
-        if (isAutoThemeEnabled) { // Only auto-switch if auto theme mode is enabled
-            autoSwitchTheme();
-        }
-    }, 3600000); // Check every hour (3600000 milliseconds)
-
-    // Theme toggle function
-    const toggleTheme = () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        applyTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-        // Disable auto theme mode when user manually toggles theme
-        localStorage.setItem('autoThemeEnabled', 'false');
-    };
-
-    // Toggle theme on desktop button click
-    if (themeToggleButton) {
-        themeToggleButton.addEventListener('click', toggleTheme);
-    }
-
-    // Toggle theme on mobile button click
-    if (themeToggleButtonMobile) {
-        themeToggleButtonMobile.addEventListener('click', toggleTheme);
-    }
-
-    // Mobile menu toggle functionality
-    if (mobileMenuToggle && mobileMenu) {
-        let isMenuOpen = false;
-
-        const toggleMobileMenu = () => {
-            isMenuOpen = !isMenuOpen;
+        /**
+         * 根据时间自动切换主题 (18:00-06:00为暗色模式)
+         */
+        autoSwitchTheme: () => {
+            const hour = new Date().getHours();
+            const isNight = hour >= 18 || hour < 6;
+            const currentTheme = elements.htmlElement.getAttribute('data-theme');
             
-            if (isMenuOpen) {
-                mobileMenuToggle.classList.add('active');
-                mobileMenu.classList.add('active');
-                // 防止页面滚动
-                document.body.style.overflow = 'hidden';
-            } else {
-                mobileMenuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                // 恢复页面滚动
-                document.body.style.overflow = '';
+            if ((isNight && currentTheme !== 'dark') || (!isNight && currentTheme !== 'light')) {
+                const newTheme = isNight ? 'dark' : 'light';
+                themeManager.applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
             }
-        };
+        },
 
-        // 点击汉堡菜单按钮
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        /**
+         * 切换主题
+         */
+        toggleTheme: () => {
+            const currentTheme = elements.htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            themeManager.applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            localStorage.setItem('manualThemeOverride', 'true'); // 手动切换时标记为手动覆盖
+        }
+    };
 
-        // 点击菜单项后关闭菜单
-        const mobileMenuItems = mobileMenu.querySelectorAll('.mobile-menu-item');
-        mobileMenuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                if (isMenuOpen) {
-                    toggleMobileMenu();
+    // 移动菜单管理
+    const mobileMenuManager = {
+        isMenuOpen: false,
+
+        /**
+         * 切换移动菜单状态
+         */
+        toggleMenu: () => {
+            mobileMenuManager.isMenuOpen = !mobileMenuManager.isMenuOpen;
+            
+            elements.mobileMenuToggle.classList.toggle('active', mobileMenuManager.isMenuOpen);
+            elements.mobileMenu.classList.toggle('active', mobileMenuManager.isMenuOpen);
+            document.body.style.overflow = mobileMenuManager.isMenuOpen ? 'hidden' : '';
+        },
+
+        /**
+         * 关闭菜单
+         */
+        closeMenu: () => {
+            if (mobileMenuManager.isMenuOpen) {
+                mobileMenuManager.toggleMenu();
+            }
+        }
+    };
+
+    // 初始化主题
+    const initTheme = () => {
+        console.log('navbar.js: initTheme() called');
+        // 设置 manualThemeOverride 的初始值（如果不存在）
+        if (localStorage.getItem('manualThemeOverride') === null) {
+            localStorage.setItem('manualThemeOverride', 'false');
+        }
+        
+        const manualThemeOverride = localStorage.getItem('manualThemeOverride') === 'true';
+        const savedTheme = localStorage.getItem('theme');
+
+        if (manualThemeOverride && savedTheme) {
+            themeManager.applyTheme(savedTheme);
+        } else {
+            themeManager.autoSwitchTheme();
+        }
+
+        // 每小时检查一次自动主题切换
+        setInterval(() => {
+            if (localStorage.getItem('manualThemeOverride') !== 'true') {
+                themeManager.autoSwitchTheme();
+            }
+        }, 3600000);
+    };
+
+    // 绑定事件
+    const bindEvents = () => {
+        // 主题切换按钮
+        if (elements.themeToggleBtn) {
+            elements.themeToggleBtn.addEventListener('click', themeManager.toggleTheme);
+        }
+        if (elements.themeToggleBtnMobile) {
+            elements.themeToggleBtnMobile.addEventListener('click', themeManager.toggleTheme);
+        }
+
+        // 移动菜单功能
+        if (elements.mobileMenuToggle && elements.mobileMenu) {
+            // 汉堡菜单点击
+            elements.mobileMenuToggle.addEventListener('click', mobileMenuManager.toggleMenu);
+
+            // 菜单项点击关闭
+            elements.mobileMenu.querySelectorAll('.mobile-menu-item').forEach(item => {
+                item.addEventListener('click', mobileMenuManager.closeMenu);
+            });
+
+            // 点击外部关闭
+            document.addEventListener('click', (event) => {
+                if (mobileMenuManager.isMenuOpen &&
+                    !elements.mobileMenuToggle.contains(event.target) &&
+                    !elements.mobileMenu.contains(event.target)) {
+                    mobileMenuManager.closeMenu();
                 }
             });
-        });
 
-        // 点击菜单外部区域关闭菜单
-        document.addEventListener('click', (event) => {
-            if (isMenuOpen &&
-                !mobileMenuToggle.contains(event.target) &&
-                !mobileMenu.contains(event.target)) {
-                toggleMobileMenu();
-            }
-        });
+            // ESC键关闭
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && mobileMenuManager.isMenuOpen) {
+                    mobileMenuManager.closeMenu();
+                }
+            });
 
-        // ESC键关闭菜单
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && isMenuOpen) {
-                toggleMobileMenu();
-            }
-        });
+            // 窗口大小改变时关闭
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && mobileMenuManager.isMenuOpen) {
+                    mobileMenuManager.closeMenu();
+                }
+            });
+        }
+    };
 
-        // 窗口大小改变时关闭移动菜单
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && isMenuOpen) {
-                toggleMobileMenu();
-            }
-        });
-    }
+    // 初始化
+    initTheme();
+    bindEvents();
 };

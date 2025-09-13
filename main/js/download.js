@@ -1,3 +1,4 @@
+
 // 下载项目数据
 const downloadItems = [
     {
@@ -149,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
-
 // 渲染下载项目
 function renderDownloadItems(items = downloadItems) {
     const grid = document.getElementById('downloads-grid');
@@ -191,7 +191,7 @@ function createDownloadCard(item) {
                 </span>
                 <span class="meta-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S15.385 2.25 10 2.25zM9.75 6a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6.75A.75.75 0 009.75 6z" clip-rule="evenodd" />
+                        <path fill-rule" />
                     </svg>
                     ${item.size}
                 </span>
@@ -334,7 +334,7 @@ function filterBySearch(searchTerm) {
         return;
     }
     
-    const filteredItems = downloadItems.filter(item => 
+    const filteredItems = downloadItems.filter(item =>
         item.title.toLowerCase().includes(searchTerm) ||
         item.description.toLowerCase().includes(searchTerm) ||
         item.category.toLowerCase().includes(searchTerm)

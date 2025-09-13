@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>深刷提取备份刷入（救砖）教程</title>
     <link rel="icon" type="image/png" href="../../main/images/logo.png">
-    <link rel="stylesheet" href="../../main/css/base.css">
+    <link rel="stylesheet" href="../../main/css/styles.css">
     <link rel="stylesheet" href="../../main/css/navbar.css">
-    <link rel="stylesheet" href="../../main/css/docs.css">
-    <link rel="stylesheet" href="../../main/css/dark-mode.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -59,12 +57,12 @@
                     <h3>3. 刷入GSI并获取临时Root</h3>
                     <p>确保设备已解锁Bootloader。然后重启到Bootloader模式，执行以下命令：</p>
                     <p>刷入GSI系统：(GSI.img为下载解压出来的gsi系统)</p>
-                    <pre><code>fastboot boot system GSI.img</code></pre>
+                    <div class="code-block">fastboot boot system GSI.img</div>
                     <p>清除用户数据：</p>
-                    <pre><code>fastboot erase userdata</code></pre>
+                    <div class="code-block">fastboot erase userdata</div>
                     <p>进入GSI系统后，打开USB调试，使用ADB命令行获取临时的root权限：</p>
-                    <pre><code>adb shell
-su</code></pre>
+                    <div class="code-block">adb shell
+su</div>
 
                     <div class="highlight">
                         <h3>※ 重点：提取分区命令 ※</h3>
@@ -77,41 +75,41 @@ su</code></pre>
 
                     <h4><strong>eMMC 闪存设备</strong></h4>
                     <p>获取分区位置的`by-name`目录：</p>
-                    <pre><code>find /dev/block/platform/ -name 'by-name' -type d</code></pre>
+                    <div class="code-block">find /dev/block/platform/ -name 'by-name' -type d</div>
                     <p>该命令会返回一个路径，不同机型路径可能不同。进入该路径：</p>
-                    <pre><code>cd [上一步返回的路径]</code></pre>
+                    <div class="code-block">cd [上一步返回的路径]</div>
                     <p>查看boot分区对应的块设备（通常以 <strong>mmcblk</strong> 开头）：</p>
-                    <pre><code>ls -l boot</code></pre>
+                    <div class="code-block">ls -l boot</div>
 
                     <h4><strong>UFS 闪存设备</strong></h4>
                     <p>路径通常是固定的，直接进入即可：</p>
-                    <pre><code>cd /dev/block/by-name/</code></pre>
+                    <div class="code-block">cd /dev/block/by-name/</div>
                     <p>查看boot分区对应的块设备（通常以 <strong>sd</strong> 开头）：</p>
-                    <pre><code>ls -l boot</code></pre>
+                    <div class="code-block">ls -l boot</div>
 
                     <h4><strong>执行提取</strong></h4>
                     <p>确认分区实际位置后，使用 <code>dd</code> 命令导出分区文件到手机的内置存储。命令格式如下：</p>
                     <p><code>dd if=[分区实际位置] of=[要保存的位置/文件名]</code></p>
                     <p>例如，提取一个AB分区的 <code>boot_a</code>：</p>
-                    <pre><code>dd if=/dev/block/sda56 of=/sdcard/boot_a.img</code></pre>
+                    <div class="code-block">dd if=/dev/block/sda56 of=/sdcard/boot_a.img</div>
 
                     <h3>4. 修补并刷入分区</h3>
                     <p>将提取出的 <code>.img</code> 文件（如 <code>boot.img</code>, <code>init_boot.img</code> 等）拷贝到电脑，使用Magisk或KernelSU等工具进行修补，然后将修补后的文件刷回设备。以下提供两种刷入方式。</p>
 
                     <h4><strong>Fastboot模式刷入</strong></h4>
                     <p>重启到fastboot模式：</p>
-                    <pre><code>adb reboot bootloader</code></pre>
+                    <div class="code-block">adb reboot bootloader</div>
                     <ul>
-                        <li><strong>A-only分区：</strong><pre><code>fastboot flash boot [修补后的文件].img</code></pre></li>
-                        <li><strong>AB分区：</strong><pre><code>fastboot flash boot_a [修补后的文件].img
-fastboot flash boot_b [修补后的文件].img</code></pre></li>
-                        <li><strong>AB分区 (安卓13+)：</strong><pre><code>fastboot flash init_boot_a [修补后的文件].img
-fastboot flash init_boot_b [修补后的文件].img</code></pre></li>
+                        <li><strong>A-only分区：</strong><div class="code-block">fastboot flash boot [修补后的文件].img</div></li>
+                        <li><strong>AB分区：</strong><div class="code-block">fastboot flash boot_a [修补后的文件].img
+fastboot flash boot_b [修补后的文件].img</div></li>
+                        <li><strong>AB分区 (安卓13+)：</strong><div class="code-block">fastboot flash init_boot_a [修补后的文件].img
+fastboot flash init_boot_b [修补后的文件].img</div></li>
                     </ul>
 
                     <h4><strong>DD命令刷入 (开机状态)</strong></h4>
                     <p>将修补后的文件传回手机，进入ADB Shell并获取root权限 (<code>su</code>)。然后从哪里提取的就刷回哪里：</p>
-                    <pre><code>dd if=[修补后的文件路径] of=[boot分区的实际位置]</code></pre>
+                    <div class="code-block">dd if=[修补后的文件路径] of=[boot分区的实际位置]</div>
                     <p>这种方式不区分分区类型，只需确保源和目标正确即可。</p>
                 </section>
 
@@ -145,21 +143,38 @@ fastboot flash init_boot_b [修补后的文件].img</code></pre></li>
                     <h4>进入fastboot/fastbootd模式的命令</h4>
                     <p><strong>开机状态：</strong></p>
                     <ul>
-                        <li>进入fastboot模式: <pre><code>adb reboot bootloader</code></pre></li>
-                        <li>进入fastbootd模式: <pre><code>adb reboot fastboot</code></pre></li>
+                        <li>进入fastboot模式: <div class="code-block">adb reboot bootloader</div></li>
+                        <li>进入fastbootd模式: <div class="code-block">adb reboot fastboot</div></li>
                     </ul>
                     <p><strong>fastboot状态：</strong></p>
                     <ul>
-                        <li>从fastboot进入fastbootd模式: <pre><code>fastboot reboot fastboot</code></pre></li>
+                        <li>从fastboot进入fastbootd模式: <div class="code-block">fastboot reboot fastboot</div></li>
                     </ul>
                 </section>
             </div>
         </div>
     </main>
     
-    <script src="../../main/js/theme-manager.js" defer></script>
-    <script src="../../main/js/navbar-loader.js" defer></script>
-    <script src="../../main/js/indexjs.js" defer></script>
-    <script src="../../main/js/copy-code.js" defer></script>
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    <script src="../../main/js/utils.js" defer></script>
 </body>
 </html>
