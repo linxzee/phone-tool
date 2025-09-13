@@ -1,121 +1,138 @@
 /**
  * 统一的Hero组件样式
  * 避免在多个CSS文件中重复定义hero相关样式
+ * 负责网站顶部英雄区域（Hero Section）的所有样式
  */
 
-/* Hero 区域基础样式 */
+/* ==================== 基础Hero样式 ==================== */
+
+/* Hero区域容器 - 整个英雄区域的包裹容器 */
 .hero {
-    padding: 4rem 0;
-    text-align: center;
+    padding: 4rem 0;                    /* 上下内边距4rem，左右无内边距 */
+    text-align: center;                 /* 默认文字居中对齐 */
 }
 
+/* Hero内容容器 - 使用Grid布局管理内部元素 */
 .hero-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    gap: 4rem;
+    display: grid;                      /* 使用CSS Grid布局 */
+    grid-template-columns: 1fr;         /* 默认单列布局（移动端） */
+    align-items: center;                /* 垂直方向居中对齐 */
+    gap: 4rem;                          /* 网格项之间的间距 */
 }
 
+/* 主标题样式 - 英雄区域的主要标题 */
 .hero-headline {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
+    font-size: 2.5rem;                  /* 基础字体大小 */
+    font-weight: 700;                   /* 粗体字重 */
+    line-height: 1.2;                   /* 行高设置 */
+    margin-bottom: 1rem;                /* 底部外边距 */
+    color: var(--text-primary);         /* 使用CSS变量设置主要文字颜色 */
 }
 
+/* 副标题样式 - 英雄区域的描述文字 */
 .hero-subtitle {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    max-width: 600px;
+    font-size: 1.125rem;                /* 18px字体大小 */
+    color: var(--text-secondary);       /* 使用CSS变量设置次要文字颜色 */
+    margin-bottom: 2rem;                /* 底部外边距，比标题稍大 */
+    max-width: 600px;                   /* 最大宽度限制，避免文字过长 */
 }
 
+/* 按钮容器 - 包含所有操作按钮 */
 .hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    display: flex;                      /* 弹性布局 */
+    flex-wrap: wrap;                    /* 允许按钮换行 */
+    gap: 1rem;                          /* 按钮之间的间距 */
+    justify-content: center;            /* 水平居中对齐 */
 }
 
+/* 图片容器 - 英雄区域图片的包裹容器 */
 .hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex;                      /* 弹性布局 */
+    justify-content: center;            /* 水平居中对齐 */
+    align-items: center;                /* 垂直居中对齐 */
 }
 
+/* Logo图片样式 - 特殊的图片效果 */
 .hero-logo-image {
-    max-width: 320px;
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    background-color: color-mix(in srgb, var(--bg-default) 50%, transparent);
-    box-shadow: 0 0 80px 20px var(--halo-color);
-    transition: box-shadow 0.3s ease-in-out, transform 0.6s ease-in-out;
+    max-width: 320px;                   /* 最大宽度限制 */
+    width: 100%;                        /* 宽度100%适应容器 */
+    height: auto;                       /* 高度自动，保持比例 */
+    border-radius: 50%;                 /* 圆形效果 */
+    background-color: color-mix(in srgb, var(--bg-default) 50%, transparent); /* 半透明背景混合 */
+    box-shadow: 0 0 80px 20px var(--halo-color); /* 光晕阴影效果 */
+    transition: box-shadow 0.3s ease-in-out, transform 0.6s ease-in-out; /* 阴影和变换的过渡动画 */
 }
 
+/* Logo图片悬停效果 - 交互反馈 */
 .hero-logo-image:hover {
-    transform: rotate(360deg);
+    transform: rotate(360deg);          /* 悬停时360度旋转 */
 }
 
-/* 响应式设计 */
+/* ==================== 响应式设计 ==================== */
+
+/* 中等屏幕及以上（平板、桌面） */
 @media (min-width: 768px) {
     .hero {
-        text-align: left;
+        text-align: left;               /* 文字左对齐 */
     }
     
     .hero-container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* 两列布局：文字 | 图片 */
     }
     
     .hero-buttons {
-        justify-content: flex-start;
+        justify-content: flex-start;    /* 按钮左对齐 */
     }
 }
 
+/* 大屏幕及以上（桌面、大屏） */
 @media (min-width: 1024px) {
     .hero-headline {
-        font-size: 3.5rem;
+        font-size: 3.5rem;              /* 放大主标题字体 */
     }
 }
 
+/* 小屏幕（移动设备） */
 @media (max-width: 768px) {
     .hero {
-        padding: 3rem 0;
+        padding: 3rem 0;                /* 减少内边距 */
     }
     
     .hero-container {
-        gap: 2rem;
+        gap: 2rem;                      /* 减少网格间距 */
     }
     
     .hero-headline {
-        font-size: 2rem;
+        font-size: 2rem;                /* 缩小主标题字体 */
     }
     
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 1rem;                /* 缩小副标题字体 */
     }
     
     .hero-logo-image {
-        max-width: 250px;
+        max-width: 250px;               /* 缩小Logo最大宽度 */
     }
 }
 
-/* 下载页面特定的hero样式 */
+/* ==================== 特定页面样式 ==================== */
+
+/* 下载页面专用的Hero样式变体 */
 .download-hero .hero-headline {
-    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-size: clamp(2.2rem, 6vw, 3.5rem); /* 响应式字体大小，使用clamp函数 */
 }
 
 .download-hero .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.25rem;                 /* 稍大的副标题字体 */
 }
 
+/* 下载页面移动端适配 */
 @media (max-width: 768px) {
     .download-hero .hero-headline {
-        font-size: 2rem;
+        font-size: 2rem;                /* 移动端主标题大小 */
     }
     
     .download-hero .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.1rem;              /* 移动端副标题大小 */
     }
 }
