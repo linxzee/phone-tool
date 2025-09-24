@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub加速下载</title>
+    <link rel="icon" type="image/png" href="../../main/images/logo.png">
+    <link rel="stylesheet" href="../../main/css/styles.css">
+    <link rel="stylesheet" href="../../main/css/navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>GitHub加速下载</h1>
+            <p class="meta-info">作者：芝士</p>
+            
+            <!-- 下载链接区域 -->
+            <div class="download-links">
+                <p>以下是一些常用的GitHub加速下载服务：</p>
+                <ul>
+                    <li><strong>GhproxyList：</strong><a href="https://ghproxylist.com/" target="_blank" rel="noopener noreferrer">访问官网</a></li>
+                    <li><strong>Ghproxy Link：</strong><a href="https://ghproxy.link/" target="_blank" rel="noopener noreferrer">访问官网</a></li>
+                    <li><strong>Akams：</strong><a href="https://akams.cn/github/" target="_blank" rel="noopener noreferrer">访问官网</a></li>
+                </ul>
+            </div>
+            
+            <h2>为什么需要GitHub加速下载</h2>
+            <p>由于网络环境等因素，直接从GitHub下载文件可能会遇到速度慢或连接失败的问题。使用GitHub加速服务可以显著提升下载速度和成功率。</p>
+            
+            <h3>常见问题</h3>
+            <ul>
+                <li>下载速度慢</li>
+                <li>连接超时</li>
+                <li>下载中断</li>
+                <li>无法访问GitHub</li>
+            </ul>
+            
+            <h2>GitHub加速服务介绍</h2>
+            
+            <h3>1. GhproxyList</h3>
+            <p>GhproxyList提供了一个GitHub代理服务列表，用户可以选择合适的代理节点来加速下载。</p>
+            <p>官网：<a href="https://ghproxylist.com/" target="_blank" rel="noopener noreferrer">https://ghproxylist.com/</a></p>
+            <p>使用方法：在GitHub原始链接前加上代理地址，例如：</p>
+            <div class="code-block">https://ghproxylist.com/https://github.com/username/repository/archive/main.zip</div>
+            
+            <h3>2. Ghproxy Link</h3>
+            <p>Ghproxy Link是另一个GitHub代理服务，提供了简单易用的加速下载功能。</p>
+            <p>官网：<a href="https://ghproxy.link/" target="_blank" rel="noopener noreferrer">https://ghproxy.link/</a></p>
+            <p>使用方法：将GitHub原始链接粘贴到网站输入框中，点击加速按钮获取加速链接。</p>
+            
+            <h3>3. Akams</h3>
+            <p>Akams提供了GitHub加速下载服务，支持多种文件类型的加速。</p>
+            <p>官网：<a href="https://akams.cn/github/" target="_blank" rel="noopener noreferrer">https://akams.cn/github/</a></p>
+            <p>使用方法：在网站提供的输入框中输入GitHub文件链接，点击加速按钮。</p>
+            
+            <h2>使用步骤</h2>
+            
+            <h3>方法一：使用在线代理服务</h3>
+            <ol>
+                <li>访问上述任一GitHub加速服务网站</li>
+                <li>复制您想要下载的GitHub文件链接</li>
+                <li>将链接粘贴到代理网站的输入框中</li>
+                <li>点击加速按钮获取加速下载链接</li>
+                <li>使用加速链接进行下载</li>
+            </ol>
+            
+            <h3>方法二：手动添加代理前缀</h3>
+            <ol>
+                <li>选择一个可靠的代理地址（如：https://ghproxy.com/）</li>
+                <li>在原始GitHub链接前添加代理地址前缀</li>
+                <li>使用新链接进行下载</li>
+            </ol>
+            <p>例如：</p>
+            <div class="code-block">原始链接：https://github.com/username/repository/archive/main.zip
+加速链接：https://ghproxy.com/https://github.com/username/repository/archive/main.zip</div>
+            
+            <div class="tip-box">
+                <p><strong>温馨提示：</strong>
+                <ul>
+                    <li>不同的代理服务在不同地区和时间的加速效果可能不同，可以尝试多个服务找到最适合的</li>
+                    <li>使用代理服务时请注意隐私和安全问题</li>
+                    <li>遵守GitHub的使用条款，不要滥用加速服务</li>
+                </ul>
+                </p>
+            </div>
+            
+            <h2>其他加速方法</h2>
+            <p>除了使用在线代理服务，还可以考虑以下方法：</p>
+            <ul>
+                <li>使用Git命令行工具配合代理设置</li>
+                <li>使用专门的下载工具（如IDM、迅雷等）</li>
+                <li>在本地配置hosts文件优化GitHub访问</li>
+            </ul>
+            
+            <p>以上就是关于GitHub加速下载的介绍，希望对您有所帮助。</p>
+        </div>
+    </main>
+    
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    
+    <script src="../../main/js/utils.js" defer></script>
+</body>
+</html>

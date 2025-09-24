@@ -139,8 +139,25 @@ const downloadItems = [
         downloadLinks: [
             { name: "通用下载", url: "https://soya.infini-cloud.net/share/13027764fbafdf35" }
         ],
-        infoUrl: "#",
-        updated: "2025-09-11"
+        infoUrl: "tutorial/Utilities/clash-software.html",
+        updated: "2025-09-24"
+    },
+    {
+        id: 12,
+        title: "GitHub加速下载服务",
+        description: "提供多个GitHub加速下载服务，解决GitHub下载慢或无法访问的问题。",
+        category: "utility",
+        version: "多种服务",
+        size: "在线服务",
+        downloads: 0,
+        icon: "G",
+        downloadLinks: [
+            { name: "GhproxyList", url: "https://ghproxylist.com/" },
+            { name: "Ghproxy Link", url: "https://ghproxy.link/" },
+            { name: "Akams", url: "https://akams.cn/github/" }
+        ],
+        infoUrl: "tutorial/Utilities/github-accelerator.html",
+        updated: "2025-09-24"
     }
 ];
 
