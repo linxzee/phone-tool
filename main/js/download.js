@@ -158,6 +158,22 @@ const downloadItems = [
         ],
         infoUrl: "tutorial/Utilities/github-accelerator.html",
         updated: "2025-09-24"
+    },
+    {
+        id: 13,
+        title: "AlgerMusicPlayer 音乐播放器",
+        description: "一款免费开源的音乐播放器，支持多平台，提供丰富的音乐体验。",
+        category: "utility",
+        version: "v4.9.0",
+        size: "多版本",
+        downloads: 0,
+        icon: "A",
+        downloadLinks: [
+            { name: "官方网站", url: "https://donate.alger.fun/" },
+            { name: "GitHub", url: "https://github.com/algerkong/AlgerMusicPlayer" }
+        ],
+        infoUrl: "https://github.com/algerkong/AlgerMusicPlayer",
+        updated: "2025-09-25"
     }
 ];
 

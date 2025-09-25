@@ -116,6 +116,13 @@
 - Safari
 - Edge
 
+## 📝 贡献指南
+
+1. Fork 本项目
+2. 创建新的分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开 Pull Request
 
 <h2>📄 许可证</h2>
 
@@ -171,4 +178,3 @@ MIT License
 -🧱 基础教程框架搭建
 
 -📱 响应式设计实现
-
