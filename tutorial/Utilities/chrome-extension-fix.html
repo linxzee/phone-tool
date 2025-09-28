@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome 140/141 版本解决扩展程序停用问题</title>
+    <link rel="icon" type="image/png" href="../../main/images/logo.png">
+    <link rel="stylesheet" href="../../main/css/styles.css">
+    <link rel="stylesheet" href="../../main/css/navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="container">
+        <div class="content-section">
+            <h1>Chrome 140/141 版本解决"此扩展程序不再受支持，因此已停用"问题</h1>
+            <p class="meta-info">作者：芝士</p>
+            
+            <h2>注意事项</h2>
+            <p>140 与 141 的方案都不是完美方案，只是解决了"能用"的问题。因 Chrome 删除了多个实验性设置，警告和报错是关不掉的，算不上完美解决。请考虑清楚再升级到 Chrome 140 和 141 版本。</p>
+            
+            <p>Chrome 于 2024 年 6 月开始禁用 Manifest V2 扩展程序，强制开发者使用 Manifest V3。在 127 以上版本的 Chrome 中开始出现升级提示，在 138 版本开始默认禁用了 uBlock Origin、暴力猴等 MV2 扩展，在 139 版本移除了延长 MV2 扩展支持的企业策略，在 140 又移除了多个实验性选项导致以前想要启用该扩展程序的方法基本都已经失效。</p>
+            
+            <p>不过没关系，目前起码直到 141 版本都还有两个方式可以安装或启用 uBlock Origin 广告拦截等 MV2 版扩展程序。</p>
+            
+            <h2>方法一：使用实验性参数与加载未打包的扩展程序实现 Manifest V2 扩展支持（适用于 140.0.7339.80 至 141 版本）</h2>
+            
+            <ol>
+                <li>打开 Chrome 浏览器</li>
+                
+                <li>访问以下地址并启用相应参数：
+                    <ul>
+                        <li><code>chrome://flags/#temporary-unexpire-flags-m138</code> 与 <code>chrome://flags/#temporary-unexpire-flags-m139</code></li>
+                        <li>将这两个参数最后的选项改为「Enabled」（如果你是 141 版本的话，这两个参数最后应该是 m139 和 m140）</li>
+                        <li>重启 Chrome 浏览器（注意：要彻底重启，不要残留后台进程，不然你是看不到后面这些东西的，你修改配置后，浏览器应该会在最下边出现一个重启按钮，用这个重启。）</li>
+                    </ul>
+                </li>
+                
+                <img src="https://pic1.imgdb.cn/item/68d92bbac5157e1a8840d68c.webp"></img>
+                <li>访问 <code>chrome://flags/#allow-legacy-mv2-extensions</code>，将最后参数改为「Enabled」</li>
+                
+                <li>再次重启浏览器</li>
+                
+                <li>下载你的扩展的 crx 安装文件（很多网站提供 Chrome 扩展离线安装包下载），后缀名从 .crx 改成 .zip，将扩展解压成一个文件夹</li>
+                
+                <li>访问 <code>chrome://extensions/</code> 打开右上角的"开发者模式"，选择"加载未打包的扩展程序"，找到你刚才扩展解压出来的文件夹，确定。</li>
+            </ol>
+            
+            <div class="tip-box">
+                <p><strong>注意：</strong>此方法终止于 Chrome v142 版本，如果介意请勿升级。</p>
+            </div>
+            
+            <h2>方法二：通过屏蔽 Chrome 检查更新域名（比较推荐）</h2>
+            
+            <ol>
+                <li>导航到 <code>C:\Windows\System32\drivers\etc\hosts</code></li>
+                
+                <li>用记事本打开，添加一行：
+                    <div class="code-block">0.0.0.0 update.googleapis.com</div>
+                </li>
+                
+                <li>保存文件</li>
+                
+                <li>按 <code>Win+R</code>，输入 <code>cmd</code> 打开命令行，输入以下命令并回车，刷新 DNS：
+                    <div class="code-block">ipconfig /flushdns</div>
+                </li>
+            </ol>
+            
+            <p>通过这种方式可以阻止 Chrome 检查更新，从而继续使用当前版本而不会升级到更高版本（如 v142），保持扩展程序的可用性。</p>
+        </div>
+    </main>
+    
+    <script src="../../main/js/navbar.js" defer></script>
+    <script>
+        fetch('../../main/components/navbar.html')
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Fetch error:', response.statusText);
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+                if (typeof initNavbar === 'function') {
+                    initNavbar();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+    
+    <script src="../../main/js/utils.js" defer></script>
+</body>
+</html>
