@@ -180,13 +180,13 @@ const downloadItems = [
         title: "7-Zip 压缩软件",
         description: "免费开源的压缩软件，支持多种压缩格式，体积小巧，功能强大。",
         category: "archive",
-        version: "24.07",
+        version: "25.01",
         size: "1.5 MB",
         downloads: 0,
         icon: "7",
         downloadLinks: [
-            { name: "x64 位版本", url: "https://linxize.lanzout.com/ibFQG388r0gd" },
-            { name: "x86 位版本", url: "https://linxize.lanzout.com/i8ps4388r01i" }
+            { name: "x64 位版本", url: "https://gitee.com/linxizer/Software/raw/main/7z25.01-zstd-x64.exe" },
+            { name: "x86 位版本", url: "https://gitee.com/linxizer/Software/raw/main/7z25.01-zstd-x32.exe" }
         ],
         infoUrl: "#",
         updated: "2025-10-12"
@@ -196,13 +196,13 @@ const downloadItems = [
         title: "Bandizip 压缩软件",
         description: "界面美观的压缩软件，支持多种格式，解压速度快，操作简单。",
         category: "archive",
-        version: "7.36",
+        version: "7.30",
         size: "8.2 MB",
         downloads: 0,
         icon: "B",
         downloadLinks: [
-            { name: "x64 位版本", url: "https://linxize.lanzout.com/iyCME388r0eb" },
-            { name: "破解补丁", url: "https://linxize.lanzout.com/ixfPq388r09g" }
+            { name: "x64 位版本", url: "https://gitee.com/linxizer/Software/raw/main/Bandizip%20v7.30%20x64.exe" },
+            { name: "破解补丁", url: "https://gitee.com/linxizer/Software/raw/main/Bandizip%20v7.30%20Crack.zip" }
         ],
         infoUrl: "#",
         updated: "2025-10-12"
@@ -212,12 +212,12 @@ const downloadItems = [
         title: "WinRAR 压缩软件",
         description: "经典的压缩软件，支持RAR、ZIP等多种格式，功能全面。",
         category: "archive",
-        version: "7.00",
+        version: "7.12",
         size: "3.5 MB",
         downloads: 0,
         icon: "W",
         downloadLinks: [
-            { name: "通用版本", url: "https://linxize.lanzout.com/iSVWZ388r06d" }
+            { name: "x64 位版本", url: "https://gitee.com/linxizer/Software/raw/main/WinRAR%20v7.12%20x64%20SC-Signed.exe" }
         ],
         infoUrl: "#",
         updated: "2025-10-12"
