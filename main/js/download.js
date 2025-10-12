@@ -174,6 +174,53 @@ const downloadItems = [
         ],
         infoUrl: "https://github.com/algerkong/AlgerMusicPlayer",
         updated: "2025-09-25"
+    },
+    {
+        id: 14,
+        title: "7-Zip 压缩软件",
+        description: "免费开源的压缩软件，支持多种压缩格式，体积小巧，功能强大。",
+        category: "archive",
+        version: "24.07",
+        size: "1.5 MB",
+        downloads: 0,
+        icon: "7",
+        downloadLinks: [
+            { name: "x64 位版本", url: "https://linxize.lanzout.com/ibFQG388r0gd" },
+            { name: "x86 位版本", url: "https://linxize.lanzout.com/i8ps4388r01i" }
+        ],
+        infoUrl: "#",
+        updated: "2025-10-12"
+    },
+    {
+        id: 15,
+        title: "Bandizip 压缩软件",
+        description: "界面美观的压缩软件，支持多种格式，解压速度快，操作简单。",
+        category: "archive",
+        version: "7.36",
+        size: "8.2 MB",
+        downloads: 0,
+        icon: "B",
+        downloadLinks: [
+            { name: "x64 位版本", url: "https://linxize.lanzout.com/iyCME388r0eb" },
+            { name: "破解补丁", url: "https://linxize.lanzout.com/ixfPq388r09g" }
+        ],
+        infoUrl: "#",
+        updated: "2025-10-12"
+    },
+    {
+        id: 16,
+        title: "WinRAR 压缩软件",
+        description: "经典的压缩软件，支持RAR、ZIP等多种格式，功能全面。",
+        category: "archive",
+        version: "7.00",
+        size: "3.5 MB",
+        downloads: 0,
+        icon: "W",
+        downloadLinks: [
+            { name: "通用版本", url: "https://linxize.lanzout.com/iSVWZ388r06d" }
+        ],
+        infoUrl: "#",
+        updated: "2025-10-12"
     }
 ];
 
@@ -283,6 +330,7 @@ function getCategoryName(category) {
         'system': '系统镜像',
         'utility': '实用工具',
         'driver': '驱动工具',
+        'archive': '压缩工具',
         'all': '全部'
     };
     return categories[category] || category;
