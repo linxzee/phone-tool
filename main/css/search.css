@@ -134,6 +134,7 @@
     margin-top: auto;
     padding-top: 1rem;
     border-top: 1px solid var(--border-color);
+    gap: 1rem;
 }
 
 .result-tags {
@@ -161,6 +162,34 @@
 
 .result-link:hover {
     color: var(--accent-color-dark);
+}
+
+/* 关键字高亮样式 */
+.keyword-highlight {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 0.1rem 0.2rem;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* 匹配关键字显示 */
+.result-keywords {
+    flex: 1;
+    min-width: 0;
+}
+
+.matched-keywords {
+    background-color: var(--accent-color-light);
+    color: var(--accent-color-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 /* 无结果状态 */
