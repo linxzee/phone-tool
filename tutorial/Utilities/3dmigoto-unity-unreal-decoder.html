@@ -20,6 +20,12 @@
             <h1>3Dmigoto：Unity与虚幻引擎游戏解码完整指南</h1>
             <p class="meta-info">作者：芝士 | 最后更新：2025年</p>
             
+            <!-- 工具简介 -->
+            <div class="intro-section">
+                <h2>🎯 工具简介</h2>
+                <p>3Dmigoto是一款强大的DirectX 11图形API拦截工具，专门用于分析和修改游戏渲染过程。通过实时拦截和修改着色器与纹理，它可以移除游戏中的遮挡物、马赛克等视觉限制，为游戏研究和开发提供技术支持。</p>
+            </div>
+
             <!-- 下载链接区域 -->
             <div class="download-links">
                 <h3>📥 资源下载</h3>
@@ -32,12 +38,13 @@
             <!-- 适用范围说明 -->
             <div class="tip-box">
                 <h3>🎯 适用范围说明</h3>
-                <p><strong>技术原理：</strong> 3Dmigoto并非针对特定游戏引擎，而是作用于DirectX 11(DX11)图形API。所有游戏引擎都需要通过图形API完成渲染，因此支持DX11的游戏理论上都可以使用此工具。</p>
-                <p><strong>兼容性说明：</strong> 目前市面上绝大多数PC游戏都支持DX11，但请注意以下限制：</p>
+                <p><strong>技术原理：</strong> 3Dmigoto通过拦截DirectX 11图形API调用来实现功能，不针对特定游戏引擎。所有基于DX11渲染的游戏理论上都可以使用此工具。</p>
+                <p><strong>兼容性说明：</strong> 目前市面上绝大多数PC游戏都支持DX11，但请注意以下技术限制：</p>
                 <ul>
                     <li>某些游戏在遮挡区域可能没有完整的渲染内容，移除遮挡后效果可能不理想</li>
-                    <li>并非所有DX11游戏都能成功移除遮挡</li>
+                    <li>并非所有DX11游戏都能成功移除遮挡，取决于具体的渲染实现</li>
                     <li>播片游戏、静态CG或2D游戏中直接绘制在图像上的遮挡难以处理</li>
+                    <li>在线游戏使用可能违反服务条款，请谨慎使用</li>
                 </ul>
             </div>
             
@@ -47,10 +54,10 @@
             <h3>Unity引擎游戏安装：</h3>
             <p>根据游戏架构选择对应的版本：</p>
             <ul>
-                <li>32位游戏 → 使用x86文件夹中的文件</li>
-                <li>64位游戏 → 使用x64文件夹中的文件</li>
+                <li><strong>32位游戏</strong> → 使用x86文件夹中的文件</li>
+                <li><strong>64位游戏</strong> → 使用x64文件夹中的文件</li>
             </ul>
-            <p>将对应文件夹中的所有文件解压到游戏主程序(.exe)所在的目录</p>
+            <p>将对应文件夹中的所有文件解压到游戏主程序(.exe)所在的目录。确保所有文件与游戏可执行文件位于同一目录下。</p>
             <img src="https://pic1.imgdb.cn/item/68f8eb003203f7be008f0dcc.png" alt="Unity游戏解压目录示意图">
 
             <h3>虚幻引擎游戏安装：</h3>
@@ -59,11 +66,11 @@
                 <li><code>游戏目录\游戏名\Binaries\Win64\</code></li>
                 <li><code>游戏目录\Engine\Binaries\Win64\</code></li>
             </ul>
-            <p>如果安装失败，请尝试在上述目录中寻找游戏主程序文件</p>
+            <p>如果安装失败，请尝试在上述目录中寻找游戏主程序文件。建议先备份原始文件再进行操作。</p>
             <img src="https://pic1.imgdb.cn/item/68f8eb003203f7be008f0dcb.png" alt="虚幻引擎游戏解压目录示意图">
 
             <h2>✅ 第二步：启动验证</h2>
-            <p>完成安装后，启动游戏主程序(.exe)。如果安装成功，游戏画面的上方和下方会显示绿色调试信息。</p>
+            <p>完成安装后，启动游戏主程序(.exe)。如果安装成功，游戏画面的上方和下方会显示绿色调试信息，表明3Dmigoto已成功加载。</p>
 
             <h2>🎮 第三步：调试操作</h2>
             <p>启动游戏后，切换到包含遮挡的场景，使用小键盘按键进行调试：</p>
@@ -81,7 +88,7 @@
 "+" - 取消所有隐藏
             </div>
 
-            <p>操作流程：</p>
+            <p><strong>操作流程：</strong></p>
             <div class="code-block">
 🔄 调试流程：
 1. 使用"1"和"2"键使遮挡消失，然后按"3"复制hash值
@@ -111,21 +118,21 @@ handling=skip
                 <li>如果有多个遮挡需要处理，复制上述配置块并递增数字（如<code>Mosaic2</code>、<code>Mosaic3</code>）</li>
                 <li>命名规则：<code>[ShaderOverride_Name]</code>，其中<code>Name</code>可以自定义</li>
                 <li>优先使用<code>ShaderOverride</code>配置，效果通常更好</li>
+                <li>配置完成后保存文件，重新启动游戏即可看到遮挡已被移除</li>
             </ul>
-            <p>配置完成后，重新启动游戏即可看到遮挡已被移除。</p>
 
             <h2>🔧 常见问题解决</h2>
 
             <h3>隐藏调试信息：</h3>
             <p>调试完成后，可以通过以下方式隐藏屏幕上的绿色调试信息：</p>
             <ul>
-                <li>按数字键"0"临时隐藏</li>
-                <li>在<code>d3dx.ini</code>中设置<code>hunting=0</code>（0为隐藏，1为显示）</li>
+                <li>按数字键"0"临时隐藏调试信息</li>
+                <li>在<code>d3dx.ini</code>中设置<code>hunting=0</code>（0为隐藏，1为显示）永久关闭</li>
             </ul>
             <img src="https://pic1.imgdb.cn/item/68f8efce3203f7be008f1353.png" alt="隐藏调试信息示意图">
 
             <h3>自定义按键设置：</h3>
-            <p>如需修改默认按键，在<code>d3dx.ini</code>中搜索<code>NO_VK_DECIMAL VK_NUMPAD1</code>，将<code>VK_NUMPAD1</code>到<code>VK_NUMPAD9</code>修改为需要的按键代码。</p>
+            <p>如需修改默认按键，在<code>d3dx.ini</code>中搜索<code>NO_VK_DECIMAL VK_NUMPAD1</code>，将<code>VK_NUMPAD1</code>到<code>VK_NUMPAD9</code>修改为需要的按键代码。按键代码可在Windows API文档中查询。</p>
             <img src="https://pic1.imgdb.cn/item/68f8efce3203f7be008f1352.png" alt="按键设置示意图">
 
             <h3>DX12游戏兼容性解决方案：</h3>
@@ -163,12 +170,13 @@ handling=skip
 
             <div class="tip-box">
                 <h3>💡 使用提示</h3>
-                <p>如果在使用过程中遇到问题，建议：</p>
+                <p>为了获得最佳使用体验，建议：</p>
                 <ul>
-                    <li>查看GitHub项目的Issue页面获取常见问题解答</li>
-                    <li>参考相关社区讨论和用户经验分享</li>
-                    <li>确保游戏支持DX11图形API</li>
-                    <li>备份原始游戏文件以防意外</li>
+                    <li>查看GitHub项目的Issue页面获取常见问题解答和最新更新</li>
+                    <li>参考相关社区讨论和用户经验分享，了解特定游戏的配置方法</li>
+                    <li>确保游戏支持DX11图形API，部分游戏可能需要强制DX11模式</li>
+                    <li>备份原始游戏文件以防意外，便于恢复原始状态</li>
+                    <li>使用过程中如遇崩溃，尝试删除配置文件重新开始</li>
                 </ul>
             </div>
         </div>

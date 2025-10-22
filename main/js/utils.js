@@ -260,9 +260,105 @@ function initUtils() {
 // DOM加载完成后初始化
 document.addEventListener('DOMContentLoaded', initUtils);
 
+// ==========================================================================
+// 5. 分类过滤功能
+// ==========================================================================
+
+/**
+ * 分类过滤器
+ */
+const categoryFilter = {
+    /**
+     * 初始化分类过滤功能
+     */
+    init: function() {
+        console.log('utils.js: categoryFilter.init() called');
+        this.setupFilterButtons();
+    },
+
+    /**
+     * 设置过滤按钮事件
+     */
+    setupFilterButtons: function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const featureCards = document.querySelectorAll('.feature-card');
+
+        if (filterButtons.length === 0 || featureCards.length === 0) {
+            console.log('utils.js: No filter buttons or feature cards found');
+            return;
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有按钮的active类
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 为当前点击的按钮添加active类
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                this.filterCards(category);
+            });
+        });
+
+        console.log('utils.js: Filter buttons setup complete');
+    },
+
+    /**
+     * 根据分类过滤卡片
+     * @param {string} category - 分类名称
+     */
+    filterCards: function(category) {
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        featureCards.forEach(card => {
+            if (category === 'all') {
+                card.style.display = 'block';
+            } else {
+                const cardCategory = card.getAttribute('data-category');
+                if (cardCategory === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+
+        // 添加平滑过渡效果
+        setTimeout(() => {
+            featureCards.forEach(card => {
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            });
+        }, 10);
+    }
+};
+
+// ==========================================================================
+// 6. 初始化函数更新
+// ==========================================================================
+
+/**
+ * 初始化所有通用功能
+ */
+function initUtils() {
+    // 初始化主题功能
+    themeManager.init();
+    
+    // 初始化代码复制功能
+    codeCopyManager.init();
+    
+    // 初始化分类过滤功能
+    categoryFilter.init();
+    
+    console.log('通用工具函数库初始化完成');
+}
+
+// DOM加载完成后初始化
+document.addEventListener('DOMContentLoaded', initUtils);
+
 // 导出到全局作用域
 window.themeManager = themeManager;
 window.codeCopyManager = codeCopyManager;
+window.categoryFilter = categoryFilter;
 window.formatNumber = formatNumber;
 window.debounce = debounce;
 window.throttle = throttle;

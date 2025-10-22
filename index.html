@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lzee的玩机教程</title>
+    <title>Lzee的技术工具箱</title>
     <link rel="icon" type="image/png" href="main/images/logo.png">
     <link rel="stylesheet" href="main/css/styles.css">
     <link rel="stylesheet" href="main/css/navbar.css">
@@ -18,8 +18,8 @@
        <section class="hero">
             <div class="container hero-container">
                 <div class="hero-content">
-                    <h1 class="hero-headline">Lzee的玩机教程</h1>
-                    <p class="hero-subtitle">适用于高通和联发科芯片的通用指南。Root 的前提是解锁 Bootloader。</p>
+                    <h1 class="hero-headline">Lzee的技术站</h1>
+                    <p class="hero-subtitle">手机刷机、系统工具、软件应用一站式解决方案</p>
                     <div class="hero-buttons">
                         <a href="#features" class="btn btn-primary">开始使用</a>
                         <a href="https://github.com/linxzee/phone-tool/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
@@ -36,79 +36,103 @@
 
         <section id="features" class="features">
             <div class="container">
+                <div class="category-filter">
+                    <button class="filter-btn active" data-category="all">全部</button>
+                    <button class="filter-btn" data-category="phone">手机刷机</button>
+                    <button class="filter-btn" data-category="system">系统工具</button>
+                    <button class="filter-btn" data-category="software">软件工具</button>
+                    <button class="filter-btn" data-category="game">游戏相关</button>
+                </div>
                 <div class="features-grid">
-                    <a href="tutorial/phone/bootroot.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/bootroot.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>深刷提取备份刷入（救砖）</h3>
                         <p>适用大多数设备，高通设备大多需要拆机找触点。</p>
+                        <span class="card-tag">高通/联发科</span>
                     </a>
-                    <a href="tutorial/phone/Lineage-GSI.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/Lineage-GSI.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>Lineage GSI系统的选择</h3>
                         <p>GSI是通用系统镜像，不看手机品牌型号，都能刷。</p>
+                        <span class="card-tag">通用系统</span>
                     </a>
-                    <a href="tutorial/phone/MTKClient.html"  target="_blank" rel="noopener noreferrer"  class="feature-card">
+                    <a href="tutorial/phone/MTKClient.html"  target="_blank" rel="noopener noreferrer"  class="feature-card" data-category="phone">
                         <h3>MTKClient 使用教程</h3>
                         <p>MTK芯片固件的提取、备份与刷入指南。</p>
+                        <span class="card-tag">联发科</span>
                     </a>
-                    <a href="tutorial/phone/Qualcomm-Premium-Tool-9008.html"  target="_blank" rel="noopener noreferrer"  class="feature-card">
+                    <a href="tutorial/phone/Qualcomm-Premium-Tool-9008.html"  target="_blank" rel="noopener noreferrer"  class="feature-card" data-category="phone">
                         <h3>Qualcomm 9008 端口备份</h3>
                         <p>使用 Qualcomm Premium Tool 在9008模式下备份分区。</p>
+                        <span class="card-tag">高通</span>
                     </a>
-                    <a href="tutorial/phone/MiKoPro.html"  target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/MiKoPro.html"  target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>MiKo Pro 9008 操作方法</h3>
                         <p>另一款高通9008模式下的固件提取与备份工具。</p>
+                        <span class="card-tag">高通</span>
                     </a>
-                    <a href="tutorial/phone/redmagic-disable-update.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/redmagic-disable-update.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>红魔手机关闭系统更新</h3>
                         <p>通过ADB方式免Root关闭红魔手机的系统更新提示。</p>
+                        <span class="card-tag">系统优化</span>
                     </a>
-                    <a href="tutorial/wintool/Winsystemreship.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/wintool/Winsystemreship.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="system">
                         <h3>Windows系统重装教程</h3>
                         <p>Windows电脑通用重装系统详细指南，包含PE工具使用。</p>
+                        <span class="card-tag">系统重装</span>
                     </a>
-                    <a href="tutorial/Utilities/LXMusic.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/Utilities/LXMusic.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="software">
                         <h3>LX Music</h3>
                         <p>免费&开源音乐查找工具。</p>
+                        <span class="card-tag">音乐工具</span>
                     </a>
 
-                    <a href="tutorial/phone/adb-sideload.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/adb-sideload.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>ADB Sideload 使用教程</h3>
                         <p>通过电脑向恢复模式设备推送并安装.zip格式更新包的方法。</p>
+                        <span class="card-tag">刷机工具</span>
                     </a>
 
-                    <a href="tutorial/phone/remove-wifi-exclamation.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/remove-wifi-exclamation.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>去除WIFI和信号的X或感叹号</h3>
                         <p>解决安卓系统网络连通性检查导致的WIFI/信号感叹号问题。</p>
+                        <span class="card-tag">网络优化</span>
                     </a>
 
-                    <a href="tutorial/phone/GApps-Providers.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/phone/GApps-Providers.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="phone">
                         <h3>GApps提供商选择指南</h3>
                         <p>主流谷歌框架提供商对比与选择指南，适用于各种自定义ROM。</p>
+                        <span class="card-tag">谷歌服务</span>
                     </a>
 
-                    <a href="tutorial/Utilities/clash-software.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/Utilities/clash-software.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="software">
                         <h3>Clash软件和机场大全</h3>
                         <p>主流Clash客户端软件和机场介绍与下载指南。</p>
+                        <span class="card-tag">网络代理</span>
                     </a>
 
-                    <a href="tutorial/Utilities/github-accelerator.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/Utilities/github-accelerator.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="software">
                         <h3>GitHub加速下载</h3>
                         <p>GitHub文件加速下载服务与使用方法。</p>
+                        <span class="card-tag">下载工具</span>
                     </a>
-                    <a href="tutorial/Utilities/chrome-extension-fix.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/Utilities/chrome-extension-fix.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="software">
                         <h3>Chrome扩展程序停用问题解决</h3>
                         <p>解决Chrome 140/141版本中扩展程序被停用的问题。</p>
+                        <span class="card-tag">浏览器修复</span>
                     </a>
-                    <a href="tutorial/wintool/TrafficMonitor.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/wintool/TrafficMonitor.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="system">
                         <h3>TrafficMonitor</h3>
                         <p>适用于 Windows 的网速监控悬浮窗工具。</p>
+                        <span class="card-tag">系统监控</span>
                     </a>
-                    <a href="tutorial/Utilities/3dmigoto-unity-unreal-decoder.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/Utilities/3dmigoto-unity-unreal-decoder.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="game">
                         <h3>3Dmigoto 解码教程</h3>
                         <p>Unity和虚幻引擎游戏去码工具使用指南。</p>
+                        <span class="card-tag">游戏解码</span>
                     </a>
-                    <a href="tutorial/Utilities/Unity-BepinEx-Decoder.html" target="_blank" rel="noopener noreferrer" class="feature-card">
+                    <a href="tutorial/Utilities/Unity-BepinEx-Decoder.html" target="_blank" rel="noopener noreferrer" class="feature-card" data-category="game">
                         <h3>Unity BepInEx 解码教程</h3>
                         <p>Unity引擎游戏使用BepInEx框架进行解码的详细指南。</p>
+                        <span class="card-tag">游戏解码</span>
                     </a>
                 </div>
             </div>
