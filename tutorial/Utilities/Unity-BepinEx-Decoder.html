@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unity引擎BepinEx框架解码教程</title>
+    <title>Unity引擎BepInEx框架解码完整指南</title>
     <link rel="icon" type="image/png" href="../../main/images/logo.png">
     <link rel="stylesheet" href="../../main/css/styles.css">
     <link rel="stylesheet" href="../../main/css/navbar.css">
@@ -17,91 +17,105 @@
 
     <main class="container">
         <div class="content-section">
-            <h1>Unity引擎BepinEx框架解码教程</h1>
-        <p class="meta-info">作者：芝士</p>
+            <h1>Unity引擎BepInEx框架解码完整指南</h1>
+        <p class="meta-info">作者：芝士 | 最后更新：2025年</p>
         
         <!-- 下载链接区域 -->
         <div class="download-links">
+            <h3>📥 资源下载</h3>
             <ul>
-                <li><strong>Mono脚本BepInEx：</strong><a href="https://github.com/BepInEx/BepInEx/releases" target="_blank" rel="noopener noreferrer">点我下载</a></li>
-                <li><strong>il2cpp脚本BepInEx：</strong><a href="https://builds.bepinex.dev/projects/bepinex_be" target="_blank" rel="noopener noreferrer">点我下载</a></li>
-                <li><strong>首选解码插件：</strong><a href="https://github.com/trimmerpop/UniversalUnityDemosaics/releases" target="_blank" rel="noopener noreferrer">点我下载</a></li>
-                <li><strong>备用解码插件：</strong><a href="https://github.com/ManlyMarco/UniversalUnityDemosaics/releases" target="_blank" rel="noopener noreferrer">点我下载</a></li>
-                <li><strong>更新的AssetStudio：</strong><a href="https://github.com/aelurum/AssetStudio/tags" target="_blank" rel="noopener noreferrer">点我下载</a></li>
+                <li><strong>Mono脚本BepInEx：</strong><a href="https://github.com/BepInEx/BepInEx/releases" target="_blank" rel="noopener noreferrer">GitHub Releases下载</a></li>
+                <li><strong>IL2CPP脚本BepInEx：</strong><a href="https://builds.bepinex.dev/projects/bepinex_be" target="_blank" rel="noopener noreferrer">BepInEx Builds下载</a></li>
+                <li><strong>首选解码插件：</strong><a href="https://github.com/trimmerpop/UniversalUnityDemosaics/releases" target="_blank" rel="noopener noreferrer">UniversalUnityDemosaics下载</a></li>
+                <li><strong>备用解码插件：</strong><a href="https://github.com/ManlyMarco/UniversalUnityDemosaics/releases" target="_blank" rel="noopener noreferrer">备用版本下载</a></li>
+                <li><strong>AssetStudio工具：</strong><a href="https://github.com/aelurum/AssetStudio/tags" target="_blank" rel="noopener noreferrer">AssetStudio下载</a></li>
             </ul>
         </div>
         
         <!-- 关于解码的基础知识 -->
-        <h2>关于解码的基础知识</h2>
+        <h2>🎓 解码基础知识</h2>
         <p>在开始解码之前，了解一些基本概念很重要：</p>
         
         <div class="tip-box">
-            <p><strong>马赛克类型：</strong></p>
+            <h3>🔍 遮挡类型说明</h3>
+            <p><strong>动态遮挡（可移除）：</strong></p>
             <ul>
-                <li><strong>活动马赛克：</strong>可以通过插件解除，在移动视角时会随着视角变动而闪烁，相当于在贴图上加了磨砂玻璃</li>
-                <li><strong>固定马赛克：</strong>无法解除，因为就是用磨砂玻璃做的，不会闪烁</li>
+                <li>可以通过插件移除的遮挡效果</li>
+                <li>在移动视角时会随着视角变动而闪烁</li>
+                <li>相当于在贴图上添加了半透明层</li>
             </ul>
-            <p><strong>注意：</strong>如果解除了马赛克还是什么都没有，那就是作者偷懒根本没画，需要使用AssetStudio和UABE导出贴图自己画，这个方法很麻烦。</p>
-            <p><strong>替代方案：</strong>如果觉得这个方法太麻烦也可以尝试更加方便快速的解码方法：<a href="3dmigoto-unity-unreal-decoder.html" target="_blank" rel="noopener noreferrer">3Dmigoto：Unity和虚幻引擎解码</a></p>
+            <p><strong>静态遮挡（不可移除）：</strong></p>
+            <ul>
+                <li>无法通过插件移除的遮挡</li>
+                <li>不会随着视角移动而闪烁</li>
+                <li>通常是直接绘制在贴图上的</li>
+            </ul>
+            <p><strong>注意事项：</strong>如果移除遮挡后仍然看不到内容，可能是开发者没有在遮挡区域绘制完整内容。这种情况下需要使用AssetStudio和UABE工具导出贴图并手动绘制，过程较为复杂。</p>
+            <p><strong>替代方案：</strong>如果觉得此方法过于复杂，可以尝试更便捷的解码方案：<a href="3dmigoto-unity-unreal-decoder.html" target="_blank" rel="noopener noreferrer">3Dmigoto：Unity与虚幻引擎解码</a></p>
         </div>
 
         <!-- 第一步：检查游戏脚本类型 -->
-        <h2>第一步：检查游戏脚本类型</h2>
+        <h2>🔍 第一步：检查游戏脚本类型</h2>
         <p>首先需要确定游戏使用的是哪种脚本后端：</p>
         
         <div class="code-block">
-检查游戏根目录和_Data文件夹：
-- 如果有Mono文件夹或者Managed文件夹 → Mono脚本
-- 如果有il2cpp_data文件夹 → il2cpp脚本
+📁 检查游戏目录结构：
+- 存在Mono文件夹或Managed文件夹 → Mono脚本
+- 存在il2cpp_data文件夹 → IL2CPP脚本
         </div>
         
         <p>根据脚本类型下载对应的BepInEx框架：</p>
         <div class="code-block">
-Mono脚本：下载名称中不带IL2CPP的版本，一般是Be5
+📋 框架版本选择：
+Mono脚本：下载名称中不带IL2CPP的版本（通常是BepInEx 5）
 示例：BepInEx_win_x64_5.4.23.4.zip
 
-il2cpp脚本：下载名称中带IL2CPP的版本
+IL2CPP脚本：下载名称中包含IL2CPP的版本
 示例：BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.738+af0cba7.zip
         </div>
 
         <div class="tip-box">
-            <p><strong>重要提示：</strong>检查游戏根目录下的UnityCrashHandler文件：</p>
+            <h3>💡 架构识别提示</h3>
+            <p>检查游戏根目录下的UnityCrashHandler文件：</p>
             <ul>
-                <li>UnityCrashHandler32.exe → 32位游戏</li>
-                <li>UnityCrashHandler64.exe → 64位游戏</li>
+                <li><code>UnityCrashHandler32.exe</code> → 32位游戏</li>
+                <li><code>UnityCrashHandler64.exe</code> → 64位游戏</li>
             </ul>
-            <p>下载框架时：32位下载带x86的版本，64位下载带x64的版本</p>
+            <p>下载框架时：32位游戏选择x86版本，64位游戏选择x64版本</p>
         </div>
 
         <!-- 第二步：安装BepInEx框架 -->
-        <h2>第二步：安装BepInEx框架</h2>
-        <p>将下载好的BepInEx框架压缩包中的所有文件解压到游戏的根目录</p>
+        <h2>⚙️ 第二步：安装BepInEx框架</h2>
+        <p>将下载的BepInEx框架压缩包中的所有文件解压到游戏根目录：</p>
         
         <div class="code-block">
-1. 解压BepInEx压缩包到游戏根目录
-2. 启动游戏（第一次需要翻墙）
-3. 检查BepInEx文件夹是否多出很多文件
+🛠️ 安装步骤：
+1. 将BepInEx压缩包解压到游戏根目录
+2. 启动游戏（首次运行需要翻墙）
+3. 检查BepInEx文件夹是否生成新的配置文件
         </div>
         
-        <p>框架安装成功后，BepInEx文件夹会多出很多文件，表示框架已正常加载。</p>
+        <p>框架安装成功后，BepInEx文件夹会生成新的配置文件和日志，表示框架已正常加载。</p>
 
         <!-- 第三步：安装解码插件 -->
-        <h2>第三步：安装解码插件</h2>
-        <p>将对应的去码dll插件解压放置到指定位置：</p>
+        <h2>🔌 第三步：安装解码插件</h2>
+        <p>将解码插件的DLL文件放置到指定位置：</p>
         
         <div class="code-block">
-将解码插件的dll文件放置到：
+📁 插件安装路径：
+将解码插件的DLL文件放置到：
 BepInEx\plugins\ 文件夹中
         </div>
         
-        <p>放置完成后，启动游戏即可生效。</p>
+        <p>插件放置完成后，重新启动游戏即可生效。</p>
 
         <!-- 常见问题 -->
-        <h2>常见问题解决</h2>
+        <h2>🔧 常见问题解决</h2>
         
         <h3>1. 控制台开关设置</h3>
-        <p>如果需要开启或关闭控制台：</p>
+        <p>如需开启或关闭控制台窗口：</p>
         <div class="code-block">
+⚙️ 控制台配置：
 打开文件：BepInEx\config\BepInEx.cfg
 
 找到 [Logging.Console] 部分：
@@ -111,11 +125,12 @@ Enabled = false
 Enabled = true   # 开启控制台
 Enabled = false  # 关闭控制台
         </div>
-        <p>Be5默认关闭控制台，Be6默认打开控制台</p>
+        <p>BepInEx 5默认关闭控制台，BepInEx 6默认开启控制台</p>
 
-        <h3>2. 与ReiPatcherAndAutoTranslator冲突</h3>
-        <p>如果之前安装了翻译组件，需要先删除：</p>
+        <h3>2. 与翻译组件冲突解决</h3>
+        <p>如果之前安装了翻译组件，需要先删除相关文件：</p>
         <div class="code-block">
+🗑️ 冲突文件清理：
 删除游戏根目录下的文件夹：
 - AutoTranslator
 - ReiPatcher
@@ -135,17 +150,26 @@ Enabled = false  # 关闭控制台
         </div>
 
         <div class="tip-box">
-            <p><strong>温馨提示：</strong></p>
+            <h3>💡 使用提示</h3>
             <ul>
-                <li>如果启动游戏后框架没有正常加载（Bepinex文件夹内没有多出文件），有可能是框架版本下错了</li>
+                <li>如果启动游戏后框架没有正常加载（BepInEx文件夹内没有生成新文件），可能是框架版本选择错误</li>
                 <li>确保下载的框架版本与游戏架构（32位/64位）匹配</li>
-                <li>如果解码后仍然看不到内容，可能是固定马赛克或作者根本没画相关内容</li>
+                <li>如果解码后仍然看不到内容，可能是静态遮挡或开发者没有绘制相关内容</li>
+                <li>建议在操作前备份游戏文件</li>
             </ul>
         </div>
 
-        <p><strong>重要提示：</strong> 本教程适用于大多数Unity引擎游戏，但具体效果可能因游戏版本和实现方式而异。建议在操作前备份游戏文件。</p>
+        <div class="tip-box">
+            <h3>⚠️ 重要提示</h3>
+            <p>本教程适用于大多数Unity引擎游戏，但具体效果可能因游戏版本和实现方式而异。建议：</p>
+            <ul>
+                <li>在操作前备份游戏文件</li>
+                <li>确保游戏支持BepInEx框架</li>
+                <li>如遇到问题，请参考相关社区讨论</li>
+            </ul>
+        </div>
         
-        <p>完成以上步骤后，重新启动游戏即可享受解码效果。</p>
+        <p>完成以上步骤后，重新启动游戏即可体验解码效果。</p>
         </div>
     </main>
     
